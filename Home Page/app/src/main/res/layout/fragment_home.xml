@@ -76,7 +76,6 @@
         android:layout_height="92dp"
         android:text="Lock 1"
         android:onClick="onClick"
-        android:backgroundTint="@color/unlocked"
         app:layout_constraintBottom_toBottomOf="@+id/text_home"
         app:layout_constraintEnd_toEndOf="@+id/text_home"
         app:layout_constraintHorizontal_bias="0.522"

@@ -37,9 +37,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        int count = 0;
-        if(count % 2 == 0) {
-
-        }
+        System.out.println("Hello World!");
     }
 }
