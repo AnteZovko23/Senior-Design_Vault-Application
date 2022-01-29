@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="unlocked">#22bb33</color>
     <color name="locked">#bb2124</color>
+    <color name="blue">#7FFF00</color>
+    <color name="lime2">#32cd32</color>
 </resources>

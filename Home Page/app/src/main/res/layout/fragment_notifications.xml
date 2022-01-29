@@ -14,51 +14,61 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:textAlignment="center"
+        android:textColor="#00FFFFFF"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/button7"
-        android:layout_width="280dp"
-        android:layout_height="112dp"
-        android:layout_marginStart="64dp"
-        android:text="Door 2"
-        android:onClick="onClick"
-        app:layout_constraintBottom_toBottomOf="@+id/text_notifications"
+        android:id="@+id/button14"
+        android:layout_width="156dp"
+        android:layout_height="66dp"
+        android:text="Side Door"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/text_notifications"
-        app:layout_constraintHorizontal_bias="0.016"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/text_notifications"
         app:layout_constraintTop_toTopOf="@+id/text_notifications"
-        app:layout_constraintVertical_bias="0.492" />
+        app:layout_constraintVertical_bias="0.776" />
+
+    <Button
+        android:id="@+id/button13"
+        android:layout_width="156dp"
+        android:layout_height="66dp"
+        android:text="Garage Door"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/text_notifications"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/text_notifications"
+        app:layout_constraintTop_toTopOf="@+id/text_notifications"
+        app:layout_constraintVertical_bias="0.584" />
 
     <Button
         android:id="@+id/button11"
-        android:layout_width="280dp"
-        android:layout_height="112dp"
-        android:layout_marginStart="64dp"
-        android:text="Door 1"
-        android:onClick="onClick"
-        app:layout_constraintBottom_toBottomOf="@+id/text_notifications"
+        android:layout_width="219dp"
+        android:layout_height="148dp"
+        android:backgroundTint="@color/locked"
+        android:text="Master Arm"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/text_notifications"
-        app:layout_constraintHorizontal_bias="0.016"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/text_notifications"
         app:layout_constraintTop_toTopOf="@+id/text_notifications"
-        app:layout_constraintVertical_bias="0.194" />
+        app:layout_constraintVertical_bias="0.055" />
 
     <Button
         android:id="@+id/button12"
-        android:layout_width="280dp"
-        android:layout_height="112dp"
-        android:layout_marginStart="64dp"
-        android:text="Door 3"
-        android:onClick="onClick"
-        app:layout_constraintBottom_toBottomOf="@+id/text_notifications"
+        android:layout_width="156dp"
+        android:layout_height="66dp"
+        android:text="Front Door"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/text_notifications"
-        app:layout_constraintHorizontal_bias="0.016"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/text_notifications"
         app:layout_constraintTop_toTopOf="@+id/text_notifications"
-        app:layout_constraintVertical_bias="0.797" />
+        app:layout_constraintVertical_bias="0.397" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
