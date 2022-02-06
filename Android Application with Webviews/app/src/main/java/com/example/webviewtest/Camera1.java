@@ -29,7 +29,7 @@ public class Camera1 extends AppCompatActivity {
         WebSettings webSettings = webView1.getSettings();
         webSettings.setJavaScriptEnabled(true);
 
-        webView1.loadUrl("https://www.youtube.com/embed/WFoC3TR5rzI");
+        webView1.loadUrl("http://138.47.155.113:5000/");
     }
 
     @Override
