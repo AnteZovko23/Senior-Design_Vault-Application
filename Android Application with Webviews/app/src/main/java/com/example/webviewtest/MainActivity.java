@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private Button cambutton;
     private Button alarmbutton;
     private Button bluetoothbtn;
+    private Button requestsbtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +56,14 @@ public class MainActivity extends AppCompatActivity {
                 openBluetooth();
             }
         });
+
+        requestsbtn = (Button) findViewById(R.id.requestsbtn);
+        requestsbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openRequests();
+            }
+        });
     }
 
     public void openLock() {
@@ -74,6 +83,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void openBluetooth() {
         Intent intent = new Intent(this, BluetoothActivity.class);
+        startActivity(intent);
+    }
+
+    public void openRequests() {
+        Intent intent = new Intent(this, Requests.class);
         startActivity(intent);
     }
 }

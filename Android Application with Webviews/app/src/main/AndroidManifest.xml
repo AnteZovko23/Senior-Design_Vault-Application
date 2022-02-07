@@ -15,6 +15,9 @@
         android:theme="@style/Theme.WebViewTest"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Requests"
+            android:exported="false" />
+        <activity
             android:name=".BluetoothActivity"
             android:exported="false" />
         <activity
