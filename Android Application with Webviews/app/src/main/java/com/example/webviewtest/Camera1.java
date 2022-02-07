@@ -2,6 +2,7 @@ package com.example.webviewtest;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Window;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -28,8 +29,13 @@ public class Camera1 extends AppCompatActivity {
 
         WebSettings webSettings = webView1.getSettings();
         webSettings.setJavaScriptEnabled(true);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                webView1.loadUrl("http://172.20.10.7:5000/video_stream");
+            }
+        }, 500);   //5 seconds
 
-        webView1.loadUrl("http://172.20.10.7:5000/video_stream");
     }
 
     @Override
