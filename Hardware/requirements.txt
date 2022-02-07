@@ -1,0 +1,12 @@
+Flask-Cors==3.0.10
+numpy==1.22.0
+opencv-python==4.5.5.62
+click==8.0.3
+gunicorn==20.1.0
+itsdangerous==2.0.1
+Jinja2==3.0.3
+MarkupSafe==2.0.1
+Werkzeug==2.0.1
+Flask==2.0.2
+
+# Pip install -r requirements.txt

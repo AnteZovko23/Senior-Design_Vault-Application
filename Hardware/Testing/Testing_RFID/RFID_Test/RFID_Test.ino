@@ -32,7 +32,7 @@ byte current_position = 0;
 
 // Constants for rows and column sizes
 const byte ROWS = 4;
-const byte COLS = 4;
+const byte COLS = 3;
 
 byte Data[Password_Length];
 byte Master_Password[Password_Length] = {0, 8, 2, 4};
@@ -49,18 +49,28 @@ int RST_pin = 5;
 
 // Keypad Matrix
 
+//char keys[ROWS][COLS] = {
+//
+//  {'1', '2', '3', 'A'},
+//  {'4', '5', '6', 'B'},
+//  {'7', '8', '9', 'C'},
+//  {'*', '0', '#', 'D'}
+//  
+//};
+
 char keys[ROWS][COLS] = {
 
-  {'1', '2', '3', 'A'},
-  {'4', '5', '6', 'B'},
-  {'7', '8', '9', 'C'},
-  {'*', '0', '#', 'D'}
+  {'1', '2', '3'},
+  {'4', '5', '6'},
+  {'7', '8', '9'},
+  {'*', '0', '#'}
   
 };
 
+
 // Arduino pins
 byte rowPins[ROWS] = {22, 23, 24, 25};
-byte colPins[COLS] = {26, 27, 28, 29};
+byte colPins[COLS] = {26, 27, 28};
 
 // Keypad Object
 Keypad myKeypad = Keypad(makeKeymap(keys), rowPins, colPins, ROWS, COLS);
@@ -112,7 +122,7 @@ void access_granted() {
   start_buzzer(3000, 1000);
 //  servo_instance.write(70);
 //  delay(2000);
-  servo_instance.write(96);
+  servo_instance.write(185);
   // Reset Lights
   reset_lights();
   
@@ -149,7 +159,7 @@ void arm_lock() {
 
   reset_lights();
 
-  servo_instance.write(0);
+  servo_instance.write(90);
 
   
   
@@ -310,7 +320,7 @@ void setup()
 
   // Servo code
   servo_instance.attach(9);
-//  servo_instance.write(95);
+  servo_instance.write(90);
   
   pinMode(red_color_pin, OUTPUT);
   pinMode(yellow_color_pin, OUTPUT);
