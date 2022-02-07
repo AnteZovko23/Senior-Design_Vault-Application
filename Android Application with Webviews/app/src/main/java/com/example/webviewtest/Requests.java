@@ -56,6 +56,7 @@ public class Requests extends AppCompatActivity {
     /* might need to change to allow for use with additional classes; comment out intent */
     private void GetRequest(TextView data_display) {
 
+        endpoint = "";
         mRQueue = Volley.newRequestQueue(Requests.this);
         mSReq = new StringRequest(Request.Method.GET, url+endpoint, response -> data_display.setText(response), error -> data_display.setText("Error: " + error));
 
