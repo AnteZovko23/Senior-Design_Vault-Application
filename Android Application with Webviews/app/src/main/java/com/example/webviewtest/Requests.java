@@ -20,7 +20,10 @@ public class Requests extends AppCompatActivity {
     private RequestQueue mRQueue;
     private StringRequest mSReq;
 
-    String url = "http://172.20.10.13:5000/"; //"http://localhost:8081/";
+    String url = "http://172.20.10.7:5000/";
+    // node server - "http://localhost:8081/";
+    // pi server - "http://172.20.10.13:5000/";
+    // for testing - "http://172.20.10.7:5000/pi_test";
     String endpoint = "";
 
 
@@ -45,8 +48,8 @@ public class Requests extends AppCompatActivity {
         GetReq.setOnClickListener(v -> GetRequest(responses));
         GetReq2.setOnClickListener(v -> GetRequest2(responses));
         GetReq3.setOnClickListener(v -> GetRequest3(responses));
-        GetReq4.setOnClickListener(v -> GetRequest4(responses));
-        PostReq.setOnClickListener(v -> PostRequest(responses));
+        //GetReq4.setOnClickListener(v -> GetRequest4(responses));
+        //PostReq.setOnClickListener(v -> PostRequest(responses));
     }
 
     // NEEDS usesClearTextTraffic to run (found in manifest)
@@ -54,17 +57,16 @@ public class Requests extends AppCompatActivity {
     private void GetRequest(TextView data_display) {
 
         mRQueue = Volley.newRequestQueue(Requests.this);
-        mSReq = new StringRequest(Request.Method.GET, url, response -> data_display.setText(response), error -> data_display.setText("Error: " + error));
+        mSReq = new StringRequest(Request.Method.GET, url+endpoint, response -> data_display.setText(response), error -> data_display.setText("Error: " + error));
 
         mRQueue.add(mSReq);
 
-        //Intent intent = new Intent(this, Requests.class);
-        //startActivity(intent); /**/
+
     }
 
     private void GetRequest2(TextView data_display) {
 
-        endpoint = "test";
+        endpoint = "get_test1";
 
         mRQueue = Volley.newRequestQueue(Requests.this);
         mSReq = new StringRequest(Request.Method.GET, url+endpoint, response -> data_display.setText(response), error -> data_display.setText("Error: " + error));
@@ -72,12 +74,11 @@ public class Requests extends AppCompatActivity {
         mRQueue.add(mSReq);
 
 
-        //Intent intent = new Intent(this, Requests.class);
-        //startActivity(intent);
+
     }
     private void GetRequest3(TextView data_display) {
 
-        endpoint = "message_with_params"; // also needs params
+        endpoint = "get_json1"; // also needs params
 
         mRQueue = Volley.newRequestQueue(Requests.this);
         mSReq = new StringRequest(Request.Method.GET, (url+endpoint), response -> data_display.setText(response), error -> data_display.setText("Error: " + error));
@@ -88,6 +89,7 @@ public class Requests extends AppCompatActivity {
         //Intent intent = new Intent(this, Requests.class);
         //startActivity(intent);
     }
+    /*
     private void GetRequest4(TextView data_display) {
 
         endpoint = "print_json";
@@ -114,4 +116,6 @@ public class Requests extends AppCompatActivity {
         //Intent intent = new Intent(this, Requests.class);
         //startActivity(intent);
     }
+
+     */
 }
