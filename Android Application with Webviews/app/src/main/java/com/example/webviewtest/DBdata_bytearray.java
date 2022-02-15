@@ -24,25 +24,29 @@ public class DBdata_bytearray extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     CollectionReference users = db.collection("user_Info");
     DocumentReference user1 = users.document("user1");
-
-    Button getData;
-    Button getByteArray;
-    TextView dbData = findViewById(R.id.DBdata);
-    TextView byteArr = findViewById(R.id.byteArr);
+    allAbtBytes byteManager = allAbtBytes.getInstance();
+    fireBaseWork dbMan = fireBaseWork.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dbdata_bytearray);
 
-        getData = (Button) findViewById(R.id.getData);
-        getByteArray = (Button) findViewById(R.id.getByteArray);
+        Button getData;
+        Button getByteArray;
+        TextView dbData = findViewById(R.id.DBdata);
+        TextView byteArr = findViewById(R.id.byteArr);
 
-        getData.setOnClickListener(v -> useFirebase());
-        getByteArray.setOnClickListener(v -> BAconversion());
+        getData = findViewById(R.id.getData);
+        getByteArray = findViewById(R.id.getByteArray);
+
+        dbMan.newUser();
+
+        getData.setOnClickListener(v -> useFirebase(dbData));
+        getByteArray.setOnClickListener(v -> BAconversion(byteArr));
     }
 
-    private void useFirebase()
+    private void useFirebase(TextView dbData)
     {
         user1.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>()
         {
@@ -68,14 +72,15 @@ public class DBdata_bytearray extends AppCompatActivity {
 
     }
 
-    private void BAconversion()
+    private void BAconversion(TextView byteArr)
     {
         /* ideal
         String baOutput = dbData.getText();
         byte[] byteArray = baOutput.getBytes();
          */
         String baOutput = "test";
-        byte[] byteArray = baOutput.getBytes();
-        byteArr.setText(baOutput + " in a bytearray:\n"  + byteArray);
+        byte[] byteArray = byteManager.createByteArray(baOutput);
+        String output = baOutput + " in a bytearray:\n"  + byteArray;
+        byteArr.setText(output);
     }
 }
