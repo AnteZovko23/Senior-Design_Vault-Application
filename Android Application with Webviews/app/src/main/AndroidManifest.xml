@@ -15,6 +15,9 @@
         android:theme="@style/Theme.WebViewTest"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".DBdata_bytearray"
+            android:exported="false" />
+        <activity
             android:name=".FaceCapture"
             android:exported="false" />
         <activity
@@ -46,7 +49,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
     </application>
 
 </manifest>
