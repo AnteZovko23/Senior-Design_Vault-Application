@@ -40,10 +40,8 @@ public class DBdata_bytearray extends AppCompatActivity {
         getData = findViewById(R.id.getData);
         getByteArray = findViewById(R.id.getByteArray);
 
-        dbMan.newUser();
-
         getData.setOnClickListener(v -> useFirebase(dbData));
-        getByteArray.setOnClickListener(v -> BAconversion(byteArr));
+        getByteArray.setOnClickListener(v -> BAconversion(byteArr, dbData));
     }
 
     private void useFirebase(TextView dbData)
@@ -68,19 +66,22 @@ public class DBdata_bytearray extends AppCompatActivity {
             }
         }
         );
-        //display.setText();
 
+        dbMan.newUser(); //(adds new user as specified in firebasework
     }
 
-    private void BAconversion(TextView byteArr)
+    private void BAconversion(TextView byteArr, TextView dbData)
     {
-        /* ideal
-        String baOutput = dbData.getText();
+        /* ideal */
+        String baOutput = (String)dbData.getText();
         byte[] byteArray = baOutput.getBytes();
-         */
+         /**/
+        /*
         String baOutput = "test";
         byte[] byteArray = byteManager.createByteArray(baOutput);
-        String output = baOutput + " in a bytearray:\n"  + byteArray;
+        /**/
+
+        String output = " in a bytearray:\n"  + byteArray;
         byteArr.setText(output);
     }
 }
