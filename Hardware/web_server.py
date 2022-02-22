@@ -1,5 +1,7 @@
 from flask import Flask, Response, request
 from flask_cors import CORS, cross_origin
+import requests
+import argparse
 
 ###
 # Author: Ante Zovko
@@ -8,6 +10,10 @@ from flask_cors import CORS, cross_origin
 ###
 
 app = Flask(__name__)
+parser = argparse.ArgumentParser()
+
+parser.add_argument('--ip_cam', type=str, default='localhost', help='ip of the camera')
+parser.add_argument('--port', type=int, default=5000, help='port of the camera')
 
 
 CORS(app, support_credentials=True)
@@ -34,18 +40,16 @@ def render():
         global frame
         yield (b'--frame\r\n'b'Content-Type: image/jpg\r\n\r\n' + frame + b'\r\n\r\n')
     
-    
-@app.route('/')
-@cross_origin(origin='*')
-def success():
-    return "Success"
 
-@app.route('/get_video_frames')
-@cross_origin(origin='*')
-def get_video_frames():
-    # Return the frame as a response
-    global frame
-    return frame
+
+
+
+# @app.route('/get_video_frames')
+# @cross_origin(origin='*')
+# def get_video_frames():
+#     # Return the frame as a response
+#     global frame
+#     return frame
 
 @app.route('/video_stream')
 @cross_origin(origin='*')
@@ -53,8 +57,38 @@ def video_feed():
     global frame
     # Keep rendering based on the frame forever
     return Response(render(), mimetype='multipart/x-mixed-replace; boundary=frame')
+
+@app.route('/')
+@cross_origin(origin='*')
+def success():
+    return "Successfully connected to main server!"
+
+
+@app.route('/start_feed')
+@cross_origin(origin="*")
+def start_feed():
+    # Get Request
+    requests.get('http://{}:{}/start_feed'.format(parser.parse_args().ip_cam, parser.parse_args().port)).content
+
+    return "OK"
+
+
+@app.route('/get_test1')
+@cross_origin(origin="*")
+def get_test1():
+    # Get Request
+    
+    return requests.get('http://{}:{}/'.format(parser.parse_args().ip_cam, parser.parse_args().port)).content
+
     
 
+@app.route('/get_json1')
+@cross_origin(origin="*")
+def get_json1():
+    # Get Request
+    return requests.get('http://{}:{}/test'.format(parser.parse_args().ip_cam, parser.parse_args().port)).content
+
+    
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
