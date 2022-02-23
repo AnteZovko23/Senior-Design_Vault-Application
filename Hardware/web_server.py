@@ -42,15 +42,6 @@ def render():
     
 
 
-
-
-# @app.route('/get_video_frames')
-# @cross_origin(origin='*')
-# def get_video_frames():
-#     # Return the frame as a response
-#     global frame
-#     return frame
-
 @app.route('/video_stream')
 @cross_origin(origin='*')
 def video_feed():
@@ -91,5 +82,5 @@ def get_json1():
     
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, ssl_context=('cert.pem', 'key.pem'))
+    app.run(host='0.0.0.0', port=5000, ssl_context=('server.crt', 'server.key'))
     
