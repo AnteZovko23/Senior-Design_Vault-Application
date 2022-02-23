@@ -68,7 +68,7 @@ def success():
 @cross_origin(origin="*")
 def start_feed():
     # Get Request
-    requests.get('http://{}:{}/start_feed'.format(parser.parse_args().ip_cam, parser.parse_args().port)).content
+    requests.get('https://{}:{}/start_feed'.format(parser.parse_args().ip_cam, parser.parse_args().port), verify=False).content
 
     return "OK"
 
@@ -78,7 +78,7 @@ def start_feed():
 def get_test1():
     # Get Request
     
-    return requests.get('http://{}:{}/'.format(parser.parse_args().ip_cam, parser.parse_args().port)).content
+    return requests.get('https://{}:{}/'.format(parser.parse_args().ip_cam, parser.parse_args().port), verify=False).content
 
     
 
@@ -86,9 +86,10 @@ def get_test1():
 @cross_origin(origin="*")
 def get_json1():
     # Get Request
-    return requests.get('http://{}:{}/test'.format(parser.parse_args().ip_cam, parser.parse_args().port)).content
+    return requests.get('https://{}:{}/test'.format(parser.parse_args().ip_cam, parser.parse_args().port), verify=False).content
 
     
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5000, ssl_context=('cert.pem', 'key.pem'))
+    
