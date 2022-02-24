@@ -3,8 +3,11 @@ package com.example.webviewtest;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.media.Image;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -36,16 +39,19 @@ public class DBdata_bytearray extends AppCompatActivity {
         Button getByteArray;
         TextView dbData = findViewById(R.id.DBdata);
         TextView byteArr = findViewById(R.id.byteArr);
+        ImageView pic = findViewById(R.id.pic);
 
         getData = findViewById(R.id.getData);
         getByteArray = findViewById(R.id.getByteArray);
 
-        getData.setOnClickListener(v -> useFirebase(dbData));
+        getData.setOnClickListener(v -> useFirebase(dbData, pic));
         getByteArray.setOnClickListener(v -> BAconversion(byteArr, dbData));
     }
 
-    private void useFirebase(TextView dbData)
+    private void useFirebase(TextView dbData, ImageView pic)
     {
+        /*
+        final DocumentSnapshot[] doc = new DocumentSnapshot[1];
         user1.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>()
         {
             @Override
@@ -53,10 +59,10 @@ public class DBdata_bytearray extends AppCompatActivity {
             {
                 if (task.isSuccessful())
                 {
-                    DocumentSnapshot doc = task.getResult();
-                    if (doc.exists())
+                    doc[0] = task.getResult();
+                    if (doc[0].exists())
                     {
-                        dbData.setText(user1.getId() + " => " + doc.getData());
+                        dbData.setText(user1.getId() + " => " + doc[0].getData());
                     }
                 }
                 else
@@ -66,14 +72,23 @@ public class DBdata_bytearray extends AppCompatActivity {
             }
         }
         );
+        /**/
 
-        dbMan.newUser(); //(adds new user as specified in firebasework
+        String output = dbMan.retrieveData("name", "user_Info", "user1");
+        Log.d("output string: ",output);
+        dbData.setText(output);
+
+        /* */
+        //byte[] picBArr = dbMan.parseData("face_img", dbData.getText());
+        //byte[] picBArr = doc[0].getData().toString().getBytes();
+        //pic.setImageDrawable(byteManager.getPic(picBArr, getResources()));
+        //dbMan.newUser(); //(adds new user as specified in firebasework
     }
 
     private void BAconversion(TextView byteArr, TextView dbData)
     {
         /* ideal */
-        String baOutput = (String)dbData.getText();
+        String baOutput = dbData.getText().toString();
         byte[] byteArray = baOutput.getBytes();
          /**/
         /*
