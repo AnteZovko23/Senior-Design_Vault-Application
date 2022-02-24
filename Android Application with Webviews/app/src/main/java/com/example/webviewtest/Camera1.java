@@ -1,12 +1,23 @@
 package com.example.webviewtest;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.net.http.SslError;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Window;
+import android.webkit.SslErrorHandler;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
+import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.CertificateException;
+
+import javax.net.ssl.HttpsURLConnection;
 
 public class Camera1 extends AppCompatActivity {
     private WebView webView1;
@@ -25,16 +36,25 @@ public class Camera1 extends AppCompatActivity {
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 return true;
             }
+            @Override
+            public void onReceivedSslError(final WebView view, final SslErrorHandler handler, final SslError error) {
+                handler.proceed();
+            }
         });
+
+
 
         WebSettings webSettings = webView1.getSettings();
         webSettings.setJavaScriptEnabled(true);
         Handler handler = new Handler();
+
         handler.postDelayed(new Runnable() {
+
             public void run() {
-                webView1.loadUrl("http://172.20.10.7:5000/video_stream");
+
+                webView1.loadUrl("https://192.168.1.3:5000/video_stream");
             }
-        }, 500);   //5 seconds
+        }, 2500);   //5 seconds
 
     }
 
@@ -47,4 +67,5 @@ public class Camera1 extends AppCompatActivity {
             super.onBackPressed();
         }
     }
+
 }
