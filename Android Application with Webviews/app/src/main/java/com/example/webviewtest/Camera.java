@@ -2,8 +2,10 @@ package com.example.webviewtest;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -11,6 +13,15 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
+import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.CertificateException;
+
+import javax.net.ssl.HttpsURLConnection;
+
 
 public class Camera extends AppCompatActivity {
     private Button camera1;
@@ -31,11 +42,26 @@ public class Camera extends AppCompatActivity {
     }
 
     private void get_video_frames() {
+        // Tell volley to use a SocketFactory from our SSLContext
 
-        String url = "http://172.20.10.7:5000/start_feed";
+        String url = "https://192.168.1.3:5000/start_feed";
         RequestQueue mRQueue;
         StringRequest mSReq;
         mRQueue = Volley.newRequestQueue(Camera.this);
+        try {
+            HttpsURLConnection.setDefaultSSLSocketFactory(Certificate_Handling.getSocketFactory(this));
+
+        } catch (CertificateException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (KeyStoreException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (KeyManagementException e) {
+            e.printStackTrace();
+        }
         mSReq = new StringRequest(Request.Method.GET, url, response -> {}, error -> {});
 
         mRQueue.add(mSReq);
@@ -45,4 +71,6 @@ public class Camera extends AppCompatActivity {
         Intent intent = new Intent(this, Camera1.class);
         startActivity(intent);
     }
+
+
 }
