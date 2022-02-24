@@ -6,6 +6,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 
+import java.nio.charset.StandardCharsets;
+
 public class allAbtBytes
 {
     private static allAbtBytes instance = new allAbtBytes();
@@ -16,7 +18,7 @@ public class allAbtBytes
     {
         // if we need to do anything special depending on
         //  type of input string or otherwise, put here
-        return text.getBytes();
+        return text.getBytes(StandardCharsets.UTF_8);
     }
 
     public static BitmapDrawable getPic(byte[] bytearray, Resources res)
