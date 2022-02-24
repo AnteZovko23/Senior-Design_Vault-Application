@@ -12,7 +12,7 @@ import argparse
 app = Flask(__name__)
 parser = argparse.ArgumentParser()
 
-parser.add_argument('--ip_cam', type=str, default='localhost', help='ip of the camera')
+parser.add_argument('--ip', type=str, default='localhost', help='ip of the camera')
 parser.add_argument('--port', type=int, default=5000, help='port of the camera')
 
 
@@ -59,7 +59,7 @@ def success():
 @cross_origin(origin="*")
 def start_feed():
     # Get Request
-    requests.get('https://{}:{}/start_feed'.format(parser.parse_args().ip_cam, parser.parse_args().port), verify=False).content
+    requests.get('https://{}:{}/start_feed'.format(parser.parse_args().ip, parser.parse_args().port), verify=False).content
 
     return "OK"
 
@@ -69,7 +69,7 @@ def start_feed():
 def get_test1():
     # Get Request
     
-    return requests.get('https://{}:{}/'.format(parser.parse_args().ip_cam, parser.parse_args().port), verify=False).content
+    return requests.get('https://{}:{}/'.format(parser.parse_args().ip, parser.parse_args().port), verify=False).content
 
     
 
@@ -77,7 +77,7 @@ def get_test1():
 @cross_origin(origin="*")
 def get_json1():
     # Get Request
-    return requests.get('https://{}:{}/test'.format(parser.parse_args().ip_cam, parser.parse_args().port), verify=False).content
+    return requests.get('https://{}:{}/test'.format(parser.parse_args().ip, parser.parse_args().port), verify=False).content
 
     
 
