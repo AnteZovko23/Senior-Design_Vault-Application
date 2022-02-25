@@ -27,8 +27,10 @@ public class DBdata_bytearray extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     CollectionReference users = db.collection("user_Info");
     DocumentReference user1 = users.document("user1");
+    DocumentReference user4 = users.document("user4");
     allAbtBytes byteManager = allAbtBytes.getInstance();
     fireBaseWork dbMan = fireBaseWork.getInstance();
+    String dataString1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,18 +39,28 @@ public class DBdata_bytearray extends AppCompatActivity {
 
         Button getData;
         Button getByteArray;
+        Button decoder;
         TextView dbData = findViewById(R.id.DBdata);
         TextView byteArr = findViewById(R.id.byteArr);
         ImageView pic = findViewById(R.id.pic);
 
         getData = findViewById(R.id.getData);
         getByteArray = findViewById(R.id.getByteArray);
+        decoder = findViewById(R.id.decoder);
 
-        getData.setOnClickListener(v -> useFirebase(dbData, pic));
+        getData.setOnClickListener(v -> useFirebase(dbData, pic,"field"));
         getByteArray.setOnClickListener(v -> BAconversion(byteArr, dbData));
+        decoder.setOnClickListener(v -> decode(dbData));
     }
 
-    private void useFirebase(TextView dbData, ImageView pic)
+    private String retrieveData(String fieldName, String collection, String document)
+    {
+
+
+        return dataString1;
+    }
+
+    private void useFirebase(TextView dbData, ImageView pic, String field)
     {
         /*
         final DocumentSnapshot[] doc = new DocumentSnapshot[1];
@@ -74,15 +86,50 @@ public class DBdata_bytearray extends AppCompatActivity {
         );
         /**/
 
-        String output = dbMan.retrieveData("name", "user_Info", "user1");
-        Log.d("output string: ",output);
-        dbData.setText(output);
+        /**/
+        user1.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>()
+                                          {
+                                              @Override
+                                              public void onComplete(@NonNull Task<DocumentSnapshot> task)
+                                              {
+                                                  if (task.isSuccessful()) {
+                                                      DocumentSnapshot doc = task.getResult();
+                                                      if (doc != null && doc.exists())
+                                                      {
+                                                          dataString1 = doc.getString("face_img");
+                                                      }
+
+
+                                                  }
+                                                  else
+                                                  {
+                                                      Log.d("FireBase: ", "failed");
+                                                  }
+                                              }
+
+                                          }
+        );
+
+        /**/
+
+        //String output = dbMan.retrieveData("name", "user_Info", "user1");
+        //Log.d("output string: ",output);
+        //dbMan.decodeData("name", dataString1);
+        dbData.setText(dataString1);
 
         /* */
         //byte[] picBArr = dbMan.parseData("face_img", dbData.getText());
         //byte[] picBArr = doc[0].getData().toString().getBytes();
         //pic.setImageDrawable(byteManager.getPic(picBArr, getResources()));
         //dbMan.newUser(); //(adds new user as specified in firebasework
+    }
+
+    private void decode(TextView dbData)
+    {
+        dbMan.decodeData("name", dataString1);
+        Log.d("current dataString1: ", dataString1);
+        dbData.setText(dataString1);
+
     }
 
     private void BAconversion(TextView byteArr, TextView dbData)

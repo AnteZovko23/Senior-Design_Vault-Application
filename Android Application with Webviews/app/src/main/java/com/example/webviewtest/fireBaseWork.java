@@ -30,8 +30,13 @@ import java.util.Map;
 
 public class fireBaseWork
 {
+
+    private static String dataString1;
+
     private static fireBaseWork instance = new fireBaseWork();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    CollectionReference thisColl = db.collection("userInfo");
+    DocumentReference thisDoc = thisColl.document("user1");
 
     private fireBaseWork(){}
 
@@ -45,25 +50,44 @@ public class fireBaseWork
     {
         /*
         // make file ('smiley.png') into a drawable
-        File file = new File("smiley.png");
+        File file = new File("/app/src/main/res/drawable/smiley.png");
         ImageDecoder.Source source = ImageDecoder.createSource(file);
-        Drawable drawable = ImageDecoder.decodeDrawable(source);
+        Bitmap bmp = ImageDecoder.decodeBitmap(source);
+
+
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        byte[] byteArray = stream.toByteArray();
+        bmp.recycle();
+
+        String newS = new String(byteArray, StandardCharsets.UTF_8);
+        return newS
+         */
+        /**/
+        /* essentially, get a file input stream of the picture (1);
+                        declare a 1024 byte array and write the pictures bytes into the output stream (2);
+                        convert output stream to a byte array --just bos.toByteArray()--(3);
+                        encode output stream to a string using utf_8 characters (4);
+                        return the string for use in other functions/database (5)
          */
         FileInputStream fis = null;
         try {
-            fis = new FileInputStream("smiley.png");
+            fis = new FileInputStream("/app/src/main/res/drawable/smiley.png");
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
             byte[] b = new byte[1024];
-            for (int readNum; (readNum = fis.read(b)) != -1; ) {
-                bos.write(b, 0, readNum);
+            int leng = 0;
+            while ((leng = fis.read(b)) != -1)
+            {
+                bos.write(b, 0, leng);
             }
+            Log.d("mylog", "here");
             String newS = new String(bos.toByteArray(), StandardCharsets.UTF_8);
             return newS;
         } catch (Exception e) {
             Log.d("mylog", e.toString());
         }
         return "failed";
-
+        /**/
     }
 
     //function to make new documents in a Firebase collection:
@@ -72,7 +96,7 @@ public class fireBaseWork
         CollectionReference users = instance.db.collection("user_Info");
 
         // byte array to String call: PicB().toString()
-        Log.d("Picture bytearray: ", PicB());
+        //Log.d("Picture bytearray: ", PicB());
         Map<String, Object> user = new HashMap<>();
         user.put("name", "Chris John");
         user.put("last", "John");
@@ -121,20 +145,20 @@ public class fireBaseWork
 
     static String retrieveData(String fieldName, String collection, String document)
     {
-        CollectionReference thisColl = instance.db.collection(collection);
-        DocumentReference thisDoc = thisColl.document(document);
-        //final DocumentSnapshot doc = new DocumentSnapshot();
-        final String[] data = {""};
 
-
-        thisDoc.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>()
+        instance.thisDoc.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>()
                                             {
                                                 @Override
-                                                public void onSuccess(@NonNull DocumentSnapshot documentSnapshot)
+                                                public void onComplete(@NonNull Task<DocumentSnapshot> task)
                                                 {
-                                                    if (documentSnapshot != null) {
+                                                    if (task.isSuccessful()) {
+                                                        DocumentSnapshot doc = task.getResult();
+                                                        if (doc != null && doc.exists())
+                                                        {
+                                                            dataString1 = doc.getString("name");
+                                                        }
 
-                                                        data[0] = documentSnapshot.getString(fieldName);
+
                                                     }
                                                     else
                                                         {
@@ -148,7 +172,7 @@ public class fireBaseWork
 
 
 
-        return data[0];
+        return dataString1;
     }
 
     static boolean isUpper(char c)
