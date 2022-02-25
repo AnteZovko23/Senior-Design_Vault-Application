@@ -62,4 +62,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/smiley" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

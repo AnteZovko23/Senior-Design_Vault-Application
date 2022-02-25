@@ -30,8 +30,13 @@ import java.util.Map;
 
 public class fireBaseWork
 {
+
+    private static String dataString1;
+
     private static fireBaseWork instance = new fireBaseWork();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    CollectionReference thisColl = db.collection("userInfo");
+    DocumentReference thisDoc = thisColl.document("user1");
 
     private fireBaseWork(){}
 
@@ -45,25 +50,44 @@ public class fireBaseWork
     {
         /*
         // make file ('smiley.png') into a drawable
-        File file = new File("smiley.png");
+        File file = new File("/app/src/main/res/drawable/smiley.png");
         ImageDecoder.Source source = ImageDecoder.createSource(file);
-        Drawable drawable = ImageDecoder.decodeDrawable(source);
+        Bitmap bmp = ImageDecoder.decodeBitmap(source);
+
+
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        byte[] byteArray = stream.toByteArray();
+        bmp.recycle();
+
+        String newS = new String(byteArray, StandardCharsets.UTF_8);
+        return newS
+         */
+        /**/
+        /* essentially, get a file input stream of the picture (1);
+                        declare a 1024 byte array and write the pictures bytes into the output stream (2);
+                        convert output stream to a byte array --just bos.toByteArray()--(3);
+                        encode output stream to a string using utf_8 characters (4);
+                        return the string for use in other functions/database (5)
          */
         FileInputStream fis = null;
         try {
-            fis = new FileInputStream("smiley.png");
+            fis = new FileInputStream("/app/src/main/res/drawable/smiley.png");
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
             byte[] b = new byte[1024];
-            for (int readNum; (readNum = fis.read(b)) != -1; ) {
-                bos.write(b, 0, readNum);
+            int leng = 0;
+            while ((leng = fis.read(b)) != -1)
+            {
+                bos.write(b, 0, leng);
             }
+            Log.d("mylog", "here");
             String newS = new String(bos.toByteArray(), StandardCharsets.UTF_8);
             return newS;
         } catch (Exception e) {
             Log.d("mylog", e.toString());
         }
         return "failed";
-
+        /**/
     }
 
     //function to make new documents in a Firebase collection:
@@ -72,7 +96,7 @@ public class fireBaseWork
         CollectionReference users = instance.db.collection("user_Info");
 
         // byte array to String call: PicB().toString()
-        Log.d("Picture bytearray: ", PicB());
+        //Log.d("Picture bytearray: ", PicB());
         Map<String, Object> user = new HashMap<>();
         user.put("name", "Chris John");
         user.put("last", "John");
@@ -121,20 +145,20 @@ public class fireBaseWork
 
     static String retrieveData(String fieldName, String collection, String document)
     {
-        CollectionReference thisColl = instance.db.collection(collection);
-        DocumentReference thisDoc = thisColl.document(document);
-        //final DocumentSnapshot doc = new DocumentSnapshot();
-        final String[] data = {""};
 
-
-        thisDoc.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>()
+        instance.thisDoc.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>()
                                             {
                                                 @Override
-                                                public void onSuccess(@NonNull DocumentSnapshot documentSnapshot)
+                                                public void onComplete(@NonNull Task<DocumentSnapshot> task)
                                                 {
-                                                    if (documentSnapshot != null) {
+                                                    if (task.isSuccessful()) {
+                                                        DocumentSnapshot doc = task.getResult();
+                                                        if (doc != null && doc.exists())
+                                                        {
+                                                            dataString1 = doc.getString("name");
+                                                        }
 
-                                                        data[0] = documentSnapshot.getString(fieldName);
+
                                                     }
                                                     else
                                                         {
@@ -148,7 +172,7 @@ public class fireBaseWork
 
 
 
-        return data[0];
+        return dataString1;
     }
 
     static boolean isUpper(char c)
@@ -184,7 +208,7 @@ public class fireBaseWork
 
         if (fieldName.length() < value.length()) {
             j = 0;
-            while (fieldName.length() < value.length()*2) {
+            while (fieldName.length() < value.length()) {
                 fieldName += fieldName.charAt(j);
                 j++;
             }
@@ -195,27 +219,27 @@ public class fireBaseWork
         {
             if (isUpper(value.charAt(i)))
             {
-                if (isLower(fieldName.charAt(i)))
+                if (isLower(fieldName.charAt(j)))
                 {
-                    toUpload += (char)((((((int)(value.charAt(i))-65) + ((int)(fieldName.charAt(i)-32-65))) % 26) + 65));
+                    toUpload += (char)((((((int)(value.charAt(i))-65) + ((int)(fieldName.charAt(j))-32-65))) % 26) + 65);
                     j++;
                 }
                 else
                 {
-                    toUpload += (char)((((((int)(value.charAt(i))-65) + ((int)(fieldName.charAt(i)-65))) % 26) + 65));
+                    toUpload += (char)((((((int)(value.charAt(i))-65) + ((int)(fieldName.charAt(j))-65))) % 26) + 65);
                     j++;
                 }
             }
             else if (isLower(value.charAt(i)))
             {
-                if (isUpper(fieldName.charAt(i)))
+                if (isUpper(fieldName.charAt(j)))
                 {
-                    toUpload += (char)((((((int)(value.charAt(i))-97) + ((int)(fieldName.charAt(i)-65))) % 26) + 97));
+                    toUpload += (char)((((((int)(value.charAt(i))-97) + ((int)(fieldName.charAt(j))-65))) % 26) + 97);
                     j++;
                 }
                 else
                 {
-                    toUpload += (char)((((((int)(value.charAt(i))-97) + ((int)(fieldName.charAt(i)-65))) % 26) + 97));
+                    toUpload += (char)((((((int)(value.charAt(i))-97) + ((int)(fieldName.charAt(j))-97))) % 26) + 97);
                     j++;
                 }
             }
@@ -253,36 +277,50 @@ public class fireBaseWork
         j = 0;
 
         for (int i = 0; i < value.length(); i++)
-        {
-            if (isUpper(value.charAt(i)))
             {
-                if (isLower(fieldName.charAt(i)))
+                if (isUpper(value.charAt(i)))
                 {
-                    toUse += (char)((((((int)(value.charAt(i))-65) - ((int)(fieldName.charAt(i)-32-65))) % 26) + 65));
+                    if (isLower(fieldName.charAt(j)))
+                    {
+                        int check = ((((int)(value.charAt(i))-65) - ((int)(fieldName.charAt(j))-32-65)));
+                        if (check < 0)
+                            check = 26 + check;
+                        toUse += (char)((check % 26) + 65);
+
+                    }
+                    else
+                    {
+                        int check = ((((int)(value.charAt(i))-65) - ((int)(fieldName.charAt(j))-65)));
+                        if (check < 0)
+                            check = 26 + check;
+                        toUse += (char)((check % 26) + 65);
+
+                    }
+                    j++;
+                }
+                else if (isLower(value.charAt(i)))
+                {
+                    if (isUpper(fieldName.charAt(j)))
+                    {
+                        int check = ((((int)(value.charAt(i))-97) - ((int)(fieldName.charAt(j))-65)));
+                        if (check < 0)
+                            check = 26 + check;
+                        toUse += (char)((check % 26) + 97);
+
+                    }
+                    else
+                    {
+                        int check = ((((int)(value.charAt(i))-97) - ((int)(fieldName.charAt(j))-97)));
+                        if (check < 0)
+                            check = 26 + check;
+                        toUse += (char)((check % 26) + 97);
+
+                    }
                     j++;
                 }
                 else
-                {
-                    toUse += (char)((((((int)(value.charAt(i))-65) - ((int)(fieldName.charAt(i)-65))) % 26) + 65));
-                    j++;
-                }
+                    toUse += value.charAt(i);
             }
-            else if (isLower(value.charAt(i)))
-            {
-                if (isUpper(fieldName.charAt(i)))
-                {
-                    toUse += (char)((((((int)(value.charAt(i))-97) - ((int)(fieldName.charAt(i)-65))) % 26) + 97));
-                    j++;
-                }
-                else
-                {
-                    toUse += (char)((((((int)(value.charAt(i))-97) - ((int)(fieldName.charAt(i)-65))) % 26) + 97));
-                    j++;
-                }
-            }
-            else
-                toUse += value.charAt(i);
-        }
 
         return toUse;
     }
