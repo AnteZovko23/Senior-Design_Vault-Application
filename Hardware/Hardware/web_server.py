@@ -2,7 +2,6 @@ from flask import Flask, Response, request
 from flask_cors import CORS, cross_origin
 import requests
 import argparse
-import image_processing
 import time
 import face_recognition
 import cv2
