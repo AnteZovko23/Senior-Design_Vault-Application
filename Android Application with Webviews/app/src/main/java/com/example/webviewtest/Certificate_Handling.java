@@ -73,7 +73,7 @@ public class Certificate_Handling {
             @Override
             public boolean verify (String hostname, SSLSession session) {
 
-                return hostname.equals ("192.168.1.3"); //The Hostname of your server
+                return hostname.equals ("192.168.1.4"); //The Hostname of your server
 
             }
         };

@@ -120,8 +120,10 @@ def get_json1():
 
 def process_image(frame):
     global process_this_frame, face_distances, face_locations, face_encodings, face_names, known_face_encodings, face_locations, face_encodings, face_names
-    frame = np.asarray(bytearray(frame), dtype="uint8")
-    # Convert given byte array to image
+    
+    # Decode bytes
+    frame = np.frombuffer(frame, dtype=np.uint8)
+    # Convert to image
     frame = cv2.imdecode(frame, cv2.IMREAD_COLOR)
 
         # except Exception as e:
@@ -131,6 +133,8 @@ def process_image(frame):
     #print(len(known_face_encodings))
     #print(known_person)
 
+    # Time how long
+    start = time.time()
 
     # while True:
     # Grab a single frame of video
@@ -189,10 +193,9 @@ def process_image(frame):
         cv2.putText(frame, name_gui, (left + 10, bottom - 10), font, 1.0, (0, 0, 0), 1)
 
 
-    # Convert back to byte array
-    frame = cv2.imencode('.jpg', frame)[1].tobytes()
-
-    return frame
+    # Convert back to buffer
+    ret, jpeg = cv2.imencode('.jpg', frame)
+    return jpeg.tobytes()
 
     #     # Display the resulting image
     #     cv2.imshow('Video', frame)

@@ -52,7 +52,7 @@ public class Camera1 extends AppCompatActivity {
 
             public void run() {
 
-                webView1.loadUrl("https://192.168.1.3:5000/video_stream");
+                webView1.loadUrl("https://192.168.1.4:5000/video_stream");
             }
         }, 2500);   //5 seconds
 
