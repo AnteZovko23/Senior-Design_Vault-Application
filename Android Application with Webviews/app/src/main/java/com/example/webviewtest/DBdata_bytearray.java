@@ -39,26 +39,27 @@ public class DBdata_bytearray extends AppCompatActivity {
 
         Button getData;
         Button getByteArray;
-        Button decoder;
+        //Button decoder;
         TextView dbData = findViewById(R.id.DBdata);
         TextView byteArr = findViewById(R.id.byteArr);
         ImageView pic = findViewById(R.id.pic);
 
         getData = findViewById(R.id.getData);
         getByteArray = findViewById(R.id.getByteArray);
-        decoder = findViewById(R.id.decoder);
+        //decoder = findViewById(R.id.decoder);
 
         getData.setOnClickListener(v -> useFirebase(dbData, pic,"field"));
         getByteArray.setOnClickListener(v -> BAconversion(byteArr, dbData));
-        decoder.setOnClickListener(v -> decode(dbData));
+        //decoder.setOnClickListener(v -> decode(dbData));
     }
-
+/*
     private String retrieveData(String fieldName, String collection, String document)
     {
 
 
         return dataString1;
     }
+    /**/
 
     private void useFirebase(TextView dbData, ImageView pic, String field)
     {
@@ -87,7 +88,7 @@ public class DBdata_bytearray extends AppCompatActivity {
         /**/
 
         /**/
-        user1.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>()
+        user4.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>()
                                           {
                                               @Override
                                               public void onComplete(@NonNull Task<DocumentSnapshot> task)
@@ -96,7 +97,7 @@ public class DBdata_bytearray extends AppCompatActivity {
                                                       DocumentSnapshot doc = task.getResult();
                                                       if (doc != null && doc.exists())
                                                       {
-                                                          dataString1 = doc.getString("face_img");
+                                                          dataString1 = dbMan.decodeData("name", doc.getString("name"));
                                                       }
 
 

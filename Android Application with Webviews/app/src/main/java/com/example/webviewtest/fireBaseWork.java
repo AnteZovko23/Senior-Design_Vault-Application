@@ -208,7 +208,7 @@ public class fireBaseWork
 
         if (fieldName.length() < value.length()) {
             j = 0;
-            while (fieldName.length() < value.length()*2) {
+            while (fieldName.length() < value.length()) {
                 fieldName += fieldName.charAt(j);
                 j++;
             }
@@ -219,27 +219,27 @@ public class fireBaseWork
         {
             if (isUpper(value.charAt(i)))
             {
-                if (isLower(fieldName.charAt(i)))
+                if (isLower(fieldName.charAt(j)))
                 {
-                    toUpload += (char)((((((int)(value.charAt(i))-65) + ((int)(fieldName.charAt(i)-32-65))) % 26) + 65));
+                    toUpload += (char)((((((int)(value.charAt(i))-65) + ((int)(fieldName.charAt(j))-32-65))) % 26) + 65);
                     j++;
                 }
                 else
                 {
-                    toUpload += (char)((((((int)(value.charAt(i))-65) + ((int)(fieldName.charAt(i)-65))) % 26) + 65));
+                    toUpload += (char)((((((int)(value.charAt(i))-65) + ((int)(fieldName.charAt(j))-65))) % 26) + 65);
                     j++;
                 }
             }
             else if (isLower(value.charAt(i)))
             {
-                if (isUpper(fieldName.charAt(i)))
+                if (isUpper(fieldName.charAt(j)))
                 {
-                    toUpload += (char)((((((int)(value.charAt(i))-97) + ((int)(fieldName.charAt(i)-65))) % 26) + 97));
+                    toUpload += (char)((((((int)(value.charAt(i))-97) + ((int)(fieldName.charAt(j))-65))) % 26) + 97);
                     j++;
                 }
                 else
                 {
-                    toUpload += (char)((((((int)(value.charAt(i))-97) + ((int)(fieldName.charAt(i)-65))) % 26) + 97));
+                    toUpload += (char)((((((int)(value.charAt(i))-97) + ((int)(fieldName.charAt(j))-97))) % 26) + 97);
                     j++;
                 }
             }
@@ -277,36 +277,50 @@ public class fireBaseWork
         j = 0;
 
         for (int i = 0; i < value.length(); i++)
-        {
-            if (isUpper(value.charAt(i)))
             {
-                if (isLower(fieldName.charAt(i)))
+                if (isUpper(value.charAt(i)))
                 {
-                    toUse += (char)((((((int)(value.charAt(i))-65) - ((int)(fieldName.charAt(i)-32-65))) % 26) + 65));
+                    if (isLower(fieldName.charAt(j)))
+                    {
+                        int check = ((((int)(value.charAt(i))-65) - ((int)(fieldName.charAt(j))-32-65)));
+                        if (check < 0)
+                            check = 26 + check;
+                        toUse += (char)((check % 26) + 65);
+
+                    }
+                    else
+                    {
+                        int check = ((((int)(value.charAt(i))-65) - ((int)(fieldName.charAt(j))-65)));
+                        if (check < 0)
+                            check = 26 + check;
+                        toUse += (char)((check % 26) + 65);
+
+                    }
+                    j++;
+                }
+                else if (isLower(value.charAt(i)))
+                {
+                    if (isUpper(fieldName.charAt(j)))
+                    {
+                        int check = ((((int)(value.charAt(i))-97) - ((int)(fieldName.charAt(j))-65)));
+                        if (check < 0)
+                            check = 26 + check;
+                        toUse += (char)((check % 26) + 97);
+
+                    }
+                    else
+                    {
+                        int check = ((((int)(value.charAt(i))-97) - ((int)(fieldName.charAt(j))-97)));
+                        if (check < 0)
+                            check = 26 + check;
+                        toUse += (char)((check % 26) + 97);
+
+                    }
                     j++;
                 }
                 else
-                {
-                    toUse += (char)((((((int)(value.charAt(i))-65) - ((int)(fieldName.charAt(i)-65))) % 26) + 65));
-                    j++;
-                }
+                    toUse += value.charAt(i);
             }
-            else if (isLower(value.charAt(i)))
-            {
-                if (isUpper(fieldName.charAt(i)))
-                {
-                    toUse += (char)((((((int)(value.charAt(i))-97) - ((int)(fieldName.charAt(i)-65))) % 26) + 97));
-                    j++;
-                }
-                else
-                {
-                    toUse += (char)((((((int)(value.charAt(i))-97) - ((int)(fieldName.charAt(i)-65))) % 26) + 97));
-                    j++;
-                }
-            }
-            else
-                toUse += value.charAt(i);
-        }
 
         return toUse;
     }
