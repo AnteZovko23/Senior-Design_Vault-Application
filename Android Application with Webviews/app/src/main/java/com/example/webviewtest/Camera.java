@@ -44,7 +44,7 @@ public class Camera extends AppCompatActivity {
     private void get_video_frames() {
         // Tell volley to use a SocketFactory from our SSLContext
 
-        String url = "https://192.168.1.3:5000/start_feed";
+        String url = "https://192.168.1.4:5000/start_feed";
         RequestQueue mRQueue;
         StringRequest mSReq;
         mRQueue = Volley.newRequestQueue(Camera.this);
