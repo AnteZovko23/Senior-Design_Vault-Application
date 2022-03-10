@@ -135,11 +135,11 @@ public class fireBaseWork
     {
         // making references to pre-existing collection and document
         CollectionReference thisColl = instance.db.collection(collection);
-        DocumentReference thisDoc = thisColl.document(thisColl+"/"+document);
+        DocumentReference thisDoc = thisColl.document(document);
 
         // make hashmap and put data of specific type (string for now) in it before updating FireBase collection
         Map<String, Object> insertion = new HashMap<>();
-        insertion.put(fieldName, data);
+        insertion.put(fieldName, encodeData(fieldName, data));
         thisColl.document(document).set(insertion);
     }
 
