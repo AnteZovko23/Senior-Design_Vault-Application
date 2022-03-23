@@ -73,11 +73,18 @@ public class LoginActivity extends AppCompatActivity{
                     return;
                 }
                 loadingProgressBar.setVisibility(View.GONE);
+                if(loginResult.getError() != null){
+                    showLoginFailed(loginResult.getError());
+                }
                 if(loginResult.getSuccess() != null) {
                     updateUiWithUser(loginResult.getSuccess());
                 }
                 setResult(Activity.RESULT_OK);
                 finish();
+            }
+
+            private void showLoginFailed(@StringRes Integer errorString) {
+                Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
             }
 
             private void updateUiWithUser(LoggedInUserView model) {
@@ -90,12 +97,16 @@ public class LoginActivity extends AppCompatActivity{
         TextWatcher afterTextChangedListener = new TextWatcher(){
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after){
-                // ignore
+                start = 0;
+                count = 0;
+                after = 0;
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count){
-                // ignore
+                start = 0;
+                count = 0;
+                before = 0;
             }
 
             @Override
@@ -124,10 +135,6 @@ public class LoginActivity extends AppCompatActivity{
                 openMainActivity();
             }
         });
-
-        private void showLoginFailed(@StringRes int errorString) {
-            Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
-        }
     }
 
     private void openMainActivity() {
