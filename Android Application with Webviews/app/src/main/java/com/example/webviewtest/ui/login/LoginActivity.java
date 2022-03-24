@@ -23,15 +23,18 @@ public class LoginActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        user_name=findViewById(R.id.email);
-        pass_word=findViewById(R.id.password);
+        //user_name=findViewById(R.id.email);
+       // pass_word=findViewById(R.id.password);
         Button btn_login = findViewById(R.id.btn_login);
         Button btn_sign = findViewById(R.id.btn_signup);
         mAuth=FirebaseAuth.getInstance();
         btn_login.setOnClickListener(v ->
         {
-            String email = user_name.getText().toString().trim();
-            String password=pass_word.getText().toString().trim();
+            // String email = user_name.getText().toString().trim();
+            //String password=pass_word.getText().toString().trim();
+
+            String email = "r@gmail.com";
+            String password = "password";
 
         if(email.isEmpty())
         {
