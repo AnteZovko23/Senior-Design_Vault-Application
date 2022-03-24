@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.webviewtest.R;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class Register extends AppCompatActivity
+public class RegisterActivity extends AppCompatActivity
 {
      Button btn2_signup;
      EditText user_name, pass_word;
@@ -46,10 +46,10 @@ public class Register extends AppCompatActivity
              }
              mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(task -> {
                  if(task.isSuccessful()){
-                     Toast.makeText(Register.this, "You are now registered!", Toast.LENGTH_SHORT).show();
+                     Toast.makeText(RegisterActivity.this, "You are now registered!", Toast.LENGTH_SHORT).show();
                  }
                  else{
-                     Toast.makeText(Register.this, "You are not Registered, Please try again.", Toast.LENGTH_SHORT).show();
+                     Toast.makeText(RegisterActivity.this, "You are not Registered, Please try again.", Toast.LENGTH_SHORT).show();
                  }
              });
          });
