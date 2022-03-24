@@ -42,25 +42,30 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" /><![CDATA[
+
+    >>>>>> Stashed changes
+
+
+
+
+
+    ]]>
 
     <Button
-        android:id="@+id/btn_login"
+        android:id="@+id/login"
         android:layout_width="393dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="377dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="306dp"
-        android:text="@string/log_in"
-        app:layout_constraintBottom_toBottomOf="parent"
+
+        android:text="Login"
+        app:layout_constraintBottom_toTopOf="@+id/signup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="DuplicateClickableBoundsCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/password"
+        app:layout_constraintVertical_bias="1.0">
 
     <Button
-        android:id="@+id/btn_signup"
+        android:id="@+id/signup"
         android:layout_width="268dp"
         android:layout_height="48dp"
         android:layout_marginStart="71dp"
@@ -75,7 +80,7 @@
 
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/g_login"
         android:layout_width="119dp"
         android:layout_height="80dp"
         android:layout_marginStart="146dp"
@@ -87,8 +92,24 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.048"
+        app:layout_constraintVertical_bias="0.016"
         app:srcCompat="@drawable/common_google_signin_btn_icon_light_focused"
         tools:ignore="ImageContrastCheck" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout><![CDATA[=======
+        android:layout_gravity="start"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="64dp"
+        android:enabled="false"
+        android:text="login"
+>>>>>>> Stashed changes
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.204"
+        app:layout_constraintStart_toStartOf="parent"
+
+    =======
+        app:layout_constraintTop_toBottomOf="@+id/password"
+        app:layout_constraintVertical_bias="0.158" />
+
+    ]]>
