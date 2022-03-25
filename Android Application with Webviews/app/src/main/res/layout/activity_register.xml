@@ -9,7 +9,7 @@
     tools:context=".ui.login.RegisterActivity">
 
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/email"
         android:layout_width="393dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="9dp"
@@ -43,7 +43,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/sign"
+        android:id="@+id/SignUp"
         android:layout_width="393dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="9dp"

@@ -2,85 +2,73 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/gSignIn"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".ui.login.LoginActivity">
+    <!--
+    <include layout="@layout/toolbar"/>
+    -->
 
     <EditText
         android:id="@+id/email"
-        android:layout_width="393dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="9dp"
-        android:layout_marginTop="249dp"
-        android:layout_marginEnd="9dp"
-        android:layout_marginBottom="434dp"
-        android:autofillHints=""
-        android:hint="@string/username"
+        android:layout_width="370dp"
+        android:layout_height="60dp"
+        android:hint="@string/prompt_email"
         android:inputType="textEmailAddress"
-        android:minHeight="48dp"
+        android:selectAllOnFocus="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.463"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="DuplicateClickableBoundsCheck" />
+        app:layout_constraintVertical_bias="0.254" />
 
     <EditText
         android:id="@+id/password"
-        android:layout_width="393dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="9dp"
-        android:layout_marginTop="297dp"
-        android:layout_marginEnd="9dp"
-        android:layout_marginBottom="386dp"
-        android:autofillHints=""
-        android:hint="@string/password"
+        android:layout_width="374dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="8dp"
+        android:hint="@string/prompt_password"
+        android:imeActionLabel="@string/action_sign_in_short"
+        android:imeOptions="actionDone"
         android:inputType="textPassword"
-        android:minHeight="48dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" /><![CDATA[
-
-    >>>>>> Stashed changes
-
-
-
-
-
-    ]]>
+        app:layout_constraintTop_toBottomOf="@+id/email" />
 
     <Button
         android:id="@+id/login"
         android:layout_width="393dp"
         android:layout_height="wrap_content"
 
-        android:text="Login"
-        app:layout_constraintBottom_toTopOf="@+id/signup"
+        android:text="@string/log_in"
+        app:layout_constraintBottom_toTopOf="@+id/signUp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="1.0" />
+
 
     <Button
-        android:id="@+id/signup"
+        android:id="@+id/signUp"
         android:layout_width="268dp"
         android:layout_height="48dp"
         android:layout_marginStart="71dp"
-        android:layout_marginTop="425dp"
         android:layout_marginEnd="72dp"
         android:layout_marginBottom="258dp"
         android:text="@string/sign_up"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageButton
-        android:id="@+id/g_login"
+        android:id="@+id/gSignIn"
         android:layout_width="119dp"
         android:layout_height="80dp"
         android:layout_marginStart="146dp"
@@ -96,20 +84,20 @@
         app:srcCompat="@drawable/common_google_signin_btn_icon_light_focused"
         tools:ignore="ImageContrastCheck" />
 
-</androidx.constraintlayout.widget.ConstraintLayout><![CDATA[=======
-        android:layout_gravity="start"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="64dp"
-        android:enabled="false"
-        android:text="login"
->>>>>>> Stashed changes
+    <!--
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/loginToolbar"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.204"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"/>
+    -->
 
-    =======
-        app:layout_constraintTop_toBottomOf="@+id/password"
-        app:layout_constraintVertical_bias="0.158" />
-
-    ]]>
+</androidx.constraintlayout.widget.ConstraintLayout>
