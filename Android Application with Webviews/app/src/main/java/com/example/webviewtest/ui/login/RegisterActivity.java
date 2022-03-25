@@ -100,7 +100,7 @@ public class RegisterActivity extends AppCompatActivity
         else if (password.length()<6)
         {
             // password length less than 6
-            binding.email.setError("Password must be at least 6 characters long");
+            binding.password.setError("Password must be at least 6 characters long");
         }
         else
         {

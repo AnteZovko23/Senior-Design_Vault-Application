@@ -129,6 +129,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v)
             {
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+                progressDialog.dismiss();
                 finish();
             }
         });
@@ -230,6 +231,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         //open main activity
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        progressDialog.dismiss();
                         finish();
                     }
                 })

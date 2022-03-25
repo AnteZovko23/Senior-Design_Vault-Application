@@ -65,9 +65,9 @@ public class DBdata_bytearray extends AppCompatActivity {
 
     Bitmap bitmap;
 
-    String name = "test1";
+    String name = "fictional_face";
     String filePath = "";
-    String storagePath = ""+user3.getId();
+    String storagePath = "demo";//+user3.getId();
     Uri picUri = null;
 
     @Override
@@ -232,7 +232,7 @@ public class DBdata_bytearray extends AppCompatActivity {
         // MAKE GENERAL
 
 
-        StorageReference storageRef = userStorage.getReference(filePath);
+        StorageReference storageRef = userStorage.getReference(storagePath);
         StorageReference smileyImgRef = storageRef.child(name+".png");
         final long maxSize = 1024*1024*200; // approximately 200 megabytes (use for video if we do)
         smileyImgRef.getBytes(maxSize).addOnSuccessListener(new OnSuccessListener<byte[]>()
@@ -265,9 +265,9 @@ public class DBdata_bytearray extends AppCompatActivity {
     {
         // gets the specific smiley png
         // implement an image chooser here
-        //bitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.smiley);
+        bitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.smiley);
 
-        openFileChooser();
+        //openFileChooser();
 
         //bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(),picUri);
 
