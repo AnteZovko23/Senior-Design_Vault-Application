@@ -97,13 +97,7 @@ public class fireBaseWork
 
         // byte array to String call: PicB().toString()
         //Log.d("Picture bytearray: ", PicB());
-        Map<String, Object> user = new HashMap<>();
-        user.put("name", "Chris John");
-        user.put("last", "John");
-        user.put("arm_pin", "bytearray2");
-        user.put("disarm_pin", "bytearray3");
-        user.put("face_img", "base64_2");
-        users.document("user3").set(user);
+
 
         Map<String, Object> user2 = new HashMap<>();
         user2.put("name", encodeData("name","Chris John"));
@@ -129,6 +123,18 @@ public class fireBaseWork
                     }
                 });
                 /**/
+    }
+
+    static void registerUser(String username, String password)
+    {
+        CollectionReference login = instance.db.collection("userLogin");
+
+        Map<String, Object> user = new HashMap<>();
+        user.put("username", username);
+        user.put("password", encodeData("password", password));
+        login.document(username).set(user);
+
+        // encode data can be changed
     }
 
     static void insertData(String data, String fieldName, String collection, String document)
