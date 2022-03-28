@@ -213,12 +213,12 @@ public class ButtonsAppearTest {
                                 withParent(withId(R.id.action_bar_container)))),
                         isDisplayed()));
         textView5.check(matches(withText("The Vault")));
-
+/*
         ViewInteraction button16 = onView(
                 allOf(withId(R.id.connectToSelected), withText("CONNECT TO SELECTED DEVICE"),
                         withParent(withParent(withId(android.R.id.content))),
                         isDisplayed()));
-        button16.check(matches(isDisplayed()));
+        button16.check(matches(isDisplayed()));*/
 
         pressBack();
 

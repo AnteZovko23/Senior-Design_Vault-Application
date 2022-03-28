@@ -207,7 +207,7 @@ public class MainActivityTest {
                         isDisplayed()));
         textView5.check(matches(withText("The Vault")));
 
-        ViewInteraction button15 = onView(
+        /*ViewInteraction button15 = onView(
                 allOf(withId(R.id.connectToSelected), withText("CONNECT TO SELECTED DEVICE"),
                         withParent(withParent(withId(android.R.id.content))),
                         isDisplayed()));
@@ -217,7 +217,7 @@ public class MainActivityTest {
                 allOf(withId(R.id.connectToSelected), withText("CONNECT TO SELECTED DEVICE"),
                         withParent(withParent(withId(android.R.id.content))),
                         isDisplayed()));
-        button16.check(matches(isDisplayed()));
+        button16.check(matches(isDisplayed()));*/
 
         pressBack();
 

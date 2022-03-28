@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openBluetooth() {
-        Intent intent = new Intent(this, SelectDeviceActivity.class);
+        Intent intent = new Intent(this, Bluetooth.class);
         startActivity(intent);
     }
 
