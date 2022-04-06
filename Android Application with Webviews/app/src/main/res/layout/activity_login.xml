@@ -11,78 +11,86 @@
     <include layout="@layout/toolbar"/>
     -->
 
+
     <EditText
         android:id="@+id/email"
-        android:layout_width="370dp"
-        android:layout_height="60dp"
+        android:layout_width="404dp"
+        android:layout_height="63dp"
+        android:autofillHints=""
         android:hint="@string/prompt_email"
         android:inputType="textEmailAddress"
         android:selectAllOnFocus="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.463"
+        app:layout_constraintHorizontal_bias="0.609"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.254" />
+        app:layout_constraintVertical_bias="0.523" />
 
     <EditText
         android:id="@+id/password"
-        android:layout_width="374dp"
+        android:layout_width="404dp"
         android:layout_height="63dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
+        android:autofillHints=""
         android:hint="@string/prompt_password"
         android:imeActionLabel="@string/action_sign_in_short"
         android:imeOptions="actionDone"
         android:inputType="textPassword"
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email" />
 
     <Button
         android:id="@+id/login"
-        android:layout_width="393dp"
-        android:layout_height="wrap_content"
+        android:layout_width="268dp"
+        android:layout_height="48dp"
 
         android:text="@string/log_in"
         app:layout_constraintBottom_toTopOf="@+id/signUp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password"
-        app:layout_constraintVertical_bias="1.0" />
-
+        app:layout_constraintTop_toBottomOf="@+id/password" />
 
     <Button
         android:id="@+id/signUp"
         android:layout_width="268dp"
         android:layout_height="48dp"
-        android:layout_marginStart="71dp"
-        android:layout_marginEnd="72dp"
-        android:layout_marginBottom="258dp"
         android:text="@string/sign_up"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/gSignIn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/login"
+        app:layout_constraintVertical_bias="0.784" />
 
     <ImageButton
         android:id="@+id/gSignIn"
         android:layout_width="119dp"
         android:layout_height="80dp"
-        android:layout_marginStart="146dp"
-        android:layout_marginTop="528dp"
-        android:layout_marginEnd="73dp"
         android:contentDescription="@string/action_sign_in"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.016"
+        app:layout_constraintTop_toBottomOf="@+id/signUp"
         app:srcCompat="@drawable/common_google_signin_btn_icon_light_focused"
         tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="273dp"
+        android:layout_height="255dp"
+        android:contentDescription="TODO"
+        app:layout_constraintBottom_toTopOf="@+id/email"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ante" />
 
     <!--
     <androidx.appcompat.widget.Toolbar
