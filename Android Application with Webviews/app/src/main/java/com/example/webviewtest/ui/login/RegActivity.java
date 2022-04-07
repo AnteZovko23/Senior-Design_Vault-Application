@@ -17,35 +17,41 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.webviewtest.R;
 import com.example.webviewtest.databinding.ActivityLoginBinding;
+import com.example.webviewtest.databinding.ActivityRegisterBinding;
+import com.example.webviewtest.fireBaseWork;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
-public class RegisterActivity extends AppCompatActivity
+public class RegActivity extends AppCompatActivity
 {
-    private ActivityLoginBinding binding;
+    private @NonNull ActivityRegisterBinding binding;
     private ProgressDialog progressDialog;
 
     private FirebaseAuth firebaseAuth;
+    private fireBaseWork db;
 
     //action bar
     private ActionBar actionBar;
 
     private Button signUp;
-    private String email = "", password = "";
+    private EditText emailTxt, passwordTxt, displayNameTxt;
+    private String email = "", password = "", displayName = "";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
              super.onCreate(savedInstanceState);
-             binding = ActivityLoginBinding.inflate(getLayoutInflater());
+             binding = ActivityRegisterBinding.inflate(getLayoutInflater());
              setContentView(binding.getRoot());
 
              // init firebase auth
              firebaseAuth = FirebaseAuth.getInstance();
+             db = fireBaseWork.getInstance();
 
              //configure actionbar, title, back button
              actionBar = getSupportActionBar();
@@ -61,9 +67,14 @@ public class RegisterActivity extends AppCompatActivity
              progressDialog.setCanceledOnTouchOutside(false);
 
              // declare buttons and views/editTexts
-             signUp = findViewById(R.id.SignUp);
+        /*
+             emailTxt = findViewById(R.id.email);
+             passwordTxt = findViewById(R.id.password1);
+        /**/
+             displayNameTxt = findViewById(R.id.displayName);
+             //signUp = findViewById(R.id.SignUp);
 
-             binding.signUp.setOnClickListener(new View.OnClickListener()
+             binding.SignUp.setOnClickListener(new View.OnClickListener()
              {
                  @Override
                  public void onClick(View v)
@@ -84,7 +95,8 @@ public class RegisterActivity extends AppCompatActivity
     {
         // get data
         email = binding.email.getText().toString().trim();
-        password = binding.password.getText().toString().trim();
+        password = binding.password1.getText().toString().trim();
+        displayName = binding.displayName.getText().toString().trim();
 
         // validate data
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches())
@@ -95,12 +107,12 @@ public class RegisterActivity extends AppCompatActivity
         else if (TextUtils.isEmpty(password))
         {
             // no password is entered
-            binding.password.setError("Enter password");
+            binding.password1.setError("Enter password");
         }
         else if (password.length()<6)
         {
             // password length less than 6
-            binding.password.setError("Password must be at least 6 characters long");
+            binding.password1.setError("Password must be at least 6 characters long");
         }
         else
         {
@@ -121,11 +133,12 @@ public class RegisterActivity extends AppCompatActivity
                         progressDialog.dismiss();
                         //get user Info
                         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+                        db.newUser(displayName);
                         String email = firebaseUser.getEmail();
-                        Toast.makeText(RegisterActivity.this, "Account created\n", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegActivity.this, "Account created\n", Toast.LENGTH_SHORT).show();
 
                         //open profile activity (change to relevant activity)
-                        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                        startActivity(new Intent(RegActivity.this, LoginActivity.class));
                         finish();
                     }
                 })
@@ -133,7 +146,7 @@ public class RegisterActivity extends AppCompatActivity
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         //signup failed
-                        Toast.makeText(RegisterActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }

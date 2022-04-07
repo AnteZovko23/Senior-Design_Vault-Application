@@ -35,6 +35,7 @@ import android.widget.Toast;
 import com.example.webviewtest.Camera1;
 import com.example.webviewtest.MainActivity;
 import com.example.webviewtest.R;
+import com.example.webviewtest.fireBaseWork;
 import com.example.webviewtest.ui.login.LoginViewModel;
 import com.example.webviewtest.ui.login.LoginViewModelFactory;
 import com.example.webviewtest.databinding.ActivityLoginBinding;
@@ -75,6 +76,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN = 100;
     private GoogleSignInClient googleSignInClient;
     private FirebaseAuth firebaseAuth;
+    private fireBaseWork db;
 
     private static final String TAG = "GOOGLE_SIGN_IN_TAG";
 
@@ -128,7 +130,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+                startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
                 progressDialog.dismiss();
                 finish();
             }
@@ -294,6 +296,13 @@ public class LoginActivity extends AppCompatActivity {
                         if (authResult.getAdditionalUserInfo().isNewUser())
                         {
                             //user is new - Account Created
+
+                            // set document name & ask if it should be updated (input)
+                            String displayName = firebaseUser.getDisplayName();
+
+                            // make database document
+                            db.newUser(firebaseUser.getDisplayName());
+
                             Log.d(TAG, "onSuccess: Account Created...\n"+email);
                             Toast.makeText(LoginActivity.this, "Account Created...\n"+email, Toast.LENGTH_SHORT).show();
                         }

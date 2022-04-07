@@ -30,6 +30,8 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -53,21 +55,25 @@ public class DBdata_bytearray extends AppCompatActivity {
 // button id's: getData & getByteArray
 
 
-    FirebaseStorage userStorage = FirebaseStorage.getInstance("gs://the-vault-7cf31.appspot.com");
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
-    CollectionReference users = db.collection("user_Info");
-    DocumentReference user1 = users.document("user1");
-    DocumentReference user3 = users.document("user3");
-    DocumentReference user4 = users.document("user4");
+    private FirebaseStorage userStorage;
+    private FirebaseFirestore db;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser currUser;
+    private CollectionReference users;
+    private DocumentReference userDoc;
+
+    //testing document references
+    DocumentReference user1;
+    DocumentReference user3;
+    DocumentReference user4;
+
     //allAbtBytes byteManager = allAbtBytes.getInstance().makeInstance(this);
     fireBaseWork dbMan = fireBaseWork.getInstance();
     String dataString1;
 
     Bitmap bitmap;
 
-    String name = "fictional_face";
-    String filePath = "";
-    String storagePath = "demo";//+user3.getId();
+    String name, storagePath, filePath;
     Uri picUri = null;
 
     @Override
@@ -84,6 +90,25 @@ public class DBdata_bytearray extends AppCompatActivity {
         TextView dbData = findViewById(R.id.DBdata);
         TextView byteArr = findViewById(R.id.byteArr);
         ImageView pic = findViewById(R.id.pic);
+
+        userStorage = FirebaseStorage.getInstance("gs://the-vault-7cf31.appspot.com");
+        db = FirebaseFirestore.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
+        currUser = firebaseAuth.getCurrentUser();
+        users = db.collection("user_Info");
+        // might need to make/reference document of current user's name
+        //  essentially; check if users.doc... is null or not
+        // get's firestore document for current user
+        //userDoc = users.document(currUser.getDisplayName());
+
+        name = currUser.getDisplayName();
+        storagePath = name+"/pictures";
+        filePath ="";
+
+        user1 = users.document("user1");
+        user3 = users.document("user3");
+        user4 = users.document("user4");
+
 
         uploadProgress.setVisibility(View.GONE);
 
@@ -190,7 +215,7 @@ public class DBdata_bytearray extends AppCompatActivity {
         return res;
     }
 /**/
-    private void useFirebase(TextView dbData, ImageView pic, String field)
+    protected void useFirebase(TextView dbData, ImageView pic, String field)
     {
         user4.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>()
                                           {
@@ -220,7 +245,9 @@ public class DBdata_bytearray extends AppCompatActivity {
         //String output = dbMan.retrieveData("name", "user_Info", "user1");
         //Log.d("output string: ",output);
         //dbMan.decodeData("name", dataString1);
-        dbData.setText(dataString1);
+
+        // set text view as the appropriate field
+        dbData.setText(currUser.getDisplayName()); //dataString1
 
         /* */
         //dbMan.newUser(); //(adds new user as specified in firebasework
