@@ -77,7 +77,9 @@ public class RegisterActivity extends AppCompatActivity
      public boolean onSupportNavigateUp()
      {
          onBackPressed(); //got at previous activity when back button of actionbar clicked
-         return super.onSupportNavigateUp();
+         startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+         finish();
+         return true;
      }
 
     private void validateData()

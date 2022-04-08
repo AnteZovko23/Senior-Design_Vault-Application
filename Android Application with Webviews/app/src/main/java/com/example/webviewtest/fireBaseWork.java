@@ -46,7 +46,7 @@ public class fireBaseWork
     }
 
     // testing function to get byte array of sample picture
-    static String PicB()
+    private String PicB()
     {
         /*
         // make file ('smiley.png') into a drawable
@@ -91,24 +91,19 @@ public class fireBaseWork
     }
 
     //function to make new documents in a Firebase collection:
-    static void newUser()
+    // CHANGE TO PRIVATE AFTER YOU'VE MOVED LOGIN CLASSES
+    public void newUser(String userName)
     {
-        CollectionReference users = instance.db.collection("user_Info");
-
-        // byte array to String call: PicB().toString()
-        //Log.d("Picture bytearray: ", PicB());
-
-
+        // try enums in java for the fields so adding and editing them are easy
+        //  (go through enum for new user, use index reference for inserting data)
         Map<String, Object> user2 = new HashMap<>();
-        user2.put("name", encodeData("name","Chris John"));
-        user2.put("last", encodeData("last","John"));
+        user2.put("name", encodeData("name",encodeData("name", userName)));
         user2.put("arm_pin", encodeData("arm_pin","bytearray2"));
         user2.put("disarm_pin", encodeData("disarm_pin","bytearray3"));
-        user2.put("face_img", encodeData("face_img","base64_2"));
-        users.document("user4").set(user2);
+        thisColl.document(userName).set(user2);
 
-         // things that firebase tool in android studio had me put in; alternate to last line
-         // while also giving logcat line in android studio (search "from fireBaseWork" <-- tag)
+        // things that firebase tool in android studio had me put in; alternate to last line
+        // while also giving logcat line in android studio (search "from fireBaseWork" <-- tag)
 /*
         instance.db.collection("user_Info").add(user).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
@@ -125,7 +120,7 @@ public class fireBaseWork
                 /**/
     }
 
-    static void registerUser(String username, String password)
+    private void registerUser(String username, String password)
     {
         CollectionReference login = instance.db.collection("userLogin");
 
@@ -137,7 +132,7 @@ public class fireBaseWork
         // encode data can be changed
     }
 
-    static void insertData(String data, String fieldName, String collection, String document)
+    private void insertData(String data, String fieldName, String collection, String document)
     {
         // making references to pre-existing collection and document
         CollectionReference thisColl = instance.db.collection(collection);
@@ -149,30 +144,30 @@ public class fireBaseWork
         thisColl.document(document).set(insertion);
     }
 
-    static String retrieveData(String fieldName, String collection, String document)
+    private String retrieveData(String fieldName, String collection, String document)
     {
 
         instance.thisDoc.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>()
-                                            {
-                                                @Override
-                                                public void onComplete(@NonNull Task<DocumentSnapshot> task)
-                                                {
-                                                    if (task.isSuccessful()) {
-                                                        DocumentSnapshot doc = task.getResult();
-                                                        if (doc != null && doc.exists())
-                                                        {
-                                                            dataString1 = doc.getString("name");
-                                                        }
+                                                     {
+                                                         @Override
+                                                         public void onComplete(@NonNull Task<DocumentSnapshot> task)
+                                                         {
+                                                             if (task.isSuccessful()) {
+                                                                 DocumentSnapshot doc = task.getResult();
+                                                                 if (doc != null && doc.exists())
+                                                                 {
+                                                                     dataString1 = doc.getString("name");
+                                                                 }
 
 
-                                                    }
-                                                    else
-                                                        {
-                                                            Log.d("FireBase: ", "failed");
-                                                        }
-                                                    }
+                                                             }
+                                                             else
+                                                             {
+                                                                 Log.d("FireBase: ", "failed");
+                                                             }
+                                                         }
 
-                                            }
+                                                     }
         );
         /**/
 
@@ -181,21 +176,21 @@ public class fireBaseWork
         return dataString1;
     }
 
-    static boolean isUpper(char c)
+    private boolean isUpper(char c)
     {
         if (((int)c > 64) && ((int)c < 91))
             return true;
         return false;
     }
 
-    static boolean isLower(char c)
+    private boolean isLower(char c)
     {
         if (((int)c > 96) && ((int)c < 123))
             return true;
         return false;
     }
 
-    static String encodeData(String fieldName, String value)
+    private String encodeData(String fieldName, String value)
     {
         String toUpload = "";
         //fieldName will be key for Vigenere Cipher
@@ -256,7 +251,7 @@ public class fireBaseWork
         return toUpload;
     }
 
-    static String decodeData(String fieldName, String value)
+    protected String decodeData(String fieldName, String value)
     {
         String toUse = "";
         //fieldName will be key for Vigenere Cipher
@@ -283,55 +278,55 @@ public class fireBaseWork
         j = 0;
 
         for (int i = 0; i < value.length(); i++)
+        {
+            if (isUpper(value.charAt(i)))
             {
-                if (isUpper(value.charAt(i)))
+                if (isLower(fieldName.charAt(j)))
                 {
-                    if (isLower(fieldName.charAt(j)))
-                    {
-                        int check = ((((int)(value.charAt(i))-65) - ((int)(fieldName.charAt(j))-32-65)));
-                        if (check < 0)
-                            check = 26 + check;
-                        toUse += (char)((check % 26) + 65);
+                    int check = ((((int)(value.charAt(i))-65) - ((int)(fieldName.charAt(j))-32-65)));
+                    if (check < 0)
+                        check = 26 + check;
+                    toUse += (char)((check % 26) + 65);
 
-                    }
-                    else
-                    {
-                        int check = ((((int)(value.charAt(i))-65) - ((int)(fieldName.charAt(j))-65)));
-                        if (check < 0)
-                            check = 26 + check;
-                        toUse += (char)((check % 26) + 65);
-
-                    }
-                    j++;
-                }
-                else if (isLower(value.charAt(i)))
-                {
-                    if (isUpper(fieldName.charAt(j)))
-                    {
-                        int check = ((((int)(value.charAt(i))-97) - ((int)(fieldName.charAt(j))-65)));
-                        if (check < 0)
-                            check = 26 + check;
-                        toUse += (char)((check % 26) + 97);
-
-                    }
-                    else
-                    {
-                        int check = ((((int)(value.charAt(i))-97) - ((int)(fieldName.charAt(j))-97)));
-                        if (check < 0)
-                            check = 26 + check;
-                        toUse += (char)((check % 26) + 97);
-
-                    }
-                    j++;
                 }
                 else
-                    toUse += value.charAt(i);
+                {
+                    int check = ((((int)(value.charAt(i))-65) - ((int)(fieldName.charAt(j))-65)));
+                    if (check < 0)
+                        check = 26 + check;
+                    toUse += (char)((check % 26) + 65);
+
+                }
+                j++;
             }
+            else if (isLower(value.charAt(i)))
+            {
+                if (isUpper(fieldName.charAt(j)))
+                {
+                    int check = ((((int)(value.charAt(i))-97) - ((int)(fieldName.charAt(j))-65)));
+                    if (check < 0)
+                        check = 26 + check;
+                    toUse += (char)((check % 26) + 97);
+
+                }
+                else
+                {
+                    int check = ((((int)(value.charAt(i))-97) - ((int)(fieldName.charAt(j))-97)));
+                    if (check < 0)
+                        check = 26 + check;
+                    toUse += (char)((check % 26) + 97);
+
+                }
+                j++;
+            }
+            else
+                toUse += value.charAt(i);
+        }
 
         return toUse;
     }
 
-    static byte[] parseArray(String fieldName, String data)
+    private byte[] parseArray(String fieldName, String data)
     {
         byte[] toReturn = {};
         char[] delimiters = {'=',','};
