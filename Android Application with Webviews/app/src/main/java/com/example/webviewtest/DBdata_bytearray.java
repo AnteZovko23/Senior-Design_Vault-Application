@@ -27,7 +27,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.webviewtest.data.localUsers;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -40,6 +42,8 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.ListResult;
+import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
@@ -54,7 +58,6 @@ public class DBdata_bytearray extends AppCompatActivity {
 // textView names/id's: DBdata & byteArr (former button reference is dbData)
 // button id's: getData & getByteArray
 
-
     private FirebaseStorage userStorage;
     private FirebaseFirestore db;
     private FirebaseAuth firebaseAuth;
@@ -62,19 +65,15 @@ public class DBdata_bytearray extends AppCompatActivity {
     private CollectionReference users;
     private DocumentReference userDoc;
 
-    //testing document references
-    DocumentReference user1;
-    DocumentReference user3;
-    DocumentReference user4;
 
-    //allAbtBytes byteManager = allAbtBytes.getInstance().makeInstance(this);
+
+
     fireBaseWork dbMan = fireBaseWork.getInstance();
     String dataString1;
 
     Bitmap bitmap;
 
-    String name, storagePath, filePath;
-    Uri picUri = null;
+    String name, storagePath, uriPath, fileName, suffix, imgType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,12 +101,11 @@ public class DBdata_bytearray extends AppCompatActivity {
         //userDoc = users.document(currUser.getDisplayName());
 
         name = currUser.getDisplayName();
-        storagePath = name+"/pictures";
-        filePath ="";
-
-        user1 = users.document("user1");
-        user3 = users.document("user3");
-        user4 = users.document("user4");
+        suffix = "";
+        userDoc = users.document(name);
+        storagePath = name+"/";
+        fileName = uriPath ="";
+        imgType = ".jpg";
 
 
         uploadProgress.setVisibility(View.GONE);
@@ -117,31 +115,46 @@ public class DBdata_bytearray extends AppCompatActivity {
         sendPic.setOnClickListener(v -> sendPic(dbData, pic, sendPic, uploadProgress));
         getPic.setOnClickListener(v -> buildPic(pic, dbData));
     }
-/*
-    private String retrieveData(String fieldName, String collection, String document)
+
+
+    private void incrementSuffix()
     {
+        if (suffix == "")
+            suffix = "1";
+        else
+            suffix = Integer.toString(Integer.parseInt(suffix)+1);
 
-
-        return dataString1;
     }
-    /*
-    //int requestCode  = 1;
 
-    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    // change later to a check in folder for other files of saved name
+    private void setFileName()
     {
-        super.onActivityResult(requestCode, resultCode, data);
-        Context context =  Context.current();
-        if (requestCode == requestCode && resultCode == Activity.RESULT_OK)
-            {
-                if (data == null)
-                    return;
-                Uri uri = data.getData();
-                //Toast.makeText(context, uri.getPath(), Toast.LENGTH_SHORT).show();
+        // first use picture's name (if none, prompt user for name)
 
+        //
+        fileName = name+suffix+imgType;
 
-            }
+        // check if file with same name is in user's folder
+        /*
+        userRef.listAll()
+                .addOnSuccessListener(new OnSuccessListener<ListResult>() {
+                    @Override
+                    public void onSuccess(ListResult listResult) {
+                        for (StorageReference item : listResult.getItems()) {
+                            // All the items under listRef.
+                            Log.d("item: ", item.getString());
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // Uh-oh, an error occurred!
+                    }
+                });
+        Log.d("current fileName: ", fileName);
+        */
     }
-    /**/
 
     ActivityResultLauncher<Intent> sActivityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -156,7 +169,7 @@ public class DBdata_bytearray extends AppCompatActivity {
                             Uri uri = data.getData();
                             //Bitmap bitmapImg = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
                             //storagePath = getFileName(uri,getApplicationContext());
-                            filePath = uri.getPath();
+                            uriPath = uri.getPath();
                             bitmap = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), uri);
                             //name = getFileName(uri, Context.current()); //<-- check function name
                         }
@@ -217,7 +230,7 @@ public class DBdata_bytearray extends AppCompatActivity {
 /**/
     protected void useFirebase(TextView dbData, ImageView pic, String field)
     {
-        user4.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>()
+        userDoc.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>()
                                           {
                                               @Override
                                               public void onComplete(@NonNull Task<DocumentSnapshot> task)
@@ -246,8 +259,7 @@ public class DBdata_bytearray extends AppCompatActivity {
         //Log.d("output string: ",output);
         //dbMan.decodeData("name", dataString1);
 
-        // set text view as the appropriate field
-        dbData.setText(currUser.getDisplayName()); //dataString1
+        dbData.setText(currUser.getDisplayName());
 
         /* */
         //dbMan.newUser(); //(adds new user as specified in firebasework
@@ -260,7 +272,8 @@ public class DBdata_bytearray extends AppCompatActivity {
 
 
         StorageReference storageRef = userStorage.getReference(storagePath);
-        StorageReference smileyImgRef = storageRef.child(name+".png");
+        StorageReference smileyImgRef = storageRef.child(name+suffix+".jpg");
+        incrementSuffix();
         final long maxSize = 1024*1024*200; // approximately 200 megabytes (use for video if we do)
         smileyImgRef.getBytes(maxSize).addOnSuccessListener(new OnSuccessListener<byte[]>()
         {
@@ -298,39 +311,27 @@ public class DBdata_bytearray extends AppCompatActivity {
 
         //bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(),picUri);
 
-        //Log.d("filePath: ", filePath);
-        //dbData.setText(filePath);
+        //Log.d("filePath: ", uriPath);
+        //dbData.setText(uriPath);
         //bitmap = BitmapFactory.decodeFile(filePath);
 
         pic.setImageBitmap(bitmap);
         //rotatePic(pic);
-        /*
-        if (name == null)
-            name = "test";
-        if (filePath == null)
-            filePath = ""+user3.getId();
-            /**/
 
-        // copy 'getPic' directory navigation here --might use instance variable that is only changed
-        //  in this function
-        // get the name variable as an input from user (prompt them for subject's name)
-        // name = input("Whose face is in the picture?");
-        //bitmap = BitmapFactory.decodeFile(filePath);
 
         // converts picture to byte array
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 0, baos);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 0, baos);
         byte[] b = baos.toByteArray();
 
-        /*  // old idea to encode pic as base 64 string and sending it to FireStore (not using now)
-        String smileyPic = Base64.encodeToString(b, Base64.DEFAULT);
-        /**/
 
         // uploads picture (in form of byte array)
         //  might want to add in metadata (nice-to-have development feature to help with debugging
         //  from firebase website console viewpoint)
         StorageReference storageRef = userStorage.getReference(storagePath);
-        StorageReference smileyImgRef = storageRef.child(name+".png");
+        setFileName();
+        StorageReference smileyImgRef = storageRef.child(fileName);
+        incrementSuffix();
 
         progressBar.setVisibility(View.VISIBLE);
         button.setEnabled(false);

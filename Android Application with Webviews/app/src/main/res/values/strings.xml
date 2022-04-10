@@ -13,5 +13,5 @@
     <string name="password">Password</string>
     <string name="username">Username</string>
     <string name="sign_up">SIGN UP</string>
-    <string name="nameRequest">Name of Device Owner</string>
+    <string name="nameRequest">Please enter your display name.</string>
 </resources>

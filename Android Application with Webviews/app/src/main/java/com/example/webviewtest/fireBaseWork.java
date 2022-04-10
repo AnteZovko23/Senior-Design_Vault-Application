@@ -9,11 +9,14 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.example.webviewtest.data.localUsers;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -36,7 +39,6 @@ public class fireBaseWork
     private static fireBaseWork instance = new fireBaseWork();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     CollectionReference thisColl = db.collection("userInfo");
-    DocumentReference thisDoc = thisColl.document("user1");
 
     private fireBaseWork(){}
 
@@ -102,8 +104,8 @@ public class fireBaseWork
         user2.put("disarm_pin", encodeData("disarm_pin","bytearray3"));
         thisColl.document(userName).set(user2);
 
-         // things that firebase tool in android studio had me put in; alternate to last line
-         // while also giving logcat line in android studio (search "from fireBaseWork" <-- tag)
+        // things that firebase tool in android studio had me put in; alternate to last line
+        // while also giving logcat line in android studio (search "from fireBaseWork" <-- tag)
 /*
         instance.db.collection("user_Info").add(user).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
@@ -144,36 +146,37 @@ public class fireBaseWork
         thisColl.document(document).set(insertion);
     }
 
-    private String retrieveData(String fieldName, String collection, String document)
+
+    public String retrieveData(FirebaseUser user, String field)
     {
+        Log.d("looking in doc named:", user.getDisplayName());
+        instance.thisColl.document(user.getDisplayName()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>()
+                                                     {
+                                                         @Override
+                                                         public void onComplete(@NonNull Task<DocumentSnapshot> task)
+                                                         {
+                                                             if (task.isSuccessful()) {
+                                                                 DocumentSnapshot doc = task.getResult();
+                                                                 if (doc != null && doc.exists())
+                                                                 {
+                                                                     dataString1 = decodeData("name", doc.getString("name"));
+                                                                 }
 
-        instance.thisDoc.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>()
-                                            {
-                                                @Override
-                                                public void onComplete(@NonNull Task<DocumentSnapshot> task)
-                                                {
-                                                    if (task.isSuccessful()) {
-                                                        DocumentSnapshot doc = task.getResult();
-                                                        if (doc != null && doc.exists())
-                                                        {
-                                                            dataString1 = doc.getString("name");
-                                                        }
 
+                                                             }
+                                                             else
+                                                             {
+                                                                 Log.d("FireBase: ", "failed");
+                                                             }
+                                                             /**/
+                                                         }
 
-                                                    }
-                                                    else
-                                                        {
-                                                            Log.d("FireBase: ", "failed");
-                                                        }
-                                                    }
-
-                                            }
+                                                     }
         );
         /**/
 
 
-
-        return dataString1;
+        return ""+dataString1;
     }
 
     private boolean isUpper(char c)
@@ -278,50 +281,50 @@ public class fireBaseWork
         j = 0;
 
         for (int i = 0; i < value.length(); i++)
+        {
+            if (isUpper(value.charAt(i)))
             {
-                if (isUpper(value.charAt(i)))
+                if (isLower(fieldName.charAt(j)))
                 {
-                    if (isLower(fieldName.charAt(j)))
-                    {
-                        int check = ((((int)(value.charAt(i))-65) - ((int)(fieldName.charAt(j))-32-65)));
-                        if (check < 0)
-                            check = 26 + check;
-                        toUse += (char)((check % 26) + 65);
+                    int check = ((((int)(value.charAt(i))-65) - ((int)(fieldName.charAt(j))-32-65)));
+                    if (check < 0)
+                        check = 26 + check;
+                    toUse += (char)((check % 26) + 65);
 
-                    }
-                    else
-                    {
-                        int check = ((((int)(value.charAt(i))-65) - ((int)(fieldName.charAt(j))-65)));
-                        if (check < 0)
-                            check = 26 + check;
-                        toUse += (char)((check % 26) + 65);
-
-                    }
-                    j++;
-                }
-                else if (isLower(value.charAt(i)))
-                {
-                    if (isUpper(fieldName.charAt(j)))
-                    {
-                        int check = ((((int)(value.charAt(i))-97) - ((int)(fieldName.charAt(j))-65)));
-                        if (check < 0)
-                            check = 26 + check;
-                        toUse += (char)((check % 26) + 97);
-
-                    }
-                    else
-                    {
-                        int check = ((((int)(value.charAt(i))-97) - ((int)(fieldName.charAt(j))-97)));
-                        if (check < 0)
-                            check = 26 + check;
-                        toUse += (char)((check % 26) + 97);
-
-                    }
-                    j++;
                 }
                 else
-                    toUse += value.charAt(i);
+                {
+                    int check = ((((int)(value.charAt(i))-65) - ((int)(fieldName.charAt(j))-65)));
+                    if (check < 0)
+                        check = 26 + check;
+                    toUse += (char)((check % 26) + 65);
+
+                }
+                j++;
             }
+            else if (isLower(value.charAt(i)))
+            {
+                if (isUpper(fieldName.charAt(j)))
+                {
+                    int check = ((((int)(value.charAt(i))-97) - ((int)(fieldName.charAt(j))-65)));
+                    if (check < 0)
+                        check = 26 + check;
+                    toUse += (char)((check % 26) + 97);
+
+                }
+                else
+                {
+                    int check = ((((int)(value.charAt(i))-97) - ((int)(fieldName.charAt(j))-97)));
+                    if (check < 0)
+                        check = 26 + check;
+                    toUse += (char)((check % 26) + 97);
+
+                }
+                j++;
+            }
+            else
+                toUse += value.charAt(i);
+        }
 
         return toUse;
     }

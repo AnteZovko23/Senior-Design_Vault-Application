@@ -2,43 +2,31 @@ package com.example.webviewtest.ui.login;
 
 
 
-import android.app.Activity;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.util.Patterns;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.webviewtest.Camera1;
 import com.example.webviewtest.MainActivity;
 import com.example.webviewtest.R;
-import com.example.webviewtest.fireBaseWork;
-import com.example.webviewtest.ui.login.LoginViewModel;
-import com.example.webviewtest.ui.login.LoginViewModelFactory;
+
+import com.example.webviewtest.data.localUsers;
+
 import com.example.webviewtest.databinding.ActivityLoginBinding;
+import com.example.webviewtest.fireBaseWork;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -52,20 +40,16 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-
+import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
 
 
 public class LoginActivity extends AppCompatActivity {
 
-    /*
-    //toolbar set for actionbar
-    private Toolbar toolbar = findViewById(R.id.loginToolbar);
-
-    @Override
-    public void setSupportActionBar(@Nullable Toolbar toolbar) {
-        super.setSupportActionBar(toolbar);
-    }
-    /**/
+    fireBaseWork dbMan = fireBaseWork.getInstance();
 
     private ActivityLoginBinding binding;
     //actionbar
@@ -75,8 +59,11 @@ public class LoginActivity extends AppCompatActivity {
 
     private static final int RC_SIGN_IN = 100;
     private GoogleSignInClient googleSignInClient;
+    private FirebaseStorage userStorage;
+    private FirebaseFirestore db;
     private FirebaseAuth firebaseAuth;
-    private fireBaseWork db;
+
+    private FirebaseStorage storage;
 
     private static final String TAG = "GOOGLE_SIGN_IN_TAG";
 
@@ -160,37 +147,6 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-/*
-        @Override
-        public void onStart()
-        {
-            super.onStart();
-            firebaseAuth.addAuthStateListener(fireBaseAuthListener);
-
-            // Check if user is signed in (non-null) and update UI accordingly.
-            FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-        /*
-        if(currentUser != null){
-            reload();
-        }
-
-        }
-
-        @Override
-        public void onStop()
-        {
-            super.onStop();
-            if (fireBaseAuthListener != null)
-                firebaseAuth.removeAuthStateListener(fireBaseAuthListener);
-            signOut(firebaseAuth);
-        }
-
-        public void signOut(FirebaseAuth auth)
-        {
-            auth.signOut();
-            Toast.makeText(getApplicationContext(), "Signing Out . . .", Toast.LENGTH_SHORT).show();
-        }
-        */
 
     private void validateData()
     {
@@ -296,12 +252,9 @@ public class LoginActivity extends AppCompatActivity {
                         if (authResult.getAdditionalUserInfo().isNewUser())
                         {
                             //user is new - Account Created
-
-                            // set document name & ask if it should be updated (input)
-                            String displayName = firebaseUser.getDisplayName();
-
-                            // make database document
-                            db.newUser(firebaseUser.getDisplayName());
+                            // need salt variable to pass to ensure non-conflicting things
+                            dbMan.newUser(firebaseUser.getDisplayName());
+                            storage.getReference(firebaseUser.getDisplayName()+"/"); // firstname lastname -> pictures (store subject name_number)
 
                             Log.d(TAG, "onSuccess: Account Created...\n"+email);
                             Toast.makeText(LoginActivity.this, "Account Created...\n"+email, Toast.LENGTH_SHORT).show();
