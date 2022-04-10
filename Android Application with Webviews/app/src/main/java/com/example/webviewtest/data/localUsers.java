@@ -1,6 +1,10 @@
 package com.example.webviewtest.data;
 
 
+
+import android.util.Log;
+
+
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Hashtable;
@@ -10,7 +14,11 @@ import java.util.Hashtable;
  */
 public class localUsers {
 
-    private Hashtable<String, String> userDict;
+
+    private static localUsers instance = new localUsers();
+    private static Hashtable<String, String> userDict;
+
+
 
     private localUsers()
     {
@@ -18,10 +26,23 @@ public class localUsers {
         // probably make a dictionary of the {userName, user.getEmail()}
     }
 
+
+    public static localUsers getInstance()
+    {
+        return instance;
+    }
+
     public void saveName(FirebaseUser user, String userName)
     {
-        userDict.put(userName, user.getEmail());
+        userDict.put(user.getEmail(), userName);
+    }
+
+    public String retrieveName(FirebaseUser user)
+    {
+        Log.d("Is my dictionary empty?", ""+userDict.isEmpty());
+        return userDict.get(user.getEmail());
     }
 
 
 }
+
