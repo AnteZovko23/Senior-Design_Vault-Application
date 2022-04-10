@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -16,8 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
 //import androidx.appcompat.app.ActionBar;
 
 import com.example.webviewtest.R;
+import com.example.webviewtest.data.localUsers;
 import com.example.webviewtest.databinding.ActivityLoginBinding;
-import com.example.webviewtest.databinding.ActivityRegisterBinding;
 import com.example.webviewtest.databinding.ActivitySignUpBinding;
 import com.example.webviewtest.fireBaseWork;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -26,6 +27,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 
@@ -37,6 +39,7 @@ public class SignUpActivity extends AppCompatActivity
     private FirebaseAuth firebaseAuth;
     private fireBaseWork db;
     private FirebaseStorage storage;
+    private localUsers usersD;
 
     //action bar
     private ActionBar actionBar;
@@ -56,6 +59,7 @@ public class SignUpActivity extends AppCompatActivity
         firebaseAuth = FirebaseAuth.getInstance();
         db = fireBaseWork.getInstance();
         storage = FirebaseStorage.getInstance("gs://the-vault-7cf31.appspot.com");
+        usersD = localUsers.getInstance();
 
         //configure actionbar, title, back button
         actionBar = getSupportActionBar();
@@ -139,8 +143,11 @@ public class SignUpActivity extends AppCompatActivity
                         progressDialog.dismiss();
                         //get user Info
                         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+                        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                .setDisplayName(displayName).build();
+                        firebaseUser.updateProfile(profileUpdates);
                         db.newUser(displayName);
-                        storage.getReference(displayName+"/pictures"); // firstname lastname -> pictures (store subject name_number)
+                        storage.getReference(displayName+"/"); // firstname lastname -> pictures (store subject name_number)
 
                         String email = firebaseUser.getEmail();
                         Toast.makeText(SignUpActivity.this, "Account created\n", Toast.LENGTH_SHORT).show();
@@ -157,5 +164,6 @@ public class SignUpActivity extends AppCompatActivity
                         Toast.makeText(SignUpActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
+        Log.d("current-email-username:", firebaseAuth.getCurrentUser().getDisplayName());
     }
 }

@@ -9,11 +9,14 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.example.webviewtest.data.localUsers;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -36,7 +39,6 @@ public class fireBaseWork
     private static fireBaseWork instance = new fireBaseWork();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     CollectionReference thisColl = db.collection("userInfo");
-    DocumentReference thisDoc = thisColl.document("user1");
 
     private fireBaseWork(){}
 
@@ -144,10 +146,10 @@ public class fireBaseWork
         thisColl.document(document).set(insertion);
     }
 
-    private String retrieveData(String fieldName, String collection, String document)
+    public String retrieveData(FirebaseUser user, String field)
     {
-
-        instance.thisDoc.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>()
+        Log.d("looking in doc named:", user.getDisplayName());
+        instance.thisColl.document(user.getDisplayName()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>()
                                                      {
                                                          @Override
                                                          public void onComplete(@NonNull Task<DocumentSnapshot> task)
@@ -156,7 +158,7 @@ public class fireBaseWork
                                                                  DocumentSnapshot doc = task.getResult();
                                                                  if (doc != null && doc.exists())
                                                                  {
-                                                                     dataString1 = doc.getString("name");
+                                                                     dataString1 = decodeData("name", doc.getString("name"));
                                                                  }
 
 
@@ -165,6 +167,7 @@ public class fireBaseWork
                                                              {
                                                                  Log.d("FireBase: ", "failed");
                                                              }
+                                                             /**/
                                                          }
 
                                                      }
@@ -172,8 +175,7 @@ public class fireBaseWork
         /**/
 
 
-
-        return dataString1;
+        return ""+dataString1;
     }
 
     private boolean isUpper(char c)
