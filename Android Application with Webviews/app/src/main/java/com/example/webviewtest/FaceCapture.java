@@ -12,6 +12,10 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -24,6 +28,13 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.CertificateException;
+
+import javax.net.ssl.HttpsURLConnection;
 
 public class FaceCapture extends AppCompatActivity {
 
@@ -36,7 +47,6 @@ public class FaceCapture extends AppCompatActivity {
 
     // Define the button and imageview type variable
     Button camera_open_id;
-    ImageView click_image_id;
     String name, storagePath, uriPath, fileName, suffix;
     Uri picUri = null;
 
@@ -50,14 +60,18 @@ public class FaceCapture extends AppCompatActivity {
         // which id is assigned in XML file
         // get Buttons and imageview.
         camera_open_id = (Button)findViewById(R.id.camera_button);
-        click_image_id = (ImageView)findViewById(R.id.click_image);
         userStorage = FirebaseStorage.getInstance("gs://the-vault-7cf31.appspot.com");
 
 
 
-        name = currUser.getDisplayName();
+        try {
+            name = currUser.getDisplayName();
+        }
+
+        catch(Exception NullPointerException) {
+            name = "Ante";
+        }
         suffix = "";
-        userDoc = users.document(name);
         storagePath = name+"/";
         fileName = uriPath ="";
 
@@ -97,7 +111,6 @@ public class FaceCapture extends AppCompatActivity {
                     .get("data");
 
             // Set the image in imageview for display
-            click_image_id.setImageBitmap(photo);
             sendPic(photo);
         }
     }
@@ -105,14 +118,11 @@ public class FaceCapture extends AppCompatActivity {
     private void setFileName()
     {
         // first use picture's name (if none, prompt user for name)
-
-        //
         fileName = name+suffix+".jpg";
         Log.d("current User: ", name);
     }
 
-    private void sendPic(Bitmap bitmap)
-    {
+    private void sendPic(Bitmap bitmap) {
         // gets the specific smiley png
         // implement an image chooser here
 
@@ -128,7 +138,7 @@ public class FaceCapture extends AppCompatActivity {
 
         // converts picture to byte array
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 0, baos);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] b = baos.toByteArray();
 
         /*  // old idea to encode pic as base 64 string and sending it to FireStore (not using now)
@@ -143,13 +153,40 @@ public class FaceCapture extends AppCompatActivity {
         StorageReference smileyImgRef = storageRef.child(fileName);
 
         UploadTask uploadTask = smileyImgRef.putBytes(b);
-        uploadTask.addOnSuccessListener(FaceCapture.this, new OnSuccessListener<UploadTask.TaskSnapshot>()
-        {
+        uploadTask.addOnSuccessListener(FaceCapture.this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot)
-            {
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                System.out.println("Upload successful");
+                start_face_processing();
             }
+
         });
+    }
 
+    private void start_face_processing() {
+        // Tell volley to use a SocketFactory from our SSLContext
 
-}}
+        String url = "https://192.168.1.4:5000/add_face?name=" + name;
+        RequestQueue mRQueue;
+        StringRequest mSReq;
+        mRQueue = Volley.newRequestQueue(FaceCapture.this);
+        try {
+            HttpsURLConnection.setDefaultSSLSocketFactory(Certificate_Handling.getSocketFactory(this));
+
+        } catch (CertificateException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (KeyStoreException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (KeyManagementException e) {
+            e.printStackTrace();
+        }
+        mSReq = new StringRequest(Request.Method.GET, url, response -> {}, error -> {});
+
+        mRQueue.add(mSReq);
+
+    }
+}

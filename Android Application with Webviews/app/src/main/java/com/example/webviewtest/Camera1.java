@@ -11,6 +11,11 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 import java.io.IOException;
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
@@ -58,6 +63,33 @@ public class Camera1 extends AppCompatActivity {
 
     }
 
+    private void stop_feed() {
+        // Tell volley to use a SocketFactory from our SSLContext
+
+        String url = "https://192.168.1.4:5000/stop_feed";
+        RequestQueue mRQueue;
+        StringRequest mSReq;
+        mRQueue = Volley.newRequestQueue(Camera1.this);
+        try {
+            HttpsURLConnection.setDefaultSSLSocketFactory(Certificate_Handling.getSocketFactory(this));
+
+        } catch (CertificateException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (KeyStoreException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (KeyManagementException e) {
+            e.printStackTrace();
+        }
+        mSReq = new StringRequest(Request.Method.GET, url, response -> {}, error -> {});
+
+        mRQueue.add(mSReq);
+
+    }
+
     @Override
     public void onBackPressed() {
         if(webView1.canGoBack()) {
@@ -66,6 +98,7 @@ public class Camera1 extends AppCompatActivity {
         else {
             super.onBackPressed();
         }
+        stop_feed();
     }
 
 }
