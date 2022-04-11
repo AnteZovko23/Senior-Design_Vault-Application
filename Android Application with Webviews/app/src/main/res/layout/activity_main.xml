@@ -65,7 +65,14 @@
         android:layout_height="49dp"
         android:text="Data"
         app:layout_constraintBottom_toTopOf="@+id/requestsbtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/facebutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add A Face"
+        tools:layout_editor_absoluteX="20dp"
+        tools:layout_editor_absoluteY="23dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

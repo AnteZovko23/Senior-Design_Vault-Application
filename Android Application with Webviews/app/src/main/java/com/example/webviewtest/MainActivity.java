@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     private Button bluetoothbtn;
     private Button requestsbtn;
     private Button Data;
+    private Button facebutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +69,14 @@ public class MainActivity extends AppCompatActivity {
                 openData();
             }
         });
+
+        facebutton = (Button) findViewById(R.id.facebutton);
+        facebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openFace();
+            }
+        });
     }
 
     public void openLock() {
@@ -97,6 +106,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void openData() {
         Intent intent = new Intent(this, DBdata_bytearray.class);
+        startActivity(intent);
+    }
+
+    public void openFace() {
+        Intent intent = new Intent(this, FaceCapture.class);
         startActivity(intent);
     }
 }
