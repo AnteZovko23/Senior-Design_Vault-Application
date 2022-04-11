@@ -26,7 +26,7 @@
         android:text="Requests"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -63,17 +63,20 @@
         android:id="@+id/Data"
         android:layout_width="387dp"
         android:layout_height="49dp"
+        android:layout_marginEnd="16dp"
         android:text="Data"
         app:layout_constraintBottom_toTopOf="@+id/requestsbtn"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/facebutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="123dp"
+        android:layout_height="76dp"
         android:text="Add A Face"
-        tools:layout_editor_absoluteX="20dp"
-        tools:layout_editor_absoluteY="23dp" />
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="16dp" />
 
     <Button
         android:id="@+id/pickbutton"
