@@ -20,4 +20,14 @@
         android:layout_marginBottom="455dp"
         android:text="Camera" />
 
+    <Button
+        android:id="@+id/pickbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="155dp"
+        android:layout_marginBottom="177dp"
+        android:text="Pick File" />
+
 </RelativeLayout>

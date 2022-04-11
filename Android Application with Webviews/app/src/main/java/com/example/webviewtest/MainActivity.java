@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private Button requestsbtn;
     private Button Data;
     private Button facebutton;
+    private Button pickerbutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +78,14 @@ public class MainActivity extends AppCompatActivity {
                 openFace();
             }
         });
+
+        pickerbutton = (Button) findViewById(R.id.pickbutton);
+        pickerbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openPicker();
+            }
+        });
     }
 
     public void openLock() {
@@ -111,6 +120,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void openFace() {
         Intent intent = new Intent(this, FaceCapture.class);
+        startActivity(intent);
+    }
+
+    public void openPicker() {
+        Intent intent = new Intent(this, PickImageActivity.class);
         startActivity(intent);
     }
 }

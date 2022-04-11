@@ -41,10 +41,10 @@ public class Camera1 extends AppCompatActivity {
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 return true;
             }
-            @Override
-            public void onReceivedSslError(final WebView view, final SslErrorHandler handler, final SslError error) {
-                handler.proceed();
-            }
+//            @Override
+//            public void onReceivedSslError(final WebView view, final SslErrorHandler handler, final SslError error) {
+//                handler.proceed();
+//            }
         });
 
 
@@ -57,7 +57,7 @@ public class Camera1 extends AppCompatActivity {
 
             public void run() {
 
-                webView1.loadUrl("https://192.168.1.4:5000/video_stream");
+                webView1.loadUrl("http://192.168.1.4:5000/video_stream");
             }
         }, 2500);   //5 seconds
 
@@ -66,24 +66,24 @@ public class Camera1 extends AppCompatActivity {
     private void stop_feed() {
         // Tell volley to use a SocketFactory from our SSLContext
 
-        String url = "https://192.168.1.4:5000/stop_feed";
+        String url = "http://192.168.1.4:5000/stop_feed";
         RequestQueue mRQueue;
         StringRequest mSReq;
         mRQueue = Volley.newRequestQueue(Camera1.this);
-        try {
-            HttpsURLConnection.setDefaultSSLSocketFactory(Certificate_Handling.getSocketFactory(this));
-
-        } catch (CertificateException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (KeyStoreException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (KeyManagementException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            HttpsURLConnection.setDefaultSSLSocketFactory(Certificate_Handling.getSocketFactory(this));
+//
+//        } catch (CertificateException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } catch (KeyStoreException e) {
+//            e.printStackTrace();
+//        } catch (NoSuchAlgorithmException e) {
+//            e.printStackTrace();
+//        } catch (KeyManagementException e) {
+//            e.printStackTrace();
+//        }
         mSReq = new StringRequest(Request.Method.GET, url, response -> {}, error -> {});
 
         mRQueue.add(mSReq);
