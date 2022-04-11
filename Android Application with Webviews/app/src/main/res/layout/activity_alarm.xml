@@ -22,12 +22,12 @@
         android:layout_width="364dp"
         android:layout_height="91dp"
         android:text="Garage Door"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/frontdoor"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.832" />
+        app:layout_constraintTop_toBottomOf="@+id/masterarm"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/masterarm"
@@ -39,5 +39,5 @@
         app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.679" />
+        app:layout_constraintVertical_bias="0.69" />
 </androidx.constraintlayout.widget.ConstraintLayout>
