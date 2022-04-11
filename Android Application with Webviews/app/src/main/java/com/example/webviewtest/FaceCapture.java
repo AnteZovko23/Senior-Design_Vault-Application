@@ -17,6 +17,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -42,6 +43,7 @@ public class FaceCapture extends AppCompatActivity {
     private static final int pic_id = 123;
     private FirebaseStorage userStorage;
     private FirebaseUser currUser;
+    private FirebaseAuth firebaseAuth;
     private DocumentReference userDoc;
     private CollectionReference users;
 
@@ -61,6 +63,8 @@ public class FaceCapture extends AppCompatActivity {
         // get Buttons and imageview.
         camera_open_id = (Button)findViewById(R.id.camera_button);
         userStorage = FirebaseStorage.getInstance("gs://the-vault-7cf31.appspot.com");
+        firebaseAuth = FirebaseAuth.getInstance();
+        currUser = firebaseAuth.getCurrentUser();
 
 
 
@@ -105,13 +109,19 @@ public class FaceCapture extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == pic_id) {
 
-            // BitMap is data structure of image file
-            // which stores the image in memory
-            Bitmap photo = (Bitmap) data.getExtras()
-                    .get("data");
+            try {
+                // BitMap is data structure of image file
+                // which stores the image in memory
+                Bitmap photo = (Bitmap) data.getExtras()
+                        .get("data");
 
-            // Set the image in imageview for display
-            sendPic(photo);
+                // Set the image in imageview for display
+                sendPic(photo);
+            }
+            catch (Exception NullPointerException)
+            {
+                Log.d("Camera debug", "No picture taken.");
+            }
         }
     }
 
