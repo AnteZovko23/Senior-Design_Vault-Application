@@ -8,34 +8,36 @@
 
     <Button
         android:id="@+id/frontdoor"
-        android:layout_width="139dp"
-        android:layout_height="78dp"
+        android:layout_width="364dp"
+        android:layout_height="91dp"
         android:text="Front Door"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.752" />
+        app:layout_constraintVertical_bias="0.975" />
 
     <Button
         android:id="@+id/garagedoor"
-        android:layout_width="139dp"
-        android:layout_height="78dp"
+        android:layout_width="364dp"
+        android:layout_height="91dp"
         android:text="Garage Door"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.44" />
+        app:layout_constraintVertical_bias="0.832" />
 
     <Button
         android:id="@+id/masterarm"
-        android:layout_width="139dp"
-        android:layout_height="78dp"
+        android:layout_width="364dp"
+        android:layout_height="91dp"
         android:text="Master Arm"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.15" />
+        app:layout_constraintVertical_bias="0.679" />
 </androidx.constraintlayout.widget.ConstraintLayout>

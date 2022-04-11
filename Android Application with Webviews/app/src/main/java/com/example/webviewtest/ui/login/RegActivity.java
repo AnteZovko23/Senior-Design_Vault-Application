@@ -13,19 +13,17 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-//import androidx.appcompat.app.ActionBar;
 
 import com.example.webviewtest.R;
-import com.example.webviewtest.databinding.ActivityLoginBinding;
 import com.example.webviewtest.databinding.ActivityRegisterBinding;
 import com.example.webviewtest.fireBaseWork;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.FirebaseFirestore;
+
+//import androidx.appcompat.app.ActionBar;
 
 public class RegActivity extends AppCompatActivity
 {
@@ -74,7 +72,7 @@ public class RegActivity extends AppCompatActivity
              displayNameTxt = findViewById(R.id.displayName);
              //signUp = findViewById(R.id.SignUp);
 
-             binding.SignUp.setOnClickListener(new View.OnClickListener()
+             binding.Register.setOnClickListener(new View.OnClickListener()
              {
                  @Override
                  public void onClick(View v)
