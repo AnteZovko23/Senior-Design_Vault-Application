@@ -132,7 +132,7 @@ public class DBdata_bytearray extends AppCompatActivity {
         // first use picture's name (if none, prompt user for name)
 
         //
-        fileName = name+suffix+imgType;
+        fileName = name+imgType; // should later be: name+suffix+imgType;
 
         // check if file with same name is in user's folder
         /*

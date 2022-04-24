@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
     private Button cambutton;
     private Button alarmbutton;
     private Button bluetoothbtn;
-    private Button requestsbtn;
+    private Button profilebtn;
     private Button Data;
     private Button facebutton;
     private Button pickerbutton;
@@ -55,11 +55,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        requestsbtn = (Button) findViewById(R.id.requestsbtn);
-        requestsbtn.setOnClickListener(new View.OnClickListener() {
+        profilebtn = (Button) findViewById(R.id.profile);
+        profilebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openRequests();
+                openProfile();
             }
         });
 
@@ -108,8 +108,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openRequests() {
-        Intent intent = new Intent(this, Requests.class);
+    public void openProfile() {
+        Intent intent = new Intent(this, profileActivity.class);
         startActivity(intent);
     }
 

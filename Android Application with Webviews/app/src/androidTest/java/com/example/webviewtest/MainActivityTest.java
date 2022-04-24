@@ -68,13 +68,13 @@ public class MainActivityTest {
         button4.check(matches(isDisplayed()));
 
         ViewInteraction button5 = onView(
-                allOf(withId(R.id.requestsbtn), withText("REQUESTS"),
+                allOf(withId(R.id.profile), withText("REQUESTS"),
                         withParent(withParent(withId(android.R.id.content))),
                         isDisplayed()));
         button5.check(matches(isDisplayed()));
 
         ViewInteraction button6 = onView(
-                allOf(withId(R.id.requestsbtn), withText("REQUESTS"),
+                allOf(withId(R.id.profile), withText("REQUESTS"),
                         withParent(withParent(withId(android.R.id.content))),
                         isDisplayed()));
         button6.check(matches(isDisplayed()));
@@ -222,7 +222,7 @@ public class MainActivityTest {
         pressBack();
 
         ViewInteraction materialButton5 = onView(
-                allOf(withId(R.id.requestsbtn), withText("Requests"),
+                allOf(withId(R.id.profile), withText("Requests"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),

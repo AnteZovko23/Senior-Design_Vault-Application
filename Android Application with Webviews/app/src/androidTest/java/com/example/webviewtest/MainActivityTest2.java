@@ -37,7 +37,7 @@ public class MainActivityTest2 {
     @Test
     public void mainActivityTest2() {
         ViewInteraction materialButton = onView(
-                allOf(withId(R.id.requestsbtn), withText("Requests"),
+                allOf(withId(R.id.profile), withText("Requests"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
@@ -83,7 +83,7 @@ public class MainActivityTest2 {
         pressBack();
 
         ViewInteraction materialButton4 = onView(
-                allOf(withId(R.id.requestsbtn), withText("Requests"),
+                allOf(withId(R.id.profile), withText("Requests"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
@@ -123,7 +123,7 @@ public class MainActivityTest2 {
         pressBack();
 
         ViewInteraction materialButton7 = onView(
-                allOf(withId(R.id.requestsbtn), withText("Requests"),
+                allOf(withId(R.id.profile), withText("Requests"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),

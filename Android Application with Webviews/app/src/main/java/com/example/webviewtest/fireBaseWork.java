@@ -94,7 +94,7 @@ public class fireBaseWork
 
     //function to make new documents in a Firebase collection:
     // CHANGE TO PRIVATE AFTER YOU'VE MOVED LOGIN CLASSES
-    public void newUser(String userName)
+    public void newUser(String userName,String phoneNumber)
     {
         // try enums in java for the fields so adding and editing them are easy
         //  (go through enum for new user, use index reference for inserting data)
@@ -102,6 +102,8 @@ public class fireBaseWork
         user2.put("name", encodeData("name",encodeData("name", userName)));
         user2.put("arm_pin", encodeData("arm_pin","bytearray2"));
         user2.put("disarm_pin", encodeData("disarm_pin","bytearray3"));
+        if (phoneNumber != null)
+            user2.put("phone_number", encodeData("phone_number",phoneNumber));
         thisColl.document(userName).set(user2);
 
         // things that firebase tool in android studio had me put in; alternate to last line

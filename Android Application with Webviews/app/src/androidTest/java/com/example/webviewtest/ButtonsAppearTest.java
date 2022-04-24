@@ -1,7 +1,6 @@
 package com.example.webviewtest;
 
 
-import androidx.test.espresso.DataInteraction;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
@@ -11,21 +10,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 
-import static androidx.test.InstrumentationRegistry.getInstrumentation;
-import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.Espresso.pressBack;
-import static androidx.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
 import static androidx.test.espresso.action.ViewActions.*;
 import static androidx.test.espresso.assertion.ViewAssertions.*;
 import static androidx.test.espresso.matcher.ViewMatchers.*;
 
-import com.example.webviewtest.R;
-
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
-import org.hamcrest.core.IsInstanceOf;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -75,13 +68,13 @@ public class ButtonsAppearTest {
         button4.check(matches(isDisplayed()));
 
         ViewInteraction button5 = onView(
-                allOf(withId(R.id.requestsbtn), withText("REQUESTS"),
+                allOf(withId(R.id.profile), withText("REQUESTS"),
                         withParent(withParent(withId(android.R.id.content))),
                         isDisplayed()));
         button5.check(matches(isDisplayed()));
 
         ViewInteraction button6 = onView(
-                allOf(withId(R.id.requestsbtn), withText("REQUESTS"),
+                allOf(withId(R.id.profile), withText("REQUESTS"),
                         withParent(withParent(withId(android.R.id.content))),
                         isDisplayed()));
         button6.check(matches(isDisplayed()));
@@ -223,7 +216,7 @@ public class ButtonsAppearTest {
         pressBack();
 
         ViewInteraction materialButton5 = onView(
-                allOf(withId(R.id.requestsbtn), withText("Requests"),
+                allOf(withId(R.id.profile), withText("Requests"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
