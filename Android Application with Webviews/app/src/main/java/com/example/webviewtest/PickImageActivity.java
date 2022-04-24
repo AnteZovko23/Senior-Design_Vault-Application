@@ -136,7 +136,7 @@ public class PickImageActivity extends AppCompatActivity {
     private void start_face_processing() {
         // Tell volley to use a SocketFactory from our SSLContext
 
-        String url = "http://192.168.1.4:5000/add_face?name=" + name;
+        String url = "http://192.168.1.5:5000/add_face?name=" + name;
         RequestQueue mRQueue;
         StringRequest mSReq;
         mRQueue = Volley.newRequestQueue(PickImageActivity.this);

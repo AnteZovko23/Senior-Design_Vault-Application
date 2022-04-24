@@ -57,7 +57,7 @@ public class Camera1 extends AppCompatActivity {
 
             public void run() {
 
-                webView1.loadUrl("http://192.168.1.4:5000/video_stream");
+                webView1.loadUrl("http://192.168.1.5:5000/video_stream");
             }
         }, 2500);   //5 seconds
 
@@ -66,7 +66,7 @@ public class Camera1 extends AppCompatActivity {
     private void stop_feed() {
         // Tell volley to use a SocketFactory from our SSLContext
 
-        String url = "http://192.168.1.4:5000/stop_feed";
+        String url = "http://192.168.1.5:5000/stop_feed";
         RequestQueue mRQueue;
         StringRequest mSReq;
         mRQueue = Volley.newRequestQueue(Camera1.this);

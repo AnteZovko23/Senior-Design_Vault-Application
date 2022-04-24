@@ -176,24 +176,24 @@ public class FaceCapture extends AppCompatActivity {
     private void start_face_processing() {
         // Tell volley to use a SocketFactory from our SSLContext
 
-        String url = "https://192.168.1.4:5000/add_face?name=" + name;
+        String url = "http://192.168.1.5:5000/add_face?name=" + name;
         RequestQueue mRQueue;
         StringRequest mSReq;
         mRQueue = Volley.newRequestQueue(FaceCapture.this);
-        try {
-            HttpsURLConnection.setDefaultSSLSocketFactory(Certificate_Handling.getSocketFactory(this));
-
-        } catch (CertificateException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (KeyStoreException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (KeyManagementException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            HttpsURLConnection.setDefaultSSLSocketFactory(Certificate_Handling.getSocketFactory(this));
+//
+//        } catch (CertificateException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } catch (KeyStoreException e) {
+//            e.printStackTrace();
+//        } catch (NoSuchAlgorithmException e) {
+//            e.printStackTrace();
+//        } catch (KeyManagementException e) {
+//            e.printStackTrace();
+//        }
         mSReq = new StringRequest(Request.Method.GET, url, response -> {}, error -> {});
 
         mRQueue.add(mSReq);
