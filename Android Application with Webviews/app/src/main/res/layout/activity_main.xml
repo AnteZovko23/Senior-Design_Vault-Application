@@ -72,20 +72,27 @@
 
     <Button
         android:id="@+id/facebutton"
-        android:layout_width="123dp"
-        android:layout_height="76dp"
+        android:layout_width="146dp"
+        android:layout_height="92dp"
         android:text="Add A Face"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="16dp" />
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="20dp" />
 
     <Button
         android:id="@+id/pickbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="146dp"
+        android:layout_height="92dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="36dp"
+        android:layout_marginEnd="4dp"
         android:text="Pick An Image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

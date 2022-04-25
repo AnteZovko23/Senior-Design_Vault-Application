@@ -32,14 +32,13 @@
             android:id="@+id/email" />
         <Constraint
             android:layout_height="48dp"
-            motion:layout_constraintStart_toStartOf="parent"
-            motion:layout_constraintHorizontal_bias="0.426"
-            motion:layout_constraintEnd_toEndOf="parent"
             android:layout_width="268dp"
-            motion:layout_constraintTop_toBottomOf="@+id/password"
             android:id="@+id/login"
-            android:layout_marginTop="68dp"
-            motion:layout_constraintBottom_toTopOf="@+id/signUp" />
+            motion:layout_constraintBottom_toTopOf="@+id/signUp"
+            android:layout_marginBottom="8dp"
+            motion:layout_editor_absoluteX="61dp"
+            motion:layout_constraintTop_toBottomOf="@+id/password"
+            motion:layout_constraintVertical_bias="0.951" />
         <Constraint
             android:layout_height="48dp"
             motion:layout_constraintStart_toStartOf="parent"

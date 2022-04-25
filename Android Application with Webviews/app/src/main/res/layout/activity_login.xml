@@ -50,9 +50,6 @@
         android:layout_height="48dp"
         android:background="@android:color/holo_orange_dark"
         android:text="@string/log_in"
-        app:layout_constraintBottom_toTopOf="@+id/signUp"
-        app:layout_constraintEnd_toEndOf="@+id/signUp"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password" />
 
