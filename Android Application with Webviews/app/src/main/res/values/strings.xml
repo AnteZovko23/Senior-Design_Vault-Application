@@ -12,7 +12,7 @@
     <string name="log_in">LOG IN</string>
     <string name="password">Password</string>
     <string name="username">Username</string>
-    <string name="sign_up">SIGN UP</string>
+    <string name="sign_up">REGISTER</string>
     <string name="nameRequest">Please enter your display name.</string>
     <string name="phone">Phone Number (optional)</string>
 </resources>
