@@ -15,7 +15,10 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.webviewtest.databinding.ActivityLoginBinding;
@@ -274,5 +277,13 @@ public class LoginActivity extends AppCompatActivity {
     private void openMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+    }
+
+    private void runFadeAnimation() {
+        Animation a = AnimationUtils.loadAnimation(this, R.anim.slideinbottom);
+        a.reset();
+        LinearLayout ll = findViewById(R.id.loglayout);
+        ll.clearAnimation();
+        ll.startAnimation(a);
     }
 }

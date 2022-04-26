@@ -2,8 +2,9 @@
 <androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android.id="@+id/loglayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/gradBlack"
     android:orientation="vertical"
     app:layoutDescription="@xml/activity_login_scene"
@@ -53,25 +54,22 @@
         android:id="@+id/login"
         android:layout_width="268dp"
         android:layout_height="48dp"
+        android:layout_marginTop="480dp"
+        android:background="@drawable/oval"
         android:text="@string/log_in"
         app:backgroundTint="@color/DarkRed"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/signUp" />
+        app:layout_constraintTop_toTopOf="@+id/signUp"
+        tools:layout_editor_absoluteX="71dp" />
 
     <Button
         android:id="@+id/signUp"
         android:layout_width="268dp"
         android:layout_height="48dp"
+        android:background="@drawable/oval"
         android:text="@string/sign_up"
         app:backgroundTint="@color/DarkRed"
-        app:layout_constraintBottom_toTopOf="@+id/gSignIn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login"
-        app:layout_constraintVertical_bias="0.784" />
+        tools:layout_editor_absoluteX="123dp"
+        tools:layout_editor_absoluteY="461dp" />
 
     <ImageButton
         android:id="@+id/gSignIn"
