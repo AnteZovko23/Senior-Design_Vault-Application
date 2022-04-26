@@ -8,84 +8,95 @@
 
     <Button
         android:id="@+id/bluetoothbtn"
-        android:layout_width="387dp"
-        android:layout_height="49dp"
+        android:layout_width="392dp"
+        android:layout_height="66dp"
         android:text="Bluetooth"
         app:layout_constraintBottom_toTopOf="@+id/Data"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/alarmbutton" />
 
     <Button
         android:id="@+id/profile"
-        android:layout_width="387dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="4dp"
+        android:layout_width="392dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="388dp"
+        android:layout_marginEnd="8dp"
         android:text="Profile"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/pickbutton" />
 
     <Button
         android:id="@+id/alarmbutton"
-        android:layout_width="387dp"
-        android:layout_height="49dp"
+        android:layout_width="392dp"
+        android:layout_height="66dp"
         android:text="Alarm"
         app:layout_constraintBottom_toTopOf="@+id/bluetoothbtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cambutton" />
 
     <Button
         android:id="@+id/cambutton"
-        android:layout_width="387dp"
-        android:layout_height="49dp"
+        android:layout_width="392dp"
+        android:layout_height="66dp"
         android:text="Cameras"
         app:layout_constraintBottom_toTopOf="@+id/alarmbutton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lockbutton" />
 
     <Button
         android:id="@+id/lockbutton"
-        android:layout_width="387dp"
-        android:layout_height="49dp"
+        android:layout_width="392dp"
+        android:layout_height="66dp"
         android:text="Locks"
         app:layout_constraintBottom_toTopOf="@+id/cambutton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/facebutton" />
 
     <Button
         android:id="@+id/Data"
-        android:layout_width="387dp"
-        android:layout_height="49dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="392dp"
+        android:layout_height="66dp"
         android:text="Data"
         app:layout_constraintBottom_toTopOf="@+id/profile"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bluetoothbtn" />
 
     <Button
         android:id="@+id/facebutton"
-        android:layout_width="146dp"
-        android:layout_height="92dp"
+        android:layout_width="193dp"
+        android:layout_height="165dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="550dp"
         android:text="Add A Face"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="20dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/pickbutton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/pickbutton"
-        android:layout_width="146dp"
-        android:layout_height="92dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="4dp"
+        android:layout_width="193dp"
+        android:layout_height="165dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="550dp"
         android:text="Pick An Image"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -94,5 +105,18 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="20dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="top" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
