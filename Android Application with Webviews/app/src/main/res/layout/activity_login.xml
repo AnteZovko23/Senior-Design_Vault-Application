@@ -5,7 +5,7 @@
     android.id="@+id/loglayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gradBlack"
+    android:background="@drawable/gradientblack"
     android:orientation="vertical"
     app:layoutDescription="@xml/activity_login_scene"
     tools:context=".LoginActivity">
@@ -57,7 +57,6 @@
         android:layout_marginTop="480dp"
         android:background="@drawable/oval"
         android:text="@string/log_in"
-        app:backgroundTint="@color/DarkRed"
         app:layout_constraintTop_toTopOf="@+id/signUp"
         tools:layout_editor_absoluteX="71dp" />
 
@@ -67,7 +66,6 @@
         android:layout_height="48dp"
         android:background="@drawable/oval"
         android:text="@string/sign_up"
-        app:backgroundTint="@color/DarkRed"
         tools:layout_editor_absoluteX="123dp"
         tools:layout_editor_absoluteY="461dp" />
 

@@ -154,4 +154,5 @@
     <color name="gradColorB">#E233FF</color>
     <color name="gradColorC">#F40076</color>
     <color name="gradBlack">#FF1A1A1A</color>
+    <color name="normDarkRed">#8B0001</color>
 </resources>
