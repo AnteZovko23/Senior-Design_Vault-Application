@@ -4,41 +4,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gradBlack"
+    android:background="@color/black"
     tools:context=".Alarm">
 
     <Button
         android:id="@+id/frontdoor"
         android:layout_width="364dp"
         android:layout_height="91dp"
+        android:layout_marginTop="624dp"
+        android:layout_marginBottom="16dp"
         android:text="Front Door"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.975" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/garagedoor"
         android:layout_width="364dp"
         android:layout_height="91dp"
+        android:layout_marginTop="533dp"
+        android:layout_marginBottom="107dp"
         android:text="Garage Door"
-        app:layout_constraintBottom_toTopOf="@+id/frontdoor"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/masterarm"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/masterarm"
         android:layout_width="364dp"
         android:layout_height="91dp"
+        android:layout_marginTop="442dp"
+        android:layout_marginBottom="198dp"
         android:text="Master Arm"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="412dp"
+        android:layout_height="403dp"
+        android:layout_marginBottom="298dp"
+        android:src="@drawable/lock"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.69" />
+        app:layout_constraintVertical_bias="0.0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
