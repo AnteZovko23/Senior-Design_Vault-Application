@@ -12,9 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-//import androidx.appcompat.app.ActionBar;
 
 import com.example.webviewtest.data.localUsers;
 import com.example.webviewtest.databinding.ActivitySignUpBinding;
@@ -38,8 +36,6 @@ public class SignUpActivity extends AppCompatActivity
     private FirebaseStorage storage;
     private localUsers usersD;
 
-    //action bar
-    private ActionBar actionBar;
 
     private Button signUp;
     private EditText emailTxt, passwordTxt, displayNameTxt;
@@ -56,13 +52,6 @@ public class SignUpActivity extends AppCompatActivity
         firebaseAuth = FirebaseAuth.getInstance();
         db = fireBaseWork.getInstance();
         storage = FirebaseStorage.getInstance("gs://the-vault-7cf31.appspot.com");
-
-        //configure actionbar, title, back button
-        actionBar = getSupportActionBar();
-        actionBar.setTitle("SignUp");
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setDisplayShowHomeEnabled(true);
-
 
         //configure progress dialog
         progressDialog = new ProgressDialog(this);
@@ -91,7 +80,6 @@ public class SignUpActivity extends AppCompatActivity
     @Override
     public boolean onSupportNavigateUp()
     {
-        onBackPressed(); //go to previous activity when back button of actionbar clicked
         startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
         finish();
         return true;

@@ -1,7 +1,6 @@
 package com.example.webviewtest;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -18,20 +17,11 @@ public class profileActivity extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
 
-    //actionbar
-    private ActionBar actionBar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        //configure actionbar, title, back button
-        actionBar = getSupportActionBar();
-        actionBar.setTitle("User Profile");
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setDisplayShowHomeEnabled(true);
 
         //init firebase auth
         firebaseAuth = FirebaseAuth.getInstance();
@@ -59,7 +49,7 @@ public class profileActivity extends AppCompatActivity {
     @Override
     public boolean onSupportNavigateUp()
     {
-        onBackPressed(); //go to previous activity when back button of actionbar clicked
+        onBackPressed();
         startActivity(new Intent(profileActivity.this, MainActivity.class));
         finish();
         return true;
