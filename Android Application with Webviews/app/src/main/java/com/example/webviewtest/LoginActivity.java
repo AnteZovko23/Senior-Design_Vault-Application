@@ -3,7 +3,6 @@ package com.example.webviewtest;
 
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -42,8 +41,6 @@ public class LoginActivity extends AppCompatActivity {
     fireBaseWork dbMan = fireBaseWork.getInstance();
 
     private ActivityLoginBinding binding;
-    //actionbar
-    private ActionBar actionBar;
     //progress dialog
     private ProgressDialog progressDialog;
 
@@ -83,11 +80,6 @@ public class LoginActivity extends AppCompatActivity {
         signIn = findViewById(R.id.login);
         signUp = findViewById(R.id.signUp);
 
-        //configure actionbar, title, back button
-        actionBar = getSupportActionBar();
-        actionBar.setTitle("Login");
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setDisplayShowHomeEnabled(true);
 
         //configure Google sign in
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
