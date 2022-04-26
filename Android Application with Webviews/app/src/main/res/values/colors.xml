@@ -150,4 +150,7 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="gradColorA">#F40076</color>
+    <color name="gradColorB">#E233FF</color>
+    <color name="gradColorC">#F40076</color>
 </resources>
