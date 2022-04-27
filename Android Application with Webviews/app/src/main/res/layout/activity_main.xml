@@ -8,126 +8,101 @@
 
     tools:context=".MainActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        />
+
     <Button
         android:id="@+id/bluetoothbtn"
-        android:layout_width="392dp"
-        android:layout_height="66dp"
+        android:layout_width="193dp"
+        android:layout_height="165dp"
+        android:background="@drawable/randomname"
         android:text="Bluetooth"
         android:textColor="@color/LightGrey"
-        android:background="@drawable/randomname"
         android:textColorHint="@color/DarkRed"
         android:textStyle="bold|italic"
-        app:layout_constraintBottom_toTopOf="@+id/Data"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/alarmbutton" />
+        app:layout_constraintBottom_toTopOf="@+id/profile"
+        tools:layout_editor_absoluteX="21dp" />
 
     <Button
         android:id="@+id/profile"
-        android:layout_width="392dp"
-        android:layout_height="130dp"
+        android:layout_width="386dp"
+        android:layout_height="164dp"
+        android:layout_marginTop="562dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/randomname"
+        android:text="Profile"
         android:textColor="@color/LightGrey"
         android:textStyle="bold|italic"
-        android:background="@drawable/randomname"
-        android:layout_marginTop="388dp"
-        android:layout_marginEnd="8dp"
-        android:text="Profile"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pickbutton" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="21dp" />
 
     <Button
         android:id="@+id/alarmbutton"
-        android:layout_width="392dp"
-        android:layout_height="66dp"
+        android:layout_width="193dp"
+        android:layout_height="165dp"
         android:background="@drawable/randomname"
         android:text="Alarm"
         android:textColor="@color/LightGrey"
         android:textColorHint="@color/DarkRed"
         android:textStyle="bold|italic"
-        app:layout_constraintBottom_toTopOf="@+id/bluetoothbtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.578"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cambutton" />
+        app:layout_constraintBottom_toTopOf="@+id/profile"
+        app:layout_constraintStart_toEndOf="@+id/bluetoothbtn"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/cambutton"
-        android:layout_width="392dp"
-        android:layout_height="66dp"
+        android:layout_width="193dp"
+        android:layout_height="165dp"
+        android:background="@drawable/randomname"
         android:text="Cameras"
         android:textColor="@color/LightGrey"
         android:textColorHint="@color/DarkRed"
         android:textStyle="bold|italic"
-        android:background="@drawable/randomname"
         app:layout_constraintBottom_toTopOf="@+id/alarmbutton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lockbutton" />
+        app:layout_constraintStart_toEndOf="@+id/lockbutton" />
 
     <Button
         android:id="@+id/lockbutton"
-        android:layout_width="392dp"
-        android:layout_height="66dp"
+        android:layout_width="193dp"
+        android:layout_height="165dp"
+        android:background="@drawable/randomname"
+        android:text="Locks"
         android:textColor="@color/LightGrey"
         android:textColorHint="@color/DarkRed"
         android:textStyle="bold|italic"
-        android:background="@drawable/randomname"
-        android:text="Locks"
-        app:layout_constraintBottom_toTopOf="@+id/cambutton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/facebutton" />
-
-    <Button
-        android:id="@+id/Data"
-        android:layout_width="392dp"
-        android:layout_height="66dp"
-        android:textColor="@color/LightGrey"
-        android:textStyle="bold|italic"
-        android:background="@drawable/randomname"
-        android:text="Data"
-        app:layout_constraintBottom_toTopOf="@+id/profile"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bluetoothbtn" />
+        app:layout_constraintBottom_toTopOf="@+id/bluetoothbtn"
+        tools:layout_editor_absoluteX="21dp" />
 
     <Button
         android:id="@+id/facebutton"
         android:layout_width="193dp"
         android:layout_height="165dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="16dp"
-        android:textColor="@color/LightGrey"
-        android:textStyle="bold|italic"
-        android:layout_marginBottom="550dp"
         android:background="@drawable/randomname"
         android:text="Add A Face"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/pickbutton"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textColor="@color/LightGrey"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toTopOf="@+id/lockbutton"
+        tools:layout_editor_absoluteX="20dp" />
 
     <Button
         android:id="@+id/pickbutton"
         android:layout_width="193dp"
         android:layout_height="165dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="550dp"
-        android:textColor="@color/LightGrey"
-        android:textStyle="bold|italic"
         android:background="@drawable/randomname"
         android:text="Pick An Image"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.95"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textColor="@color/LightGrey"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toTopOf="@+id/cambutton"
+        app:layout_constraintStart_toEndOf="@+id/facebutton" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"

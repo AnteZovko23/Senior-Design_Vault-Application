@@ -2,10 +2,13 @@ package com.example.webviewtest;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -17,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private Button Data;
     private Button facebutton;
     private Button pickerbutton;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,13 +67,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Data = (Button) findViewById(R.id.Data);
+        /*Data = (Button) findViewById(R.id.Data);
         Data.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openData();
             }
-        });
+        });*/
 
         facebutton = (Button) findViewById(R.id.facebutton);
         facebutton.setOnClickListener(new View.OnClickListener() {
@@ -86,6 +90,34 @@ public class MainActivity extends AppCompatActivity {
                 openPicker();
             }
         });
+
+        toolbar=findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.appmenu, menu);
+        super.onCreateOptionsMenu(menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch(item.getItemId()){
+            case R.id.cameras:
+                startActivity(new Intent(this,Camera.class));
+                return true;
+            case R.id.locks:
+                startActivity(new Intent(this, Lock.class));
+                return true;
+            case R.id.addface:
+                startActivity(new Intent(this,PickImageActivity.class));
+                return true;
+            case R.id.bluetooth:
+                startActivity(new Intent(this, Bluetooth.class));
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void openLock() {
@@ -113,10 +145,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /*
     public void openData() {
         Intent intent = new Intent(this, DBdata_bytearray.class);
         startActivity(intent);
-    }
+    }*/
 
     public void openFace() {
         Intent intent = new Intent(this, FaceCapture.class);
