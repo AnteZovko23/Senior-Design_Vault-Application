@@ -37,7 +37,7 @@ public class SignUpActivity extends AppCompatActivity
     private localUsers usersD;
 
 
-    private Button signUp;
+    private Button SignUp;
     private EditText emailTxt, passwordTxt, displayNameTxt;
     private String email = "", password = "", displayName = "", phoneNumber = "";
 
@@ -60,12 +60,11 @@ public class SignUpActivity extends AppCompatActivity
         progressDialog.setCanceledOnTouchOutside(false);
 
         // declare buttons and views/editTexts
-        /*
              emailTxt = findViewById(R.id.email);
              passwordTxt = findViewById(R.id.password1);
-        /**/
+
         displayNameTxt = findViewById(R.id.person);
-        //signUp = findViewById(R.id.SignUp);
+        SignUp = findViewById(R.id.SignUp);
 
         binding.SignUp.setOnClickListener(new View.OnClickListener()
         {
