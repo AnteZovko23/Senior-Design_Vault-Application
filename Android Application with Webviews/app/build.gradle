@@ -45,6 +45,7 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:29.1.0')
     implementation 'com.google.firebase:firebase-analytics'
     //implementation 'come.google.firebase:firebase-storage'
+    implementation "androidx.core:core:1.6.0"
 
     // already present
 

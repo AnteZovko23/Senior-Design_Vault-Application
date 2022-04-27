@@ -12,7 +12,9 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -38,11 +40,13 @@ public class PickImageActivity extends AppCompatActivity {
     private ImageView imageView;
     private FirebaseStorage userStorage;
     private FirebaseUser currUser;
+    private ProgressBar spinner;
 
     String name, storagePath, uriPath, fileName, suffix;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pick_image);
 
@@ -58,11 +62,13 @@ public class PickImageActivity extends AppCompatActivity {
         suffix = "";
         storagePath = name+"/";
         fileName = uriPath ="";
-
+        spinner = (ProgressBar)findViewById(R.id.progressBar1);
+        spinner.setVisibility(View.GONE);
         gallery = (Button) findViewById(R.id.gallery);
         gallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(intent, 3);
             }
@@ -77,6 +83,7 @@ public class PickImageActivity extends AppCompatActivity {
             imageView = findViewById(R.id.imageView);
             imageView.setImageURI(selectedImage);
             sendPic(imageView);
+            spinner.setVisibility(View.VISIBLE);
         }
     }
 
@@ -120,6 +127,9 @@ public class PickImageActivity extends AppCompatActivity {
             {
                 System.out.println("Uploaded successfully!");
                 start_face_processing();
+                spinner.setVisibility(View.GONE);
+                Toast.makeText(PickImageActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -159,4 +169,5 @@ public class PickImageActivity extends AppCompatActivity {
         mRQueue.add(mSReq);
 
     }
+
 }
