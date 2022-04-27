@@ -16,13 +16,12 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
         WelcomeView = (ImageView) findViewById(R.id.WelcomeView);
-        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fadein);
+        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slideinbottom);
         WelcomeView.setAnimation(animation);
 
         animation.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
-
             }
 
             @Override
