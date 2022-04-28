@@ -327,7 +327,7 @@ public class DBdata_bytearray extends AppCompatActivity {
         //  might want to add in metadata (nice-to-have development feature to help with debugging
         //  from firebase website console viewpoint)
         StorageReference storageRef = userStorage.getReference(storagePath);
-        setFileName();
+        setFileName(storageRef);
         StorageReference smileyImgRef = storageRef.child(fileName);
         incrementSuffix();
 
