@@ -11,8 +11,8 @@
 
     <Button
         android:id="@+id/SignUp"
-        android:layout_width="388dp"
-        android:layout_height="59dp"
+        android:layout_width="399dp"
+        android:layout_height="46dp"
         android:background="@color/NewColor1"
         android:text="@string/sign_up"
         app:layout_constraintBottom_toBottomOf="parent"
