@@ -16,9 +16,12 @@
             android:layout_height="73dp"
             android:layout_width="327dp"
             android:id="@+id/login"
-            motion:layout_editor_absoluteX="43dp"
             motion:layout_constraintTop_toBottomOf="@+id/signUp"
-            android:layout_marginTop="8dp" />
+            android:layout_marginTop="8dp"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintBottom_toTopOf="@+id/gSignIn"
+            motion:layout_constraintVertical_bias="0.222" />
         <Constraint
             motion:layout_editor_absoluteY="171dp"
             android:layout_height="521dp"
