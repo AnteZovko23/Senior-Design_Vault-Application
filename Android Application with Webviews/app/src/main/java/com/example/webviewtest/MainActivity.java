@@ -26,71 +26,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        lockbutton = (Button) findViewById(R.id.lockbutton);
-        lockbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openLock();
-            }
-        });
-
-        cambutton = (Button) findViewById(R.id.cambutton);
-        cambutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openCamera();
-            }
-        });
-
-        alarmbutton = (Button) findViewById(R.id.alarmbutton);
-        alarmbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openAlarm();
-            }
-        });
-
-        bluetoothbtn = (Button) findViewById(R.id.bluetoothbtn);
-        bluetoothbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openBluetooth();
-            }
-        });
-
-        profilebtn = (Button) findViewById(R.id.profile);
-        profilebtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openProfile();
-            }
-        });
-
-        /*Data = (Button) findViewById(R.id.Data);
-        Data.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openData();
-            }
-        });*/
-
-        facebutton = (Button) findViewById(R.id.facebutton);
-        facebutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openFace();
-            }
-        });
-
-        pickerbutton = (Button) findViewById(R.id.pickbutton);
-        pickerbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openPicker();
-            }
-        });
-
         toolbar=findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }
@@ -104,34 +39,27 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem item){
         switch(item.getItemId()){
-            case R.id.cameras:
-                startActivity(new Intent(this,Camera.class));
+            case R.id.pickbutton2:
+                openPicker();
                 return true;
-            case R.id.locks:
-                startActivity(new Intent(this, Lock.class));
+            case R.id.profile2:
+                openProfile();
                 return true;
-            case R.id.addface:
-                startActivity(new Intent(this,PickImageActivity.class));
+            case R.id.cameras2:
+                openCamera();
                 return true;
-            case R.id.bluetooth:
-                startActivity(new Intent(this, Bluetooth.class));
+            case R.id.addface2:
+                openFace();
+                return true;
+            case R.id.bluetooth2:
+                openBluetooth();
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    public void openLock() {
-        Intent intent = new Intent(this, Lock.class);
-        startActivity(intent);
-    }
-
     public void openCamera() {
         Intent intent = new Intent(this, Camera.class);
-        startActivity(intent);
-    }
-
-    public void openAlarm() {
-        Intent intent = new Intent(this, Alarm.class);
         startActivity(intent);
     }
 
@@ -144,12 +72,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, profileActivity.class);
         startActivity(intent);
     }
-
-    /*
-    public void openData() {
-        Intent intent = new Intent(this, DBdata_bytearray.class);
-        startActivity(intent);
-    }*/
 
     public void openFace() {
         Intent intent = new Intent(this, FaceCapture.class);

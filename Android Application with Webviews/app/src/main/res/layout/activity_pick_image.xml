@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradientblack"
+    android:background="@color/AntiqueWhite"
     tools:context=".PickImageActivity">
 
     <ImageView
@@ -13,13 +13,13 @@
 
     <Button
         android:id="@+id/gallery"
-        android:layout_width="194dp"
-        android:layout_height="88dp"
+        android:layout_width="333dp"
+        android:layout_height="84dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="102dp"
-        android:layout_marginBottom="31dp"
-        android:background="@drawable/oval"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="33dp"
+        android:background="@color/NewColor1"
         android:text="Pick Image" />
 
 

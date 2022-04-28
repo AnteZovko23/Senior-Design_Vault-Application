@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradientblack"
+    android:background="@color/AntiqueWhite"
     tools:context=".Camera">
 
     <Button
@@ -12,7 +12,7 @@
         android:layout_width="375dp"
         android:layout_height="58dp"
         android:text="Camera 3"
-        android:background="@drawable/oval"
+        android:background="@color/NewColor1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +23,7 @@
         android:id="@+id/camera2"
         android:layout_width="375dp"
         android:layout_height="58dp"
-        android:background="@drawable/oval"
+        android:background="@color/NewColor1"
         android:text="Camera 2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,7 +35,7 @@
         android:id="@+id/camera1"
         android:layout_width="375dp"
         android:layout_height="58dp"
-        android:background="@drawable/oval"
+        android:background="@color/NewColor1"
         android:text="Camera 1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

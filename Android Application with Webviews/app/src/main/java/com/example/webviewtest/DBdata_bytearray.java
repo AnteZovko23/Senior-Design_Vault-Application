@@ -78,17 +78,17 @@ public class DBdata_bytearray extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dbdata_bytearray);
+       // setContentView(R.layout.activity_dbdata_bytearray);
 
-        Button getData = findViewById(R.id.getData);
-        Button getByteArray = findViewById(R.id.getByteArray);
-        Button sendPic = findViewById(R.id.sendPic);
-        Button getPic = findViewById(R.id.getPic);
-        ProgressBar uploadProgress = findViewById(R.id.uploadPB);
+        //Button getData = findViewById(R.id.getData);
+        //Button getByteArray = findViewById(R.id.getByteArray);
+        //Button sendPic = findViewById(R.id.sendPic);
+        //Button getPic = findViewById(R.id.getPic);
+        //ProgressBar uploadProgress = findViewById(R.id.uploadPB);
 
-        TextView dbData = findViewById(R.id.DBdata);
-        TextView byteArr = findViewById(R.id.byteArr);
-        ImageView pic = findViewById(R.id.pic);
+        //TextView dbData = findViewById(R.id.DBdata);
+        //TextView byteArr = findViewById(R.id.byteArr);
+        //ImageView pic = findViewById(R.id.pic);
 
         userStorage = FirebaseStorage.getInstance("gs://the-vault-7cf31.appspot.com");
         db = FirebaseFirestore.getInstance();
@@ -108,12 +108,12 @@ public class DBdata_bytearray extends AppCompatActivity {
         imgType = ".jpg";
 
 
-        uploadProgress.setVisibility(View.GONE);
+       //uploadProgress.setVisibility(View.GONE);
 
-        getData.setOnClickListener(v -> useFirebase(dbData, pic,"name"));
-        getByteArray.setOnClickListener(v -> BAconversion(byteArr, dbData));
-        sendPic.setOnClickListener(v -> sendPic(dbData, pic, sendPic, uploadProgress));
-        getPic.setOnClickListener(v -> buildPic(pic, dbData));
+        //getData.setOnClickListener(v -> useFirebase(dbData, pic,"name"));
+        //getByteArray.setOnClickListener(v -> BAconversion(byteArr, dbData));
+        //sendPic.setOnClickListener(v -> sendPic(dbData, pic, sendPic, uploadProgress));
+        //getPic.setOnClickListener(v -> buildPic(pic, dbData));
     }
 
 

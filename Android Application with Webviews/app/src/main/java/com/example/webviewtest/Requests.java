@@ -13,24 +13,24 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-public class Requests extends AppCompatActivity {
+//public class Requests extends AppCompatActivity {
 
-    private static final String TAG = MainActivity.class.getName();
+   // private static final String TAG = MainActivity.class.getName();
 
-    private RequestQueue mRQueue;
-    private StringRequest mSReq;
+   // private RequestQueue mRQueue;
+   // private StringRequest mSReq;
 
-    String url = "http://172.20.10.7:5000/";
+   // String url = "http://172.20.10.7:5000/";
     // node server - "http://localhost:8081/";
     // pi server - "http://172.20.10.13:5000/";
     // for testing - "http://172.20.10.7:5000/pi_test";
-    String endpoint = "";
+  //  String endpoint = "";
 
 
-    @Override
+    /*@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_requests);
+        /*setContentView(R.layout.activity_requests);
 
         Button GetReq;
         Button GetReq2;
@@ -50,11 +50,10 @@ public class Requests extends AppCompatActivity {
         GetReq3.setOnClickListener(v -> GetRequest3(responses));
         //GetReq4.setOnClickListener(v -> GetRequest4(responses));
         //PostReq.setOnClickListener(v -> PostRequest(responses));
-    }
 
     // NEEDS usesClearTextTraffic to run (found in manifest)
     /* might need to change to allow for use with additional classes; comment out intent */
-    private void GetRequest(TextView data_display) {
+   /* private void GetRequest(TextView data_display) {
 
         endpoint = "";
         mRQueue = Volley.newRequestQueue(Requests.this);
@@ -119,4 +118,4 @@ public class Requests extends AppCompatActivity {
     }
 
      */
-}
+//}

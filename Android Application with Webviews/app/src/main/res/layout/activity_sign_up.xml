@@ -4,18 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradientblack"
+    android:background="@color/black"
     android:gravity="center"
     android:orientation="horizontal"
     tools:context=".SignUpActivity">
 
     <Button
         android:id="@+id/SignUp"
-        android:layout_width="391dp"
-        android:layout_height="108dp"
-        android:layout_marginStart="10dp"
-        android:background="@drawable/oval"
-        android:layout_marginBottom="32dp"
+        android:layout_width="388dp"
+        android:layout_height="59dp"
+        android:background="@color/NewColor1"
         android:text="@string/sign_up"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,18 +26,19 @@
         android:layout_width="404dp"
         android:layout_height="63dp"
         android:layout_marginStart="7dp"
-        android:layout_marginTop="239dp"
+        android:layout_marginTop="316dp"
         android:autofillHints=""
-        android:backgroundTint="@color/black"
         android:fontFeatureSettings=""
         android:hint="@string/prompt_email"
         android:inputType="textEmailAddress"
         android:selectAllOnFocus="true"
-        android:textColor="@color/DarkRed"
-        android:textColorHint="@color/DarkRed"
+        android:textColor="@color/NewColor1"
+        android:textColorHint="@color/NewColor1"
         android:textStyle="bold|italic"
+        app:backgroundTint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/gifImageView2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
@@ -55,11 +54,12 @@
         android:imeOptions="actionDone"
         android:inputType="textPassword"
         android:selectAllOnFocus="true"
-        android:textColor="@color/DarkRed"
-        android:textColorHint="@color/DarkRed"
+        android:textColor="@color/NewColor1"
+        android:textColorHint="@color/NewColor1"
         android:textStyle="bold|italic"
         app:backgroundTint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email" />
 
@@ -71,11 +71,13 @@
         android:ems="10"
         android:hint="@string/phone"
         android:inputType="phone"
-        android:textColor="@color/DarkRed"
-        android:textColorHint="@color/DarkRed"
+        android:textColor="@color/NewColor1"
+        android:textColorHint="@color/NewColor1"
         android:textStyle="bold|italic"
-        app:layout_constraintTop_toBottomOf="@+id/password1"
-        tools:layout_editor_absoluteX="7dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password1" />
 
     <EditText
         android:id="@+id/person"
@@ -86,23 +88,26 @@
         android:ems="10"
         android:hint="@string/nameRequest"
         android:inputType="textPersonName"
-        android:textColor="@color/DarkRed"
-        android:textColorHint="@color/DarkRed"
+        android:textColor="@color/NewColor1"
+        android:textColorHint="@color/NewColor1"
         android:textStyle="bold|italic"
-        app:layout_constraintTop_toBottomOf="@+id/phoneN"
-        tools:layout_editor_absoluteX="7dp" />
-
-    <pl.droidsonroids.gif.GifImageView
-        android:id="@+id/imageView4"
-        android:layout_width="298dp"
-        android:layout_height="107dp"
-        android:src="@drawable/sign"
-        app:layout_constraintBottom_toTopOf="@+id/email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/phoneN" />
 
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/gifImageView2"
+        android:layout_width="410dp"
+        android:layout_height="357dp"
+        android:layout_marginBottom="298dp"
+        android:src="@drawable/lock"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
     <!--
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintVertical_bias="1.0" />
