@@ -12,9 +12,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.text.TextUtils;
+import android.transition.Fade;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -280,10 +282,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void runFadeAnimation() {
-        Animation a = AnimationUtils.loadAnimation(this, R.anim.slideinbottom);
+        /*Animation a = AnimationUtils.loadAnimation(this, R.anim.slideinbottom);
         a.reset();
         LinearLayout ll = findViewById(R.id.loglayout);
         ll.clearAnimation();
-        ll.startAnimation(a);
+        ll.startAnimation(a);*/
+        getWindow().requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS);
+        getWindow().setEnterTransition(new Fade());
     }
 }

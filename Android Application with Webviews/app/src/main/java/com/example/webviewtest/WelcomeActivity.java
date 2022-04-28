@@ -1,16 +1,28 @@
 package com.example.webviewtest;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
+import android.text.Layout;
+import android.transition.Explode;
+import android.transition.Fade;
+import android.transition.Transition;
+import android.transition.TransitionInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.motion.widget.MotionScene;
+import androidx.transition.Scene;
+import androidx.transition.TransitionManager;
 
 public class WelcomeActivity extends AppCompatActivity {
     ImageView WelcomeView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +38,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                finish();
+                SystemClock.sleep(2000);
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
             }
 

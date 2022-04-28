@@ -5,7 +5,7 @@
     android.id="@+id/loglayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/AntiqueWhite"
+    android:background="@color/black"
     android:orientation="vertical"
     app:layoutDescription="@xml/activity_login_scene"
     tools:context=".LoginActivity">
@@ -20,8 +20,8 @@
         android:hint="@string/prompt_email"
         android:inputType="textEmailAddress"
         android:selectAllOnFocus="true"
-        android:textColor="@color/gradBlack"
-        android:textColorHint="@color/gradBlack"
+        android:textColor="@color/NewColor1"
+        android:textColorHint="@color/NewColor1"
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,8 +41,8 @@
         android:imeOptions="actionDone"
         android:inputType="textPassword"
         android:selectAllOnFocus="true"
-        android:textColor="@color/gradBlack"
-        android:textColorHint="@color/gradBlack"
+        android:textColor="@color/NewColor1"
+        android:textColorHint="@color/NewColor1"
         android:textStyle="bold|italic"
         app:backgroundTint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
@@ -53,7 +53,7 @@
     <Button
         android:id="@+id/login"
         android:layout_width="268dp"
-        android:layout_height="48dp"
+        android:layout_height="46dp"
         android:layout_marginTop="480dp"
         android:background="@color/NewColor1"
         android:text="@string/log_in"
@@ -63,11 +63,11 @@
     <Button
         android:id="@+id/signUp"
         android:layout_width="268dp"
-        android:layout_height="48dp"
+        android:layout_height="46dp"
         android:background="@color/NewColor1"
         android:text="@string/sign_up"
-        tools:layout_editor_absoluteX="123dp"
-        tools:layout_editor_absoluteY="461dp" />
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="536dp" />
 
     <ImageButton
         android:id="@+id/gSignIn"
@@ -79,7 +79,21 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signUp"
-        app:srcCompat="@drawable/googlepic"
+        app:srcCompat="@drawable/googlelogo"
         tools:ignore="ImageContrastCheck" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/gifImageView2"
+        android:layout_width="412dp"
+        android:layout_height="403dp"
+        android:layout_marginBottom="298dp"
+        android:src="@drawable/lock"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
 
 </androidx.constraintlayout.motion.widget.MotionLayout>
