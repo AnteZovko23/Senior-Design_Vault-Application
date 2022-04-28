@@ -13,8 +13,8 @@
 
     <ConstraintSet android:id="@+id/start">
         <Constraint
-            android:layout_height="45dp"
-            android:layout_width="404dp"
+            android:layout_height="48dp"
+            android:layout_width="399dp"
             android:id="@+id/login"
             motion:layout_constraintStart_toStartOf="parent"
             motion:layout_constraintEnd_toEndOf="parent"
