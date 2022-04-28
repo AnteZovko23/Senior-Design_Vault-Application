@@ -155,4 +155,6 @@
     <color name="gradColorC">#F40076</color>
     <color name="gradBlack">#FF1A1A1A</color>
     <color name="normDarkRed">#8B0001</color>
+    <color name="NewColor1">#735cdd</color>
+    <color name="NewColor2">#b3c2f2</color>
 </resources>

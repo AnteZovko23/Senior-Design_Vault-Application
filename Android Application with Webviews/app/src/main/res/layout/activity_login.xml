@@ -5,7 +5,7 @@
     android.id="@+id/loglayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradientblack"
+    android:background="@color/AntiqueWhite"
     android:orientation="vertical"
     app:layoutDescription="@xml/activity_login_scene"
     tools:context=".LoginActivity">
@@ -20,12 +20,12 @@
         android:hint="@string/prompt_email"
         android:inputType="textEmailAddress"
         android:selectAllOnFocus="true"
-        android:textColor="@color/DarkRed"
-        android:textColorHint="@color/DarkRed"
+        android:textColor="@color/gradBlack"
+        android:textColorHint="@color/gradBlack"
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.609"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.523" />
@@ -41,12 +41,12 @@
         android:imeOptions="actionDone"
         android:inputType="textPassword"
         android:selectAllOnFocus="true"
-        android:textColor="@color/DarkRed"
-        android:textColorHint="@color/DarkRed"
+        android:textColor="@color/gradBlack"
+        android:textColorHint="@color/gradBlack"
         android:textStyle="bold|italic"
         app:backgroundTint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email" />
 
@@ -55,24 +55,24 @@
         android:layout_width="268dp"
         android:layout_height="48dp"
         android:layout_marginTop="480dp"
-        android:background="@drawable/oval"
+        android:background="@color/NewColor1"
         android:text="@string/log_in"
         app:layout_constraintTop_toTopOf="@+id/signUp"
-        tools:layout_editor_absoluteX="71dp" />
+        tools:layout_editor_absoluteX="60dp" />
 
     <Button
         android:id="@+id/signUp"
         android:layout_width="268dp"
         android:layout_height="48dp"
-        android:background="@drawable/oval"
+        android:background="@color/NewColor1"
         android:text="@string/sign_up"
         tools:layout_editor_absoluteX="123dp"
         tools:layout_editor_absoluteY="461dp" />
 
     <ImageButton
         android:id="@+id/gSignIn"
-        android:layout_width="119dp"
-        android:layout_height="80dp"
+        android:layout_width="268dp"
+        android:layout_height="48dp"
         android:contentDescription="@string/action_sign_in"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -81,13 +81,5 @@
         app:layout_constraintTop_toBottomOf="@+id/signUp"
         app:srcCompat="@drawable/googlepic"
         tools:ignore="ImageContrastCheck" />
-
-    <pl.droidsonroids.gif.GifImageView
-        android:id="@+id/imageView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/vault"
-        tools:layout_editor_absoluteX="96dp"
-        tools:layout_editor_absoluteY="43dp" />
 
 </androidx.constraintlayout.motion.widget.MotionLayout>
