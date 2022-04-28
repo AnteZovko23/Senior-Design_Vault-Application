@@ -22,6 +22,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -67,6 +68,9 @@ public class Bluetooth extends AppCompatActivity {
         progressBar.setVisibility(View.GONE);
         final TextView textViewInfo = findViewById(R.id.textViewInfo);
         final Button buttonToggle = findViewById(R.id.buttonToggle);
+        final Button sendPassword = findViewById(R.id.buttonPassword);
+        final Button sendLockPassword = findViewById(R.id.sendLockPassword);
+        final EditText passwordBox = findViewById(R.id.passwordBox);
         buttonToggle.setEnabled(false);
         final ImageView imageView = findViewById(R.id.imageView);
         imageView.setBackgroundColor(getResources().getColor(R.color.colorOff));
@@ -80,6 +84,8 @@ public class Bluetooth extends AppCompatActivity {
             toolbar.setSubtitle("Connecting to " + deviceName + "...");
             progressBar.setVisibility(View.VISIBLE);
             buttonConnect.setEnabled(false);
+            sendPassword.setEnabled(false);
+            sendLockPassword.setEnabled(false);
 
             /*
             This is the most important piece of code. When "deviceName" is found
@@ -105,11 +111,15 @@ public class Bluetooth extends AppCompatActivity {
                                 progressBar.setVisibility(View.GONE);
                                 buttonConnect.setEnabled(true);
                                 buttonToggle.setEnabled(true);
+                                sendPassword.setEnabled(true);
+                                sendLockPassword.setEnabled(true);
                                 break;
                             case -1:
                                 toolbar.setSubtitle("Device fails to connect");
                                 progressBar.setVisibility(View.GONE);
                                 buttonConnect.setEnabled(true);
+                                sendPassword.setEnabled(true);
+                                sendLockPassword.setEnabled(true);
                                 break;
                         }
                         break;
@@ -161,6 +171,38 @@ public class Bluetooth extends AppCompatActivity {
                 }
                 // Send command to Arduino board
                 connectedThread.write(cmdText);
+            }
+        });
+
+        sendPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String cmdText = null;
+                String pwd = passwordBox.getText().toString();
+                if(pwd.length() == 4) {
+                    System.out.println("Passcode accepted");
+                    cmdText = "&" + pwd + "$";
+                    connectedThread.write(cmdText);
+                }
+                else {
+                    System.out.println("Passcode must be exactly 4 numbers");
+                }
+            }
+        });
+
+        sendLockPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String cmdText = null;
+                String pwd = passwordBox.getText().toString();
+                if(pwd.length() == 4) {
+                    System.out.println("Passcode accepted");
+                    cmdText = "#" + pwd + "@";
+                    connectedThread.write(cmdText);
+                }
+                else {
+                    System.out.println("Passcode must be exactly 4 numbers");
+                }
             }
         });
     }

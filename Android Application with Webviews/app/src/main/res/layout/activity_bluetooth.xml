@@ -85,5 +85,43 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonToggle" />
 
+    <Button
+        android:id="@+id/buttonPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Unlock Code"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.238"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonToggle"
+        app:layout_constraintVertical_bias="0.844" />
+
+    <EditText
+        android:id="@+id/passwordBox"
+        android:layout_width="282dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="51dp"
+        android:hint="Enter New Password"
+        android:gravity="center_horizontal"
+        android:inputType="number"
+        android:maxLength="4"
+        app:layout_constraintBottom_toTopOf="@+id/buttonPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonToggle" />
+
+    <Button
+        android:id="@+id/sendLockPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lock Code"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.288"
+        app:layout_constraintStart_toEndOf="@+id/buttonPassword"
+        app:layout_constraintTop_toBottomOf="@+id/buttonToggle"
+        app:layout_constraintVertical_bias="0.844" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
