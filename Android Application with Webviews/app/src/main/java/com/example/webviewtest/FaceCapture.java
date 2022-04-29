@@ -58,6 +58,8 @@ public class FaceCapture extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_face_capture);
 
+        stop_feed();
+
         // By ID we can get each component
         // which id is assigned in XML file
         // get Buttons and imageview.
@@ -176,27 +178,47 @@ public class FaceCapture extends AppCompatActivity {
     private void start_face_processing() {
         // Tell volley to use a SocketFactory from our SSLContext
 
-        String url = "https://192.168.1.4:5000/add_face?name=" + name;
+        String url = "http://192.168.1.5:5000/add_face?name=" + name;
         RequestQueue mRQueue;
         StringRequest mSReq;
         mRQueue = Volley.newRequestQueue(FaceCapture.this);
-        try {
-            HttpsURLConnection.setDefaultSSLSocketFactory(Certificate_Handling.getSocketFactory(this));
-
-        } catch (CertificateException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (KeyStoreException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (KeyManagementException e) {
-            e.printStackTrace();
-        }
         mSReq = new StringRequest(Request.Method.GET, url, response -> {}, error -> {});
 
         mRQueue.add(mSReq);
 
+    }
+
+    private void stop_feed() {
+        // Tell volley to use a SocketFactory from our SSLContext
+
+        String url = "http://192.168.1.5:5000/stop_feed";
+        RequestQueue mRQueue;
+        StringRequest mSReq;
+        mRQueue = Volley.newRequestQueue(FaceCapture.this);
+        mSReq = new StringRequest(Request.Method.GET, url, response -> {}, error -> {});
+
+        mRQueue.add(mSReq);
+
+    }
+
+    private void start_feed() {
+        // Tell volley to use a SocketFactory from our SSLContext
+
+        System.out.println("Starting feed");
+
+        String url = "http://192.168.1.5:5000/start_feed";
+        RequestQueue mRQueue;
+        StringRequest mSReq;
+        mRQueue = Volley.newRequestQueue(FaceCapture.this);
+        mSReq = new StringRequest(Request.Method.GET, url, response -> {}, error -> {});
+
+        mRQueue.add(mSReq);
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        start_feed();
+        super.onBackPressed();
     }
 }

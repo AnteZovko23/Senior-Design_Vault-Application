@@ -31,9 +31,6 @@ public class Camera1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getSupportActionBar().hide();
-
         setContentView(R.layout.activity_camera1);
 
         webView1 = findViewById(R.id.webView1);
@@ -57,36 +54,9 @@ public class Camera1 extends AppCompatActivity {
 
             public void run() {
 
-                webView1.loadUrl("http://192.168.1.4:5000/video_stream");
+                webView1.loadUrl("http://192.168.1.5:5000/video_stream");
             }
         }, 2500);   //5 seconds
-
-    }
-
-    private void stop_feed() {
-        // Tell volley to use a SocketFactory from our SSLContext
-
-        String url = "http://192.168.1.4:5000/stop_feed";
-        RequestQueue mRQueue;
-        StringRequest mSReq;
-        mRQueue = Volley.newRequestQueue(Camera1.this);
-//        try {
-//            HttpsURLConnection.setDefaultSSLSocketFactory(Certificate_Handling.getSocketFactory(this));
-//
-//        } catch (CertificateException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } catch (KeyStoreException e) {
-//            e.printStackTrace();
-//        } catch (NoSuchAlgorithmException e) {
-//            e.printStackTrace();
-//        } catch (KeyManagementException e) {
-//            e.printStackTrace();
-//        }
-        mSReq = new StringRequest(Request.Method.GET, url, response -> {}, error -> {});
-
-        mRQueue.add(mSReq);
 
     }
 
@@ -98,7 +68,6 @@ public class Camera1 extends AppCompatActivity {
         else {
             super.onBackPressed();
         }
-        stop_feed();
     }
 
 }

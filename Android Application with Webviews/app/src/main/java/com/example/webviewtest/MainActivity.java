@@ -1,9 +1,12 @@
 package com.example.webviewtest;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.Menu;
@@ -32,23 +35,28 @@ public class MainActivity extends AppCompatActivity {
     private Button facebutton;
     private Button pickerbutton;
     private Toolbar toolbar;
-    private Notification notification;
     NotificationThread t1;
-    public static NotificationCompat.Builder strangerNotification;
-    public static int strangerNotificationID = 101;
-    public static NotificationManagerCompat notificationManager;
-    private static String CHANNEL_ID = "vault_notifications";
-    private static boolean strangerDetected = false;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        toolbar=findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
+        start_feed();
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel= new NotificationChannel("My Notification","My Notification", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager manager =getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
+
         t1 = new NotificationThread();
         t1.start();
+
+        toolbar=findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
     }
 
     @Override
@@ -104,9 +112,22 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void start_feed() {
+        // Tell volley to use a SocketFactory from our SSLContext
+
+        System.out.println("Starting feed");
+
+        String url = "http://192.168.1.5:5000/start_feed";
+        RequestQueue mRQueue;
+        StringRequest mSReq;
+        mRQueue = Volley.newRequestQueue(MainActivity.this);
+        mSReq = new StringRequest(Request.Method.GET, url, response -> {}, error -> {});
+
+        mRQueue.add(mSReq);
+
+    }
+
     class NotificationThread extends Thread {
-        private SharedPreferences sharedPreferences;
-        private int userCountdownTime;
         private String input = "A stranger has been detected.";
 
         @Override
@@ -124,28 +145,20 @@ public class MainActivity extends AppCompatActivity {
             StringRequest mSReq;
             mRQueue = Volley.newRequestQueue(MainActivity.this);
             mSReq = new StringRequest(Request.Method.GET, url, response -> {
-
-                if(response.equals("nothing")) {
-                    sendNotification();
+                System.out.println(response);
+                if(response.equals("Unknown")) {
+                    String message="There is a stranzger at your door";
+                    NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.this,"My Notification");
+                    builder.setContentTitle("Stranger Danger");
+                    builder.setContentText(message);
+                    builder.setSmallIcon(R.drawable.ic_baseline_arrow_back_24);
+                    builder.setAutoCancel(true);
+                    NotificationManagerCompat managerCompat=NotificationManagerCompat.from(MainActivity.this);
+                    managerCompat.notify(1,builder.build());
                 }
 
             }, error -> {});
             mRQueue.add(mSReq);
-        }
-
-        private void sendNotification() {
-            Intent notificationIntent = new Intent(MainActivity.this, MainActivity.class);
-            notificationIntent.putExtra("stranger", true);
-            notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, notificationIntent, PendingIntent.FLAG_MUTABLE);
-
-            strangerNotification = new NotificationCompat.Builder(MainActivity.this, CHANNEL_ID)
-                    .setContentTitle("The Vault")
-                    .setContentText(input)
-                    .setSmallIcon(R.drawable.smiley);
-
-            notificationManager = NotificationManagerCompat.from(MainActivity.this);
-            notificationManager.notify(strangerNotificationID, strangerNotification.build());
         }
     }
 }

@@ -35,37 +35,9 @@ public class Camera extends AppCompatActivity {
         camera1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                get_video_frames();
                 openCamera1();
             }
         });
-    }
-
-    private void get_video_frames() {
-        // Tell volley to use a SocketFactory from our SSLContext
-
-        String url = "http://192.168.1.4:5000/start_feed";
-        RequestQueue mRQueue;
-        StringRequest mSReq;
-        mRQueue = Volley.newRequestQueue(Camera.this);
-//        try {
-//            HttpsURLConnection.setDefaultSSLSocketFactory(Certificate_Handling.getSocketFactory(this));
-//
-//        } catch (CertificateException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } catch (KeyStoreException e) {
-//            e.printStackTrace();
-//        } catch (NoSuchAlgorithmException e) {
-//            e.printStackTrace();
-//        } catch (KeyManagementException e) {
-//            e.printStackTrace();
-//        }
-        mSReq = new StringRequest(Request.Method.GET, url, response -> {}, error -> {});
-
-        mRQueue.add(mSReq);
-
     }
     public void openCamera1() {
         Intent intent = new Intent(this, Camera1.class);

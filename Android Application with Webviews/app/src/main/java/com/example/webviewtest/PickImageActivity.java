@@ -8,11 +8,14 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -38,13 +41,14 @@ public class PickImageActivity extends AppCompatActivity {
     private ImageView imageView;
     private FirebaseStorage userStorage;
     private FirebaseUser currUser;
-
     String name, storagePath, uriPath, fileName, suffix;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pick_image);
+
+        stop_feed();
 
         userStorage = FirebaseStorage.getInstance("gs://the-vault-7cf31.appspot.com");
 
@@ -120,6 +124,14 @@ public class PickImageActivity extends AppCompatActivity {
             {
                 System.out.println("Uploaded successfully!");
                 start_face_processing();
+                Handler handler = new Handler();
+                Runnable r=new Runnable() {
+                    public void run() {
+//                        spinner.setVisibility(View.GONE);
+                        Toast.makeText(PickImageActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+                    }
+                };
+                handler.postDelayed(r, 12000);
             }
         });
 
@@ -136,27 +148,47 @@ public class PickImageActivity extends AppCompatActivity {
     private void start_face_processing() {
         // Tell volley to use a SocketFactory from our SSLContext
 
-        String url = "http://192.168.1.4:5000/add_face?name=" + name;
+        String url = "http://192.168.1.5:5000/add_face?name=" + name;
         RequestQueue mRQueue;
         StringRequest mSReq;
         mRQueue = Volley.newRequestQueue(PickImageActivity.this);
-//        try {
-//            HttpsURLConnection.setDefaultSSLSocketFactory(Certificate_Handling.getSocketFactory(this));
-//
-//        } catch (CertificateException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } catch (KeyStoreException e) {
-//            e.printStackTrace();
-//        } catch (NoSuchAlgorithmException e) {
-//            e.printStackTrace();
-//        } catch (KeyManagementException e) {
-//            e.printStackTrace();
-//        }
         mSReq = new StringRequest(Request.Method.GET, url, response -> {}, error -> {});
 
         mRQueue.add(mSReq);
 
+    }
+
+    private void stop_feed() {
+        // Tell volley to use a SocketFactory from our SSLContext
+
+        String url = "http://192.168.1.5:5000/stop_feed";
+        RequestQueue mRQueue;
+        StringRequest mSReq;
+        mRQueue = Volley.newRequestQueue(PickImageActivity.this);
+        mSReq = new StringRequest(Request.Method.GET, url, response -> {}, error -> {});
+
+        mRQueue.add(mSReq);
+
+    }
+
+    private void start_feed() {
+        // Tell volley to use a SocketFactory from our SSLContext
+
+        System.out.println("Starting feed");
+
+        String url = "http://192.168.1.5:5000/start_feed";
+        RequestQueue mRQueue;
+        StringRequest mSReq;
+        mRQueue = Volley.newRequestQueue(PickImageActivity.this);
+        mSReq = new StringRequest(Request.Method.GET, url, response -> {}, error -> {});
+
+        mRQueue.add(mSReq);
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        start_feed();
+        super.onBackPressed();
     }
 }
