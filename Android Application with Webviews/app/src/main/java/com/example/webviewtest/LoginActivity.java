@@ -184,7 +184,8 @@ public class LoginActivity extends AppCompatActivity {
                         else
                         {
                             String email = firebaseUser.getEmail();
-                            Toast.makeText(LoginActivity.this, "Please verify your email.\n", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Please verify your email.\nA link has been sent to "+email, Toast.LENGTH_SHORT).show();
+
                             progressDialog.dismiss();
                         }
                     }
@@ -272,6 +273,7 @@ public class LoginActivity extends AppCompatActivity {
                     {
                         //login failure
                         Log.d(TAG, "onFailure: "+e.getMessage());
+                        Toast.makeText(LoginActivity.this, "No user with these credentials exist.\nPlease register.", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
