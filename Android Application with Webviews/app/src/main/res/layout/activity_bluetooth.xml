@@ -76,16 +76,17 @@
 
     <Button
         android:id="@+id/buttonPassword"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:background="@color/NewColor1"
         android:text="Set Unlock Code"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.238"
+        app:layout_constraintHorizontal_bias="0.226"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonToggle"
-        app:layout_constraintVertical_bias="0.844" />
+        app:layout_constraintVertical_bias="0.845" />
 
     <EditText
         android:id="@+id/passwordBox"
@@ -107,10 +108,11 @@
 
     <Button
         android:id="@+id/sendLockPassword"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:background="@color/NewColor1"
         android:text="Set Lock Code"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.288"
@@ -137,10 +139,11 @@
         android:textColor="@color/NewColor1"
         android:textSize="12pt"
         android:textStyle="bold"
+        android:gravity="center"
         app:layout_constraintBottom_toTopOf="@+id/passwordBox"
-        app:layout_constraintEnd_toEndOf="@+id/textViewInfo"
-        app:layout_constraintHorizontal_bias="0.824"
-        app:layout_constraintStart_toStartOf="@+id/textViewInfo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3"
         app:layout_constraintVertical_bias="1.0" />
 

@@ -158,7 +158,5 @@ public class SignUpActivity extends AppCompatActivity
                     }
                 });
         Log.d("current-email-username:", firebaseAuth.getCurrentUser().getDisplayName());
-
-
     }
 }

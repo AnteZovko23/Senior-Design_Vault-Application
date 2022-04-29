@@ -341,16 +341,12 @@ public class Bluetooth extends AppCompatActivity {
         }
     }
 
-    /* ============================ Terminate Connection at BackPress ====================== */
     @Override
-    public void onBackPressed() {
-        // Terminate Bluetooth Connection and close app
-        if (createConnectThread != null){
-            createConnectThread.cancel();
-        }
-        Intent a = new Intent(Intent.ACTION_MAIN);
-        a.addCategory(Intent.CATEGORY_HOME);
-        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(a);
+    public boolean onSupportNavigateUp()
+    {
+        onBackPressed();
+        startActivity(new Intent(Bluetooth.this, MainActivity.class));
+        finish();
+        return true;
     }
 }

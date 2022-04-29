@@ -71,6 +71,13 @@ public class Camera extends AppCompatActivity {
         Intent intent = new Intent(this, Camera1.class);
         startActivity(intent);
     }
-
+    @Override
+    public boolean onSupportNavigateUp()
+    {
+        onBackPressed();
+        startActivity(new Intent(Camera.this, MainActivity.class));
+        finish();
+        return true;
+    }
 
 }
