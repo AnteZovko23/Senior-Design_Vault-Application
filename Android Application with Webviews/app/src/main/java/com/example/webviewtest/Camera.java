@@ -35,7 +35,7 @@ public class Camera extends AppCompatActivity {
         camera1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                get_video_frames();
+//                get_video_frames();
                 openCamera1();
             }
         });
@@ -48,20 +48,6 @@ public class Camera extends AppCompatActivity {
         RequestQueue mRQueue;
         StringRequest mSReq;
         mRQueue = Volley.newRequestQueue(Camera.this);
-//        try {
-//            HttpsURLConnection.setDefaultSSLSocketFactory(Certificate_Handling.getSocketFactory(this));
-//
-//        } catch (CertificateException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } catch (KeyStoreException e) {
-//            e.printStackTrace();
-//        } catch (NoSuchAlgorithmException e) {
-//            e.printStackTrace();
-//        } catch (KeyManagementException e) {
-//            e.printStackTrace();
-//        }
         mSReq = new StringRequest(Request.Method.GET, url, response -> {}, error -> {});
 
         mRQueue.add(mSReq);

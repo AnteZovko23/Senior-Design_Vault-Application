@@ -47,8 +47,6 @@ public class Camera1 extends AppCompatActivity {
 //            }
         });
 
-
-
         WebSettings webSettings = webView1.getSettings();
         webSettings.setJavaScriptEnabled(true);
         Handler handler = new Handler();
@@ -70,20 +68,6 @@ public class Camera1 extends AppCompatActivity {
         RequestQueue mRQueue;
         StringRequest mSReq;
         mRQueue = Volley.newRequestQueue(Camera1.this);
-//        try {
-//            HttpsURLConnection.setDefaultSSLSocketFactory(Certificate_Handling.getSocketFactory(this));
-//
-//        } catch (CertificateException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } catch (KeyStoreException e) {
-//            e.printStackTrace();
-//        } catch (NoSuchAlgorithmException e) {
-//            e.printStackTrace();
-//        } catch (KeyManagementException e) {
-//            e.printStackTrace();
-//        }
         mSReq = new StringRequest(Request.Method.GET, url, response -> {}, error -> {});
 
         mRQueue.add(mSReq);
@@ -98,7 +82,7 @@ public class Camera1 extends AppCompatActivity {
         else {
             super.onBackPressed();
         }
-        stop_feed();
+//        stop_feed();
     }
 
 }
