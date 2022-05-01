@@ -10,14 +10,17 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_width="416dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="72dp"
         android:background="@color/NewColor1"
         android:elevation="4dp"
-        app:title="The Vault"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintVertical_bias="0.844" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -41,10 +44,10 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="409dp"
-        android:layout_height="669dp"
+        android:layout_width="420dp"
+        android:layout_height="554dp"
         app:srcCompat="@drawable/logosomething2"
-        tools:layout_editor_absoluteX="2dp"
-        tools:layout_editor_absoluteY="56dp" />
+        tools:layout_editor_absoluteX="6dp"
+        tools:layout_editor_absoluteY="52dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

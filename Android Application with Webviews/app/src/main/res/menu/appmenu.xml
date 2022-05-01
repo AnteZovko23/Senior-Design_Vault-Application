@@ -1,24 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/Menu"
-        android:icon="@drawable/ic_baseline_menu_24"
-        android:title="MENU"
-        app:showAsAction="always">
-        <menu>
-            <item android:id="@+id/pickbutton2"
-                android:title="PICK AN IMAGE"/>
-            <item android:id="@+id/addface2"
-                android:title="ADD FACE"/>
-            <item android:id="@+id/cameras2"
-                android:title="CAMERAS"/>
-            <item android:id="@+id/bluetooth2"
-                android:title="BLUETOOTH"/>
-            <item android:id="@+id/profile2"
-                android:title="PROFILE"/>
-        </menu>
-
-    </item>
+    <item
+        android:id="@+id/profile2"
+        android:icon="@drawable/profileicon"
+        android:title="PROFILE"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/bluetooth2"
+        android:title="BLUETOOTH"
+        android:icon="@drawable/bluetoothicon"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/cameras2"
+        android:title="CAMERAS"
+        android:icon="@drawable/cameraicon"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/addface2"
+        android:title="ADD FACE"
+        android:icon="@drawable/faceicon"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/pickbutton2"
+        android:title="PICK AN IMAGE"
+        android:icon="@drawable/pickimageicon"
+        app:showAsAction="always" />
 
 
 </menu>
