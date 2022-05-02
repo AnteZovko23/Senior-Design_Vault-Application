@@ -7,14 +7,14 @@
     tools:context=".updateProfile">
 
     <EditText
-        android:id="@+id/newPass"
+        android:id="@+id/newName"
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:autofillHints=""
         android:backgroundTint="@color/white"
         android:ems="10"
         android:fontFeatureSettings=""
-        android:hint="@string/username_update"
+        android:hint="@string/name_update"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,7 +24,7 @@
         app:layout_constraintVertical_bias="0.402" />
 
     <EditText
-        android:id="@+id/verifyNewPass"
+        android:id="@+id/newEmail"
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:autofillHints=""
@@ -40,7 +40,7 @@
         app:layout_constraintVertical_bias="0.547" />
 
     <EditText
-        android:id="@+id/givenPhone"
+        android:id="@+id/newPhone"
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:backgroundTint="@color/white"
@@ -61,7 +61,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/givenPhone" />
+        app:layout_constraintTop_toBottomOf="@+id/newPhone" />
 
     <TextView
         android:id="@+id/UPtitle"
@@ -70,7 +70,7 @@
         android:backgroundTint="@color/white"
         android:text="Profile Update"
         android:textSize="48sp"
-        app:layout_constraintBottom_toTopOf="@+id/newPass"
+        app:layout_constraintBottom_toTopOf="@+id/newName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

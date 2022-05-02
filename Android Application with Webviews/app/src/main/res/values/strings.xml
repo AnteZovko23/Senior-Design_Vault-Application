@@ -17,7 +17,7 @@
     <string name="changeInfo">Change Info</string>
     <string name="password">Password</string>
     <string name="username">Username</string>
-    <string name="username_update">Username (optional)</string>
+    <string name="name_update">Display Name (optional)</string>
     <string name="sign_up">REGISTER</string>
     <string name="nameRequest">Please enter your display name.</string>
     <string name="phone">Phone Number (optional)</string>
