@@ -97,7 +97,7 @@ public class Bluetooth extends AppCompatActivity {
         final Toolbar toolbar = findViewById(R.id.toolbar);
         final ProgressBar progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
-        final TextView textViewInfo = findViewById(R.id.textViewInfo);
+        final TextView textViewInfo = findViewById(R.id.textViewInfo2);
         final Button buttonToggle = findViewById(R.id.buttonToggle);
         final Button sendPassword = findViewById(R.id.buttonPassword);
         final Button sendLockPassword = findViewById(R.id.sendLockPassword);

@@ -8,15 +8,6 @@
     android:background="@color/AntiqueWhite"
     tools:context=".Bluetooth">
 
-    <FrameLayout
-        android:id="@+id/frameLayout"
-        android:layout_width="match_parent"
-        android:layout_height="0sp"
-        app:layout_constraintBottom_toTopOf="@id/bottomNavblue"
-        app:layout_constraintTop_toTopOf="parent"
-
-        tools:layout_editor_absoluteX="0dp" >
-    </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavblue"
@@ -26,7 +17,6 @@
         app:itemTextColor="@color/black"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/frameLayout"
         app:layout_constraintVertical_bias="1.0"
 
         app:menu="@menu/appmenu"
@@ -46,6 +36,17 @@
         app:title="Bluetooth Connection"
         app:titleTextColor="@android:color/background_light" />
 
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="254dp"
+        android:layout_height="224dp"
+        android:background="@drawable/logosomething2"
+        app:layout_constraintBottom_toTopOf="@+id/progressBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonConnect" />
+
     <Button
         android:id="@+id/buttonConnect"
         style="@style/Widget.AppCompat.Button.Borderless"
@@ -62,60 +63,51 @@
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="399dp"
         android:layout_height="46dp"
-        android:layout_marginTop="424dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
         android:background="@color/NewColor1"
         android:text="Turn On"
         android:textColor="@color/white"
         android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewInfo2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+
 
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="182dp"
+        android:layout_marginEnd="181dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonToggle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <TextView
-        android:id="@+id/textViewInfo"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:textAlignment="center"
-        android:textStyle="italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonToggle" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <Button
         android:id="@+id/buttonPassword"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
         android:background="@color/NewColor1"
         android:gravity="center"
         android:text="Set Unlock Code"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.237"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavblue"
+        app:layout_constraintEnd_toStartOf="@+id/sendLockPassword"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonToggle"
-        app:layout_constraintVertical_bias="0.619" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordBox" />
 
     <EditText
         android:id="@+id/passwordBox"
         android:layout_width="282dp"
         android:layout_height="49dp"
-        android:layout_marginTop="51dp"
+        android:layout_marginStart="62dp"
+        android:layout_marginEnd="67dp"
+        android:layout_marginBottom="88dp"
         android:background="@color/AntiqueWhite"
         android:gravity="center_horizontal"
         android:hint="Enter New Password"
@@ -123,11 +115,10 @@
         android:maxLength="4"
         android:textColor="@color/NewColor1"
         android:textColorHint="@color/NewColor1"
-        app:layout_constraintBottom_toTopOf="@+id/buttonPassword"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavblue"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.534"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonToggle" />
+        app:layout_constraintTop_toBottomOf="@+id/PersonalName" />
 
     <Button
         android:id="@+id/sendLockPassword"
@@ -136,39 +127,40 @@
         android:background="@color/NewColor1"
         android:gravity="center"
         android:text="Set Lock Code"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavblue"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.142"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/buttonPassword"
-        app:layout_constraintTop_toBottomOf="@+id/buttonToggle"
-        app:layout_constraintVertical_bias="0.619" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="420dp"
-        android:layout_height="641dp"
-        android:layout_marginBottom="268dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logosomething2" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordBox" />
 
     <TextView
         android:id="@+id/PersonalName"
         android:layout_width="288dp"
         android:layout_height="49dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
         android:text="Change Password"
         android:textColor="@color/NewColor1"
         android:textSize="12pt"
         android:textStyle="bold"
-        android:gravity="center"
         app:layout_constraintBottom_toTopOf="@+id/passwordBox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewInfo2" />
+
+    <TextView
+        android:id="@+id/textViewInfo2"
+        android:layout_width="379dp"
+        android:layout_height="1dp"
+        android:background="@color/black"
+        android:textAlignment="center"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/PersonalName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonToggle" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

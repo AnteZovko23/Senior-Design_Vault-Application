@@ -34,10 +34,8 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
         WelcomeView = (ImageView) findViewById(R.id.WelcomeView);
-        textView = (TextView) findViewById(R.id.WelcomeView2);
         Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slideinbottom);
         WelcomeView.setAnimation(animation);
-        textView.setAnimation(animation);
 
         animation.setAnimationListener(new Animation.AnimationListener() {
             @Override

@@ -10,28 +10,11 @@
 
   <ImageView
       android:id="@+id/WelcomeView"
-      android:layout_width="412dp"
-      android:layout_height="453dp"
+      android:layout_width="254dp"
+      android:layout_height="224dp"
       android:background="@color/AntiqueWhite"
-      android:src="@drawable/logosomething2"
-      tools:layout_editor_absoluteX="1dp"
-      tools:layout_editor_absoluteY="-6dp" />
-
-  <TextView
-      android:id="@+id/WelcomeView2"
-      android:layout_width="411dp"
-      android:layout_height="171dp"
-      android:layout_marginStart="1dp"
-      android:layout_marginBottom="113dp"
-      android:text="The Vault"
-      android:textAlignment="center"
-      android:textColor="@color/black"
-      android:textSize="24pt"
-      android:textStyle="bold"
-      android:background="@color/AntiqueWhite"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/WelcomeView" />
+      android:src="@drawable/logosomething3"
+      tools:layout_editor_absoluteX="-3dp"
+      tools:layout_editor_absoluteY="-5dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
