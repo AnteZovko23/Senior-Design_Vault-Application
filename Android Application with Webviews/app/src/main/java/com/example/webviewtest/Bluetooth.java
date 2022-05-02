@@ -35,6 +35,8 @@ import java.util.UUID;
 
 import static android.content.ContentValues.TAG;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 public class Bluetooth extends AppCompatActivity {
 
     private String deviceName = null;
@@ -340,7 +342,30 @@ public class Bluetooth extends AppCompatActivity {
             } catch (IOException e) { }
         }
     }
+    public void openCamera() {
+        Intent intent = new Intent(this, Camera.class);
+        startActivity(intent);
+    }
 
+    public void openBluetooth() {
+        Intent intent = new Intent(this, Bluetooth.class);
+        startActivity(intent);
+    }
+
+    public void openProfile() {
+        Intent intent = new Intent(this, profileActivity.class);
+        startActivity(intent);
+    }
+
+    public void openFace() {
+        Intent intent = new Intent(this, FaceCapture.class);
+        startActivity(intent);
+    }
+
+    public void openPicker() {
+        Intent intent = new Intent(this, PickImageActivity.class);
+        startActivity(intent);
+    }
     @Override
     public boolean onSupportNavigateUp()
     {

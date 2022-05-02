@@ -14,22 +14,30 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.motion.widget.MotionScene;
 import androidx.transition.Scene;
 import androidx.transition.TransitionManager;
 
+import org.w3c.dom.Text;
+
 public class WelcomeActivity extends AppCompatActivity {
     ImageView WelcomeView;
+    TextView textView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
         WelcomeView = (ImageView) findViewById(R.id.WelcomeView);
+        textView = (TextView) findViewById(R.id.WelcomeView2);
         Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slideinbottom);
         WelcomeView.setAnimation(animation);
+        textView.setAnimation(animation);
 
         animation.setAnimationListener(new Animation.AnimationListener() {
             @Override

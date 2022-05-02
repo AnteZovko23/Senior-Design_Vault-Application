@@ -45,9 +45,10 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="409dp"
-        android:layout_height="669dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="420dp"
+        android:layout_height="641dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logosomething2" />

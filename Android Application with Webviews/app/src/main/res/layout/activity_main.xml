@@ -9,13 +9,20 @@
     tools:context=".MainActivity">
 
     <FrameLayout
+        android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="0sp"
-        android:id="@+id/frameLayout"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/bottomNav"
+        app:layout_constraintTop_toTopOf="parent"
 
-        />
+        tools:layout_editor_absoluteX="0dp" >
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="420dp"
+            android:layout_height="641dp"
+            app:srcCompat="@drawable/logosomething2" />
+    </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
@@ -49,13 +56,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="top" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="420dp"
-        android:layout_height="554dp"
-        app:srcCompat="@drawable/logosomething2"
-        tools:layout_editor_absoluteX="6dp"
-        tools:layout_editor_absoluteY="52dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,8 +18,8 @@
         tools:srcCompat="@tools:sample/avatars" />
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="409dp"
-        android:layout_height="669dp"
+        android:layout_width="420dp"
+        android:layout_height="641dp"
         app:srcCompat="@drawable/logosomething2"
         tools:layout_editor_absoluteX="2dp"
         tools:layout_editor_absoluteY="56dp" />
