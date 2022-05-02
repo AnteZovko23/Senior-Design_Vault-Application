@@ -8,19 +8,27 @@
 
     tools:context=".MainActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="416dp"
-        android:layout_height="66dp"
-        android:layout_marginTop="72dp"
-        android:background="@color/NewColor1"
-        android:elevation="4dp"
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        android:id="@+id/frameLayout"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomNav"
+
+        />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bottomNav"
+        app:layout_constraintTop_toBottomOf="@id/frameLayout"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.8"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3"
-        app:layout_constraintVertical_bias="0.844" />
+        android:background="@color/colorPrimary"
+        app:menu="@menu/appmenu"
+        app:itemTextColor="@color/black"
+        app:labelVisibilityMode="labeled"
+
+        />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"

@@ -1,5 +1,7 @@
 package com.example.webviewtest;
 
+import static com.example.webviewtest.R.id.bluetooth2;
+
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -14,15 +16,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -43,6 +49,31 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
+
+        bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch(item.getItemId()) {
+                    case R.id.pickbutton2:
+                        openPicker();
+                        return true;
+                    case R.id.profile2:
+                        openProfile();
+                        return true;
+                    case R.id.cameras2:
+                        openCamera();
+                        return true;
+                    case R.id.addface2:
+                        openFace();
+                        return true;
+                    case bluetooth2:
+                        openBluetooth();
+                }
+                return false;
+            }
+        });
+
         start_feed();
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -54,11 +85,19 @@ public class MainActivity extends AppCompatActivity {
         t1 = new NotificationThread();
         t1.start();
 
-        toolbar=findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //toolbar=findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
 
     }
 
+
+    void openFragment(Fragment fragment){
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayout, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.appmenu, menu);
@@ -80,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.addface2:
                 openFace();
                 return true;
-            case R.id.bluetooth2:
+            case bluetooth2:
                 openBluetooth();
                 return true;
         }

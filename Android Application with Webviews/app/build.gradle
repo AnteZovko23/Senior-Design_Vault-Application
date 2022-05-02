@@ -37,6 +37,8 @@ apply plugin: 'com.google.gms.google-services'
 
 
 dependencies {
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
     // appcompat version specification
     def appcompat_version = "1.4.1"
 
@@ -67,4 +69,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0-alpha03'
     androidTestImplementation 'androidx.test:rules:1.4.0-alpha05'
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.24'
+    implementation 'com.google.android.material:material:1.5.0'
 }
