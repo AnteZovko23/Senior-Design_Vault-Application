@@ -11,6 +11,30 @@
 
     <!-- add Camera Button to open the Camera-->
 
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        app:layout_constraintBottom_toTopOf="@id/bottomNav"
+        app:layout_constraintTop_toTopOf="parent"
+
+        tools:layout_editor_absoluteX="0dp" >
+
+    </FrameLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        app:itemTextColor="@color/black"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/frameLayout"
+        app:layout_constraintVertical_bias="1.0"
+
+        app:menu="@menu/appmenu"
+        tools:layout_editor_absoluteX="-6dp" />
     <Button
         android:id="@+id/camera_button"
         android:layout_width="399dp"

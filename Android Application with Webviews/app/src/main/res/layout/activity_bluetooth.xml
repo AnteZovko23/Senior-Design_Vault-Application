@@ -8,6 +8,29 @@
     android:background="@color/AntiqueWhite"
     tools:context=".Bluetooth">
 
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavblue"
+        app:layout_constraintTop_toTopOf="parent"
+
+        tools:layout_editor_absoluteX="0dp" >
+    </FrameLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavblue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        app:itemTextColor="@color/black"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/frameLayout"
+        app:layout_constraintVertical_bias="1.0"
+
+        app:menu="@menu/appmenu"
+        tools:layout_editor_absoluteX="16dp" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -79,14 +102,14 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:background="@color/NewColor1"
-        android:text="Set Unlock Code"
         android:gravity="center"
+        android:text="Set Unlock Code"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.226"
+        app:layout_constraintHorizontal_bias="0.237"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonToggle"
-        app:layout_constraintVertical_bias="0.845" />
+        app:layout_constraintVertical_bias="0.619" />
 
     <EditText
         android:id="@+id/passwordBox"
@@ -111,14 +134,14 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:background="@color/NewColor1"
-        android:text="Set Lock Code"
         android:gravity="center"
+        android:text="Set Lock Code"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.288"
+        app:layout_constraintHorizontal_bias="0.142"
         app:layout_constraintStart_toEndOf="@+id/buttonPassword"
         app:layout_constraintTop_toBottomOf="@+id/buttonToggle"
-        app:layout_constraintVertical_bias="0.844" />
+        app:layout_constraintVertical_bias="0.619" />
 
     <ImageView
         android:id="@+id/imageView3"

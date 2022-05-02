@@ -1,5 +1,8 @@
 package com.example.webviewtest;
 
+import static com.example.webviewtest.R.id.bluetooth2;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,6 +13,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -22,6 +26,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -47,6 +52,31 @@ public class PickImageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pick_image);
+
+        BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
+
+        bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch(item.getItemId()) {
+                    case R.id.pickbutton2:
+                        openPicker();
+                        return true;
+                    case R.id.profile2:
+                        openProfile();
+                        return true;
+                    case R.id.cameras2:
+                        openCamera();
+                        return true;
+                    case R.id.addface2:
+                        openFace();
+                        return true;
+                    case bluetooth2:
+                        openBluetooth();
+                }
+                return false;
+            }
+        });
 
         stop_feed();
 

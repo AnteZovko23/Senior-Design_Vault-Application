@@ -1,11 +1,15 @@
 package com.example.webviewtest;
 
+import static com.example.webviewtest.R.id.bluetooth2;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -13,6 +17,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.IOException;
 import java.security.KeyManagementException;
@@ -31,6 +36,30 @@ public class Camera extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
 
+        BottomNavigationView bottomNav = findViewById(R.id.bottomNavcam);
+
+        bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch(item.getItemId()) {
+                    case R.id.pickbutton2:
+                        openPicker();
+                        return true;
+                    case R.id.profile2:
+                        openProfile();
+                        return true;
+                    case R.id.cameras2:
+                        openCamera();
+                        return true;
+                    case R.id.addface2:
+                        openFace();
+                        return true;
+                    case bluetooth2:
+                        openBluetooth();
+                }
+                return false;
+            }
+        });
         camera1 = (Button) findViewById(R.id.camera1);
         camera1.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,5 +1,6 @@
 package com.example.webviewtest;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -20,6 +21,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,6 +36,8 @@ import java.io.OutputStream;
 import java.util.UUID;
 
 import static android.content.ContentValues.TAG;
+
+import static com.example.webviewtest.R.id.bluetooth2;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -53,6 +57,31 @@ public class Bluetooth extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bluetooth);
+
+        BottomNavigationView bottomNav = findViewById(R.id.bottomNavblue);
+
+        bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch(item.getItemId()) {
+                    case R.id.pickbutton2:
+                        openPicker();
+                        return true;
+                    case R.id.profile2:
+                        openProfile();
+                        return true;
+                    case R.id.cameras2:
+                        openCamera();
+                        return true;
+                    case R.id.addface2:
+                        openFace();
+                        return true;
+                    case bluetooth2:
+                        openBluetooth();
+                }
+                return false;
+            }
+        });
 
         if (ContextCompat.checkSelfPermission(Bluetooth.this, Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_DENIED)
         {

@@ -54,29 +54,4 @@ public class SelectDeviceActivity extends AppCompatActivity {
             snackbar.show();
         }
     }
-
-    public void openCamera() {
-        Intent intent = new Intent(this, Camera.class);
-        startActivity(intent);
-    }
-
-    public void openBluetooth() {
-        Intent intent = new Intent(this, Bluetooth.class);
-        startActivity(intent);
-    }
-
-    public void openProfile() {
-        Intent intent = new Intent(this, profileActivity.class);
-        startActivity(intent);
-    }
-
-    public void openFace() {
-        Intent intent = new Intent(this, FaceCapture.class);
-        startActivity(intent);
-    }
-
-    public void openPicker() {
-        Intent intent = new Intent(this, PickImageActivity.class);
-        startActivity(intent);
-    }
 }
