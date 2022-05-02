@@ -7,7 +7,7 @@
     tools:context=".verifyPhone">
 
         <EditText
-            android:id="@+id/newPass"
+            android:id="@+id/phone4Code"
             android:layout_width="250dp"
             android:layout_height="50dp"
             android:autofillHints=""
