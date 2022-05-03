@@ -8,25 +8,29 @@
     android:background="@color/AntiqueWhite"
     tools:context=".FaceCapture">
 
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        app:layout_constraintBottom_toTopOf="@id/bottomNav"
+        app:layout_constraintTop_toTopOf="parent"
 
+        tools:layout_editor_absoluteX="0dp">
+    </FrameLayout>
     <!-- add Camera Button to open the Camera-->
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="675dp"
         android:background="@color/colorPrimary"
         app:itemTextColor="@color/black"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/frameLayout"
+        app:menu="@menu/appmenu"
 
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:menu="@menu/appmenu" />
+        />
 
     <Button
         android:id="@+id/camera_button"
@@ -50,8 +54,10 @@
         android:background="@color/NewColor1"
         android:text="Pick File"
         app:layout_constraintBottom_toTopOf="@+id/bottomNav"
-        app:layout_constraintTop_toBottomOf="@+id/camera_button"
-        tools:layout_editor_absoluteX="6dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/camera_button" />
 
     <ImageView
         android:id="@+id/imageView3"

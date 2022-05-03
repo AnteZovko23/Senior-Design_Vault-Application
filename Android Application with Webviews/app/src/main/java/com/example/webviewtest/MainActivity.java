@@ -86,45 +86,6 @@ public class MainActivity extends AppCompatActivity {
         t1 = new NotificationThread();
         t1.start();
 
-        //toolbar=findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
-
-    }
-
-
-    void openFragment(Fragment fragment){
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.frameLayout, fragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-
-    }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.appmenu, menu);
-        super.onCreateOptionsMenu(menu);
-        return true;
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item){
-        switch(item.getItemId()){
-            case R.id.pickbutton2:
-                openPicker();
-                return true;
-            case R.id.profile2:
-                openProfile();
-                return true;
-            case R.id.cameras2:
-                openCamera();
-                return true;
-            case R.id.addface2:
-                openFace();
-                return true;
-            case bluetooth2:
-                openBluetooth();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     public void openCamera() {

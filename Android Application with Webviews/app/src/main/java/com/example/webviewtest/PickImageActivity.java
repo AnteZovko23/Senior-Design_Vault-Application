@@ -29,6 +29,7 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.ListResult;
@@ -88,6 +89,7 @@ public class PickImageActivity extends AppCompatActivity {
 
         userStorage = FirebaseStorage.getInstance("gs://the-vault-7cf31.appspot.com");
 
+        currUser = FirebaseAuth.getInstance().getCurrentUser();
         name = currUser.getDisplayName();
 
         suffix = "";
