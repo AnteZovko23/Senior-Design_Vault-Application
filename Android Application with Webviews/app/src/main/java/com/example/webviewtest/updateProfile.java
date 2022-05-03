@@ -18,6 +18,7 @@ import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -30,10 +31,11 @@ public class updateProfile extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
-    private FirebaseFirestore db;
-    private DocumentReference userDoc;
+    //private FirebaseFirestore db;
+    //private CollectionReference users;
+    //private DocumentReference userDoc;
 
-    String newEmail = "", newPhone = "", newName = "";
+    String newEmail = "", newPhone = "", newName = "", uName = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +46,9 @@ public class updateProfile extends AppCompatActivity {
         //init firebase auth
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
-        userDoc = db.collection("user_Info").document(firebaseUser.getDisplayName());
+
+        binding.newPhone.setVisibility(View.GONE);
+
 
 
         // logout button
@@ -78,7 +82,7 @@ public class updateProfile extends AppCompatActivity {
             }
 
             if (!TextUtils.isEmpty(newPhone)) {
-                if (!Patterns.PHONE.matcher(newEmail).matches()) {
+                if (!Patterns.PHONE.matcher(newPhone).matches()) {
                     //email format is invalid, don't proceed further
                     binding.newEmail.setError("Invalid phone number format");
                 } else {
@@ -105,6 +109,7 @@ public class updateProfile extends AppCompatActivity {
 
             }
 
+            firebaseUser.reload();
 
         }
 

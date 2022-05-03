@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.view.MenuItem;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -27,8 +28,10 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
@@ -38,6 +41,7 @@ import java.security.KeyManagementException;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
+import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -45,6 +49,7 @@ public class PickImageActivity extends AppCompatActivity {
     private Button gallery;
     private ImageView imageView;
     private FirebaseStorage userStorage;
+    private StorageReference storageRef;
     private FirebaseUser currUser;
     String name, storagePath, uriPath, fileName, suffix;
 
@@ -82,13 +87,8 @@ public class PickImageActivity extends AppCompatActivity {
 
         userStorage = FirebaseStorage.getInstance("gs://the-vault-7cf31.appspot.com");
 
-        try {
-            name = currUser.getDisplayName();
-        }
+        name = currUser.getDisplayName();
 
-        catch(Exception NullPointerException) {
-            name = "Ante";
-        }
         suffix = "";
         storagePath = name+"/";
         fileName = uriPath ="";
@@ -142,7 +142,7 @@ public class PickImageActivity extends AppCompatActivity {
         // uploads picture (in form of byte array)
         //  might want to add in metadata (nice-to-have development feature to help with debugging
         //  from firebase website console viewpoint)
-        StorageReference storageRef = userStorage.getReference(storagePath);
+        storageRef = userStorage.getReference(storagePath);
         setFileName();
         StorageReference smileyImgRef = storageRef.child(fileName);
 
@@ -169,9 +169,29 @@ public class PickImageActivity extends AppCompatActivity {
 
     private void setFileName()
     {
-        // first use picture's name (if none, prompt user for name)
+        fileName = name+suffix+".jpg";
 
-        //
+        // first use picture's name (if none, prompt user for name)
+        storageRef.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
+            @Override
+            public void onSuccess(ListResult listResult) {
+                int found = 0;
+                for (StorageReference item : listResult.getItems())
+                {
+                    if (item.toString() == fileName) {
+                        suffix = String.valueOf(++found);
+
+                        Log.d("item exists", item.toString());
+                    }
+                }
+
+                if (found > 0)
+                {
+                    suffix = String.valueOf(found);
+                }
+            }
+        });
+
         fileName = name+suffix+".jpg";
     }
 

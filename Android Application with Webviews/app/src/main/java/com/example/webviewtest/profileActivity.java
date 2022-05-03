@@ -41,6 +41,7 @@ public class profileActivity extends AppCompatActivity {
         name = firebaseUser.getDisplayName();
         db = FirebaseFirestore.getInstance();
         userDoc = db.collection("user_Info").document(name);
+        binding.PhoneNumber.setVisibility(View.GONE);
         checkUser();
 
         setViews();
@@ -74,8 +75,8 @@ public class profileActivity extends AppCompatActivity {
     {
         checkPhone();
 
-        binding.UserDName.setText(name+firebaseUser.getDisplayName());
-        binding.emailInfo.setText("Email: "+firebaseUser.getEmail());
+        binding.UserDName.setText("Display Name:\n"+name);
+        binding.emailInfo.setText("Email:\n"+firebaseUser.getEmail());
         if(firebaseUser.getPhotoUrl() != null)
             binding.userImage.setImageURI(firebaseUser.getPhotoUrl());
     }
@@ -84,7 +85,7 @@ public class profileActivity extends AppCompatActivity {
     {
         binding.PhoneNumber.setText(phoneNumber);
         if (firebaseUser.getPhoneNumber() != null)
-            binding.PhoneNumber.setText("Phone Number: "+firebaseUser.getPhoneNumber());
+            binding.PhoneNumber.setText("Phone Number:\n"+firebaseUser.getPhoneNumber());
         else {
             userDoc.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                                     @Override

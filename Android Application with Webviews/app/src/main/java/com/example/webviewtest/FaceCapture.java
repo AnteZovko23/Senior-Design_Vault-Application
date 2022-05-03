@@ -20,6 +20,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,6 +28,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
@@ -47,6 +49,7 @@ public class FaceCapture extends AppCompatActivity {
     // Define the pic id
     private static final int pic_id = 123;
     private FirebaseStorage userStorage;
+    private StorageReference storageRef;
     private FirebaseUser currUser;
     private FirebaseAuth firebaseAuth;
     private DocumentReference userDoc;
@@ -100,13 +103,8 @@ public class FaceCapture extends AppCompatActivity {
 
 
 
-        try {
-            name = currUser.getDisplayName();
-        }
+        name = currUser.getDisplayName();
 
-        catch(Exception NullPointerException) {
-            name = "Ante";
-        }
         suffix = "";
         storagePath = name+"/";
         fileName = uriPath ="";
@@ -159,9 +157,38 @@ public class FaceCapture extends AppCompatActivity {
 
     private void setFileName()
     {
-        // first use picture's name (if none, prompt user for name)
         fileName = name+suffix+".jpg";
-        Log.d("current User: ", name);
+
+        // first use picture's name (if none, prompt user for name)
+        storageRef.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
+            @Override
+            public void onSuccess(ListResult listResult) {
+                int found = 0;
+                for (StorageReference item : listResult.getItems())
+                {
+                    if (item.toString() == fileName) {
+                        suffix = String.valueOf(++found);
+
+                        System.out.println("item exists: "+item.toString());
+                        Log.d("item exists", item.toString());
+                    }
+                }
+
+                if (found > 0)
+                {
+                    suffix = String.valueOf(found);
+                }
+            }
+        })
+        .addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                System.out.println("could not list storage reference");
+                Log.d("no List", "could not list storage reference");
+            }
+        });
+
+        fileName = name+suffix+".jpg";
     }
 
     private void sendPic(Bitmap bitmap) {
@@ -190,7 +217,7 @@ public class FaceCapture extends AppCompatActivity {
         // uploads picture (in form of byte array)
         //  might want to add in metadata (nice-to-have development feature to help with debugging
         //  from firebase website console viewpoint)
-        StorageReference storageRef = userStorage.getReference(storagePath);
+        storageRef = userStorage.getReference(storagePath);
         setFileName();
         StorageReference smileyImgRef = storageRef.child(fileName);
 
