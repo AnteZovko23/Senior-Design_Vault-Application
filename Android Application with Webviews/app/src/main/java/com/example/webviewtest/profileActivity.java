@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -14,6 +16,8 @@ import android.view.View;
 import com.example.webviewtest.databinding.ActivityProfileBinding;
 import com.example.webviewtest.databinding.ActivitySignUpBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,6 +25,11 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import io.grpc.Context;
 
 public class profileActivity extends AppCompatActivity {
 
@@ -30,6 +39,8 @@ public class profileActivity extends AppCompatActivity {
     private FirebaseUser firebaseUser;
     private FirebaseFirestore db;
     private DocumentReference userDoc;
+    private FirebaseStorage userStorage;
+    private StorageReference storageRef;
 
     String phoneNumber = "Phone Number: ", name = "Display Name";
 
@@ -45,9 +56,13 @@ public class profileActivity extends AppCompatActivity {
         name = firebaseUser.getDisplayName();
         db = FirebaseFirestore.getInstance();
         userDoc = db.collection("user_Info").document(name);
+        userStorage = FirebaseStorage.getInstance("gs://the-vault-7cf31.appspot.com");
+        storageRef = userStorage.getReference(name+"/");
+
         binding.PhoneNumber.setVisibility(View.GONE);
         checkUser();
 
+        binding.userImage.setVisibility(View.VISIBLE);
         setViews();
 
         BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
@@ -108,8 +123,27 @@ public class profileActivity extends AppCompatActivity {
 
         binding.UserDName.setText("Display Name:\n"+name);
         binding.emailInfo.setText("Email:\n"+firebaseUser.getEmail());
-        if(firebaseUser.getPhotoUrl() != null)
-            binding.userImage.setImageURI(firebaseUser.getPhotoUrl());
+
+        // set picture
+        StorageReference userPic = storageRef.child(name+".jpg");
+
+        final long maxSize = 1024*1024*20; // approximately 20 megabytes
+        userPic.getBytes(maxSize).addOnSuccessListener(new OnSuccessListener<byte[]>()
+        {
+            @Override
+            public void onSuccess(byte[] ba)
+            {
+                Bitmap finalPic = BitmapFactory.decodeByteArray(ba, 0, ba.length);
+                binding.userImage.setImageBitmap(finalPic);
+            }
+        })
+        .addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                binding.userImage.setVisibility(View.GONE);
+            }
+        });
+
     }
 
     private void checkPhone()

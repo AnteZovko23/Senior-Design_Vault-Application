@@ -109,7 +109,6 @@ public class updateProfile extends AppCompatActivity {
 
             }
 
-            firebaseUser.reload();
 
         }
 
