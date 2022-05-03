@@ -1,17 +1,21 @@
 package com.example.webviewtest;
 
+import static com.example.webviewtest.R.id.bluetooth2;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.example.webviewtest.databinding.ActivityProfileBinding;
 import com.example.webviewtest.databinding.ActivitySignUpBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -45,6 +49,33 @@ public class profileActivity extends AppCompatActivity {
         checkUser();
 
         setViews();
+
+        BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
+
+        bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch(item.getItemId()) {
+                    case R.id.pickbutton2:
+                        openPicker();
+                        return true;
+                    case R.id.profile2:
+                        openProfile();
+                        return true;
+                    case R.id.cameras2:
+                        openCamera();
+                        return true;
+                    case R.id.addface2:
+                        openFace();
+                        return true;
+                    case bluetooth2:
+                        openBluetooth();
+                        return true;
+                }
+                return false;
+            }
+        });
+
 
         // logout button
         binding.logoutBtn.setOnClickListener(new View.OnClickListener()

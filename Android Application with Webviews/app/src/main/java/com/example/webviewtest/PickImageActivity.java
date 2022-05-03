@@ -58,7 +58,7 @@ public class PickImageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pick_image);
 
-        BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
+        BottomNavigationView bottomNav = findViewById(R.id.bottomNavPick);
 
         bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -78,6 +78,7 @@ public class PickImageActivity extends AppCompatActivity {
                         return true;
                     case bluetooth2:
                         openBluetooth();
+                        return true;
                 }
                 return false;
             }

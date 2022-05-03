@@ -8,16 +8,26 @@
     android:background="@color/AntiqueWhite"
     tools:context=".PickImageActivity">
 
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavPick"
+        app:layout_constraintTop_toTopOf="parent"
+
+        tools:layout_editor_absoluteX="0dp">
+    </FrameLayout>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavPick"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/bottomNav"
-        app:layout_constraintTop_toBottomOf="@id/frameLayout"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:background="@color/colorPrimary"
-        app:menu="@menu/appmenu"
         app:itemTextColor="@color/black"
         app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/frameLayout"
+        app:menu="@menu/appmenu"
 
         />
 
@@ -46,8 +56,9 @@
         android:text="Pick Image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.768" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -58,10 +69,10 @@
         android:layout_marginBottom="133dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/logosomething2" />
+        app:layout_constraintVertical_bias="0.254"
+        app:srcCompat="@drawable/logosomething3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

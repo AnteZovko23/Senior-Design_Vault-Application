@@ -25,45 +25,49 @@
         android:id="@+id/camera3"
         android:layout_width="399dp"
         android:layout_height="46dp"
-        android:text="Camera 3"
+        android:layout_marginBottom="88dp"
         android:background="@color/NewColor1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.961" />
+        android:text="Camera 3"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavcam"
+        tools:layout_editor_absoluteX="6dp" />
 
     <Button
         android:id="@+id/camera2"
         android:layout_width="399dp"
         android:layout_height="46dp"
+        android:layout_marginBottom="28dp"
         android:background="@color/NewColor1"
         android:text="Camera 2"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/camera3"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.856" />
+        app:layout_constraintTop_toBottomOf="@+id/camera1" />
 
     <Button
         android:id="@+id/camera1"
         android:layout_width="399dp"
         android:layout_height="46dp"
+        android:layout_marginBottom="28dp"
         android:background="@color/NewColor1"
         android:text="Camera 1"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/camera2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.752" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="254dp"
         android:layout_height="224dp"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="503dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logosomething2" />
+        app:srcCompat="@drawable/logosomething3" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -86,6 +86,7 @@ public class FaceCapture extends AppCompatActivity {
                         return true;
                     case bluetooth2:
                         openBluetooth();
+                        return true;
                 }
                 return false;
             }
