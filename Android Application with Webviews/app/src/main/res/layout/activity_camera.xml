@@ -7,6 +7,7 @@
     android:background="@color/AntiqueWhite"
     tools:context=".Camera">
 
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavcam"
         android:layout_width="match_parent"
@@ -25,17 +26,18 @@
         android:id="@+id/camera3"
         android:layout_width="399dp"
         android:layout_height="46dp"
-        android:layout_marginBottom="88dp"
         android:background="@color/NewColor1"
         android:text="Camera 3"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavcam"
-        tools:layout_editor_absoluteX="6dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/camera2" />
 
     <Button
         android:id="@+id/camera2"
         android:layout_width="399dp"
         android:layout_height="46dp"
-        android:layout_marginBottom="28dp"
         android:background="@color/NewColor1"
         android:text="Camera 2"
         app:layout_constraintBottom_toTopOf="@+id/camera3"
@@ -48,23 +50,19 @@
         android:id="@+id/camera1"
         android:layout_width="399dp"
         android:layout_height="46dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginTop="456dp"
         android:background="@color/NewColor1"
         android:text="Camera 1"
-        app:layout_constraintBottom_toTopOf="@+id/camera2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="254dp"
         android:layout_height="224dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="503dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/camera1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

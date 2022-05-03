@@ -162,5 +162,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonToggle" />
 
+    <TextView
+        android:id="@+id/textViewInfo3"
+        android:layout_width="379dp"
+        android:layout_height="1dp"
+        android:background="@color/black"
+        android:textAlignment="center"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/buttonPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordBox" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
