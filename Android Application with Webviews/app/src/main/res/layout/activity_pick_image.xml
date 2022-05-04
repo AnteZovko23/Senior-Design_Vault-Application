@@ -60,6 +60,22 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:layout_constraintVertical_bias="0.768" />
 
+    <EditText
+        android:id="@+id/nameInput"
+        android:layout_width="282dp"
+        android:layout_height="49dp"
+        android:background="@color/AntiqueWhite"
+        android:gravity="center_horizontal"
+        android:hint="Enter Name. . ."
+        android:textColor="@color/NewColor1"
+        android:textColorHint="@color/NewColor1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="254dp"

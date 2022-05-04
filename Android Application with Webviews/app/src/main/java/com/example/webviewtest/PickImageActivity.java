@@ -12,11 +12,13 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.view.MenuItem;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -52,6 +54,8 @@ public class PickImageActivity extends AppCompatActivity {
     private FirebaseStorage userStorage;
     private StorageReference storageRef;
     private FirebaseUser currUser;
+    private ProgressBar spinner;
+    private EditText nameInput;
     String name, storagePath, uriPath, fileName, suffix;
 
     @Override
@@ -89,8 +93,9 @@ public class PickImageActivity extends AppCompatActivity {
 
         userStorage = FirebaseStorage.getInstance("gs://the-vault-7cf31.appspot.com");
 
-        currUser = FirebaseAuth.getInstance().getCurrentUser();
-        name = currUser.getDisplayName();
+        try {
+            name = nameInput.getText().toString();
+        }
 
         suffix = "";
         storagePath = name+"/";
@@ -100,8 +105,12 @@ public class PickImageActivity extends AppCompatActivity {
         gallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(intent, 3);
+                name = nameInput.getText().toString();
+                SystemClock.sleep(1000);
+                if(!(name.equals(""))) {
+                    Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    startActivityForResult(intent, 3);
+                }
             }
         });
     }
@@ -121,6 +130,7 @@ public class PickImageActivity extends AppCompatActivity {
     {
         // gets the specific smiley png
         // implement an image chooser here
+        spinner.setVisibility(View.VISIBLE);
         Bitmap bitmap = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
 
         //openFileChooser();
@@ -160,7 +170,7 @@ public class PickImageActivity extends AppCompatActivity {
                 Handler handler = new Handler();
                 Runnable r=new Runnable() {
                     public void run() {
-//                        spinner.setVisibility(View.GONE);
+                        spinner.setVisibility(View.GONE);
                         Toast.makeText(PickImageActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                     }
                 };

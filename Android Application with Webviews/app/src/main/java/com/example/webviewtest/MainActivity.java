@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
             while (true) {
                 SystemClock.sleep(1000);
                 httpRequest();
-                System.out.println("yo");
+                System.out.println("notifications");
             }
         }
 
@@ -147,10 +147,16 @@ public class MainActivity extends AppCompatActivity {
             mRQueue = Volley.newRequestQueue(MainActivity.this);
             mSReq = new StringRequest(Request.Method.GET, url, response -> {
                 System.out.println(response);
-                if(response.equals("Unknown")) {
-                    String message="There is a stranzger at your door";
+                String message;
+                if(response.equals("nothing") == false) {
+                    if(response.equals("Unknown")) {
+                        message = "There is a stranger at your door";
+                    }
+                    else {
+                        message = response + " is at your door";
+                    }
                     NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.this,"My Notification");
-                    builder.setContentTitle("Stranger Danger");
+                    builder.setContentTitle("Person Detected");
                     builder.setContentText(message);
                     builder.setSmallIcon(R.drawable.ic_baseline_arrow_back_24);
                     builder.setAutoCancel(true);
@@ -160,6 +166,7 @@ public class MainActivity extends AppCompatActivity {
 
             }, error -> {});
             mRQueue.add(mSReq);
+            SystemClock.sleep(2000);
         }
     }
 }
