@@ -78,6 +78,7 @@ public class updateProfile extends AppCompatActivity {
                     binding.newEmail.setError("Invalid email format");
                 } else {
                     firebaseUser.updateEmail(newEmail);
+                    firebaseUser.sendEmailVerification();
                 }
             }
 
