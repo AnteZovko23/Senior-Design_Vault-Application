@@ -77,11 +77,10 @@ public class SignUpActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onSupportNavigateUp()
+    public void onBackPressed()
     {
         startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
         finish();
-        return true;
     }
 
     private void validateData()
@@ -157,6 +156,6 @@ public class SignUpActivity extends AppCompatActivity
                         Toast.makeText(SignUpActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
-
     }
+
 }

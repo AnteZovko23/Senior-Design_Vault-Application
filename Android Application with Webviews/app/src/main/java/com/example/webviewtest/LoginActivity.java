@@ -135,6 +135,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onBackPressed()
+    {
+    }
+
     private void validateData()
     {
         //get data

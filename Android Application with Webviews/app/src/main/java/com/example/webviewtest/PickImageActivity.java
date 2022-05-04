@@ -93,9 +93,7 @@ public class PickImageActivity extends AppCompatActivity {
 
         userStorage = FirebaseStorage.getInstance("gs://the-vault-7cf31.appspot.com");
 
-        try {
-            name = nameInput.getText().toString();
-        }
+        name = nameInput.getText().toString();
 
         suffix = "";
         storagePath = name+"/";
