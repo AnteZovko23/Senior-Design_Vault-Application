@@ -185,9 +185,11 @@ public class LoginActivity extends AppCompatActivity {
                         {
                             String email = firebaseUser.getEmail();
                             Toast.makeText(LoginActivity.this, "Please verify your email.\nA link has been sent to "+email, Toast.LENGTH_SHORT).show();
-
+                            binding.email.setError("Please verify this email using the link sent.");
+                            //binding.notVerifiedLogin.setVisibility(view.VISIBLE);
                             progressDialog.dismiss();
                         }
+
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
