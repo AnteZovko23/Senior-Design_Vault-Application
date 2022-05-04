@@ -7,15 +7,6 @@
     android:background="@color/AntiqueWhite"
     tools:context=".profileActivity">
 
-    <FrameLayout
-        android:id="@+id/frameLayout"
-        android:layout_width="match_parent"
-        android:layout_height="0sp"
-        app:layout_constraintBottom_toTopOf="@id/bottomNav"
-        app:layout_constraintTop_toTopOf="parent"
-
-        tools:layout_editor_absoluteX="0dp">
-    </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"
@@ -30,29 +21,15 @@
 
         />
 
-
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/userImage"
         android:layout_width="254dp"
         android:layout_height="224dp"
-        android:layout_marginBottom="489dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/UserDName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logosomething3" />
-
-    <ImageView
-        android:id="@+id/userImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="141dp"
-        android:layout_marginEnd="142dp"
-        app:layout_constraintBottom_toTopOf="@+id/UserDName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3"
         tools:srcCompat="@tools:sample/avatars" />
 
     <Button
@@ -65,7 +42,7 @@
         app:layout_constraintEnd_toStartOf="@+id/changeInfo"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PhoneNumber" />
+        app:layout_constraintTop_toBottomOf="@+id/emailInfo" />
 
     <Button
         android:id="@+id/changeInfo"
@@ -77,16 +54,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/logoutBtn"
-        app:layout_constraintTop_toBottomOf="@+id/PhoneNumber" />
+        app:layout_constraintTop_toBottomOf="@+id/emailInfo" />
 
     <TextView
         android:id="@+id/UserDName"
         android:layout_width="225dp"
         android:layout_height="52dp"
         android:background="@color/NewColor1"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/emailInfo"
+        app:layout_constraintBottom_toTopOf="@+id/PhoneNumber"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -97,26 +74,25 @@
         android:layout_width="225dp"
         android:layout_height="52dp"
         android:background="@color/NewColor1"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/PhoneNumber"
+        app:layout_constraintBottom_toTopOf="@+id/logoutBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/UserDName" />
+        app:layout_constraintTop_toBottomOf="@+id/PhoneNumber" />
 
     <TextView
         android:id="@+id/PhoneNumber"
         android:layout_width="225dp"
         android:layout_height="52dp"
-        android:layout_marginTop="543dp"
-        android:layout_marginBottom="80dp"
         android:background="@color/NewColor1"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNav"
+        app:layout_constraintBottom_toTopOf="@+id/emailInfo"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/UserDName" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
