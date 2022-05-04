@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.webviewtest.databinding.ActivityUpdateProfileBinding;
 import com.example.webviewtest.databinding.ActivityVerifyPhoneBinding;
@@ -71,6 +72,8 @@ public class updateProfile extends AppCompatActivity {
 
         private void verifyEntries()
         {
+            String oldEmail = firebaseUser.getEmail();
+
             //validate data
             if (!TextUtils.isEmpty(newEmail)) {
                 if (!Patterns.EMAIL_ADDRESS.matcher(newEmail).matches()) {
@@ -109,6 +112,13 @@ public class updateProfile extends AppCompatActivity {
                 firebaseUser.updateProfile(profileUpdates);
 
             }
+
+            if (oldEmail != newEmail)
+            {
+                Toast.makeText(updateProfile.this, "Please verify your new email before logging in.", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this,LoginActivity.class));
+            }
+
 
 
         }

@@ -1,34 +1,29 @@
 package com.example.webviewtest;
 
-import static com.example.webviewtest.R.id.bluetooth2;
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
@@ -49,15 +44,16 @@ public class FaceCapture extends AppCompatActivity {
     // Define the pic id
     private static final int pic_id = 123;
     private FirebaseStorage userStorage;
-    private StorageReference storageRef;
     private FirebaseUser currUser;
     private FirebaseAuth firebaseAuth;
     private DocumentReference userDoc;
     private CollectionReference users;
+    private EditText nameInput;
 
     // Define the button and imageview type variable
     Button camera_open_id;
-    String name, storagePath, uriPath, fileName, suffix;
+    String name = null;
+    String storagePath, uriPath, fileName, suffix;
     Uri picUri = null;
 
     @Override
@@ -65,32 +61,7 @@ public class FaceCapture extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_face_capture);
-
-        BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
-
-        bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch(item.getItemId()) {
-                    case R.id.pickbutton2:
-                        openPicker();
-                        return true;
-                    case R.id.profile2:
-                        openProfile();
-                        return true;
-                    case R.id.cameras2:
-                        openCamera();
-                        return true;
-                    case R.id.addface2:
-                        openFace();
-                        return true;
-                    case bluetooth2:
-                        openBluetooth();
-                        return true;
-                }
-                return false;
-            }
-        });
+        nameInput = findViewById(R.id.nameInput);
 
         stop_feed();
 
@@ -102,10 +73,14 @@ public class FaceCapture extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         currUser = firebaseAuth.getCurrentUser();
 
+        try {
+            name = nameInput.getText().toString();
+            print("Name: " + name);
+        }
 
-
-        name = currUser.getDisplayName();
-
+        catch(Exception NullPointerException) {
+            name = "Ante";
+        }
         suffix = "";
         storagePath = name+"/";
         fileName = uriPath ="";
@@ -117,16 +92,19 @@ public class FaceCapture extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+                name = nameInput.getText().toString();
+                SystemClock.sleep(1000);
+                if(!(name.equals(""))) {
+                    // Create the camera_intent ACTION_IMAGE_CAPTURE
+                    // it will open the camera for capture the image
+                    Intent camera_intent
+                            = new Intent(MediaStore
+                            .ACTION_IMAGE_CAPTURE);
 
-                // Create the camera_intent ACTION_IMAGE_CAPTURE
-                // it will open the camera for capture the image
-                Intent camera_intent
-                        = new Intent(MediaStore
-                        .ACTION_IMAGE_CAPTURE);
-
-                // Start the activity with camera_intent,
-                // and request pic id
-                startActivityForResult(camera_intent, pic_id);
+                    // Start the activity with camera_intent,
+                    // and request pic id
+                    startActivityForResult(camera_intent, pic_id);
+                }
             }
         });
     }
@@ -158,38 +136,11 @@ public class FaceCapture extends AppCompatActivity {
 
     private void setFileName()
     {
-        fileName = name+suffix+".jpg";
-
         // first use picture's name (if none, prompt user for name)
-        storageRef.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
-            @Override
-            public void onSuccess(ListResult listResult) {
-                int found = 0;
-                for (StorageReference item : listResult.getItems())
-                {
-                    if (item.toString() == fileName) {
-                        suffix = String.valueOf(++found);
-
-                        System.out.println("item exists: "+item.toString());
-                        Log.d("item exists", item.toString());
-                    }
-                }
-
-                if (found > 0)
-                {
-                    suffix = String.valueOf(found);
-                }
-            }
-        })
-        .addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                System.out.println("could not list storage reference");
-                Log.d("no List", "could not list storage reference");
-            }
-        });
-
-        fileName = name+suffix+".jpg";
+        if(!(name.equals(""))) {
+            fileName = name+suffix+".jpg";
+            Log.d("current User: ", name);
+        }
     }
 
     private void sendPic(Bitmap bitmap) {
@@ -218,7 +169,7 @@ public class FaceCapture extends AppCompatActivity {
         // uploads picture (in form of byte array)
         //  might want to add in metadata (nice-to-have development feature to help with debugging
         //  from firebase website console viewpoint)
-        storageRef = userStorage.getReference(storagePath);
+        StorageReference storageRef = userStorage.getReference(storagePath);
         setFileName();
         StorageReference smileyImgRef = storageRef.child(fileName);
 
@@ -296,6 +247,9 @@ public class FaceCapture extends AppCompatActivity {
     public void openPicker() {
         Intent intent = new Intent(this, PickImageActivity.class);
         startActivity(intent);
+    }
+    public void print(String str) {
+        System.out.println(str);
     }
     @Override
     public void onBackPressed() {
