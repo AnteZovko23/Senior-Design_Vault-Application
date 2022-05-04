@@ -24,4 +24,6 @@
     <string name="phone_req">Phone Number</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="DisplayName"><u></u></string>
+    <string name="Email"><u></u></string>
 </resources>
