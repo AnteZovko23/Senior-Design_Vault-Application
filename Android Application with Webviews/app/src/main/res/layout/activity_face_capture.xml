@@ -74,8 +74,15 @@
 
     <EditText
         android:id="@+id/nameInput"
-        android:layout_width="8dp"
-        android:layout_height="13dp"
+        android:layout_width="404dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:backgroundTint="@color/black"
+        android:textColor="@color/NewColor1"
+        android:textColorHint="@color/NewColor1"
+        android:hint="@string/pNameRequest"
+        android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/pickbutton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

@@ -20,6 +20,7 @@
     <string name="name_update">Display Name (optional)</string>
     <string name="sign_up">REGISTER</string>
     <string name="nameRequest">Please enter your display name.</string>
+    <string name="pNameRequest">Who is in your picture?</string>
     <string name="phone">Phone Number (optional)</string>
     <string name="phone_req">Phone Number</string>
     <!-- TODO: Remove or change this placeholder text -->
