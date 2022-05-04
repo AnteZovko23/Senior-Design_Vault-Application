@@ -25,6 +25,7 @@
         android:id="@+id/userImage"
         android:layout_width="254dp"
         android:layout_height="224dp"
+        android:cropToPadding="true"
         app:layout_constraintBottom_toTopOf="@+id/UserDName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -58,21 +59,22 @@
 
     <TextView
         android:id="@+id/UserDName"
-        android:layout_width="225dp"
-        android:layout_height="52dp"
+        android:layout_width="194dp"
+        android:layout_height="55dp"
         android:background="@color/NewColor1"
         android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/PhoneNumber"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userImage" />
 
     <TextView
         android:id="@+id/emailInfo"
-        android:layout_width="225dp"
-        android:layout_height="52dp"
+        android:layout_width="194dp"
+        android:layout_height="55dp"
         android:background="@color/NewColor1"
         android:textColor="@color/white"
         android:textStyle="bold"
@@ -84,8 +86,8 @@
 
     <TextView
         android:id="@+id/PhoneNumber"
-        android:layout_width="225dp"
-        android:layout_height="52dp"
+        android:layout_width="194dp"
+        android:layout_height="55dp"
         android:background="@color/NewColor1"
         android:textColor="@color/white"
         android:textStyle="bold"
@@ -94,5 +96,33 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/UserDName" />
+
+    <TextView
+        android:id="@+id/DisName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="319dp"
+        android:layout_marginBottom="390dp"
+        android:background="@color/NewColor1"
+        android:text="Display Name:"
+        android:textSize="7pt"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/DisEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="512dp"
+        android:layout_marginBottom="197dp"
+        android:background="@color/NewColor1"
+        android:text="Email:"
+        android:textSize="7pt"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/emailInfo"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
