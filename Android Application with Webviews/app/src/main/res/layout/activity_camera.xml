@@ -23,40 +23,16 @@
         tools:layout_editor_absoluteX="-6dp" />
 
     <Button
-        android:id="@+id/camera3"
+        android:id="@+id/camera1"
         android:layout_width="399dp"
         android:layout_height="46dp"
         android:background="@color/NewColor1"
-        android:text="Camera 3"
+        android:text="Camera"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavcam"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/camera2" />
-
-    <Button
-        android:id="@+id/camera2"
-        android:layout_width="399dp"
-        android:layout_height="46dp"
-        android:background="@color/NewColor1"
-        android:text="Camera 2"
-        app:layout_constraintBottom_toTopOf="@+id/camera3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/camera1" />
-
-    <Button
-        android:id="@+id/camera1"
-        android:layout_width="399dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="456dp"
-        android:background="@color/NewColor1"
-        android:text="Camera 1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -64,8 +40,9 @@
         android:layout_height="224dp"
         app:layout_constraintBottom_toTopOf="@+id/camera1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.2"
         app:srcCompat="@drawable/logosomething3" />
 </androidx.constraintlayout.widget.ConstraintLayout>
