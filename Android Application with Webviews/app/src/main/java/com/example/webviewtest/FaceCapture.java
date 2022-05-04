@@ -52,8 +52,7 @@ public class FaceCapture extends AppCompatActivity {
 
     // Define the button and imageview type variable
     Button camera_open_id;
-    String name = null;
-    String storagePath, uriPath, fileName, suffix;
+    String storagePath, uriPath, fileName, suffix, name;
     Uri picUri = null;
 
     @Override
@@ -74,7 +73,7 @@ public class FaceCapture extends AppCompatActivity {
         currUser = firebaseAuth.getCurrentUser();
 
         try {
-            name = nameInput.getText().toString();
+            name = currUser.getDisplayName();//nameInput.getText().toString();
             print("Name: " + name);
         }
 
@@ -92,7 +91,6 @@ public class FaceCapture extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                name = nameInput.getText().toString();
                 SystemClock.sleep(1000);
                 if(!(name.equals(""))) {
                     // Create the camera_intent ACTION_IMAGE_CAPTURE

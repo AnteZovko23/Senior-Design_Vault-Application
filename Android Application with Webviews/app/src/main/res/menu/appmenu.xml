@@ -14,7 +14,7 @@
     <item
         android:id="@+id/cameras2"
         android:title="CAMERAS"
-        android:icon="@drawable/cameraicon"
+        android:icon="@drawable/ic_camera"
         app:showAsAction="always" />
     <item
         android:id="@+id/addface2"
@@ -24,7 +24,7 @@
     <item
         android:id="@+id/pickbutton2"
         android:title="PICK AN IMAGE"
-        android:icon="@drawable/pickimageicon"
+        android:icon="@drawable/ic_icon"
         app:showAsAction="always" />
 
 
