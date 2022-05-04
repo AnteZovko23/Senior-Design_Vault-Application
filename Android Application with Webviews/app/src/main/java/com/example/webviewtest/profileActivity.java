@@ -42,7 +42,7 @@ public class profileActivity extends AppCompatActivity {
     private FirebaseStorage userStorage;
     private StorageReference storageRef;
 
-    String phoneNumber = "Phone Number: ", name = "Display Name";
+    String phoneNumber = "Phone Number: ", name = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,8 +121,10 @@ public class profileActivity extends AppCompatActivity {
     {
         checkPhone();
 
-        binding.UserDName.setText("Display Name:\n"+name);
-        binding.emailInfo.setText("Email:\n"+firebaseUser.getEmail());
+        binding.DisName.setText("Display Name:");
+        binding.DisEmail.setText("Email:");
+        binding.UserDName.setText(name);
+        binding.emailInfo.setText(firebaseUser.getEmail());
 
         // set picture
         StorageReference userPic = storageRef.child(name+".jpg");
