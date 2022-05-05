@@ -41,6 +41,7 @@ public class profileActivity extends AppCompatActivity {
     private DocumentReference userDoc;
     private FirebaseStorage userStorage;
     private StorageReference storageRef;
+    private StorageReference storageRef2;
 
     String phoneNumber = "Phone Number: ", name = "";
 
@@ -58,6 +59,7 @@ public class profileActivity extends AppCompatActivity {
         userDoc = db.collection("user_Info").document(name);
         userStorage = FirebaseStorage.getInstance("gs://the-vault-7cf31.appspot.com");
         storageRef = userStorage.getReference(name+"/");
+        storageRef2 = userStorage.getReference();
 
         binding.PhoneNumber.setVisibility(View.GONE);
         checkUser();
@@ -128,8 +130,26 @@ public class profileActivity extends AppCompatActivity {
 
         // set picture
         StorageReference userPic = storageRef.child(name+".jpg");
+        StorageReference userPic2 = storageRef2.child(name+".jpg");
 
         final long maxSize = 1024*1024*20; // approximately 20 megabytes
+
+        // userPic2 looks for image in the highest directory (similar to root)
+        userPic2.getBytes(maxSize).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                Bitmap finalPic = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                binding.userImage.setImageBitmap(finalPic);
+            }
+        })
+        .addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                binding.userImage.setVisibility(View.GONE);
+            }
+        });
+        // userPic looks for the picture in the current user's folder (called the same as the user name)
+        /*
         userPic.getBytes(maxSize).addOnSuccessListener(new OnSuccessListener<byte[]>()
         {
             @Override
@@ -145,6 +165,7 @@ public class profileActivity extends AppCompatActivity {
                 binding.userImage.setVisibility(View.GONE);
             }
         });
+        /**/
 
     }
 
