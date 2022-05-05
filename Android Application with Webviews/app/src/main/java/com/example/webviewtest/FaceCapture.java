@@ -3,6 +3,7 @@ package com.example.webviewtest;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Handler;
 import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.os.Bundle;
@@ -11,6 +12,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -53,6 +56,7 @@ public class FaceCapture extends AppCompatActivity {
     private DocumentReference userDoc;
     private CollectionReference users;
     private EditText nameInput;
+    private ProgressBar spinner;
 
     // Define the button and imageview type variable
     Button camera_open_id;
@@ -65,6 +69,8 @@ public class FaceCapture extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_face_capture);
         nameInput = findViewById(R.id.nameInput);
+        spinner = findViewById(R.id.progressBar3);
+        spinner.setVisibility(View.GONE);
 
         stop_feed();
 
@@ -76,9 +82,7 @@ public class FaceCapture extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         currUser = firebaseAuth.getCurrentUser();
 
-
-        name = currUser.getDisplayName();
-
+        name = nameInput.getText().toString();
 
         suffix = "";
         storagePath = name+"/";
@@ -91,6 +95,7 @@ public class FaceCapture extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+                name = nameInput.getText().toString();
                 //name = nameInput.getText().toString();
                 SystemClock.sleep(1000);
                 if(!(name.equals(""))) {
@@ -141,21 +146,16 @@ public class FaceCapture extends AppCompatActivity {
         storageRef.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
             @Override
             public void onSuccess(ListResult listResult) {
-                int found = 0;
-                for (StorageReference item : listResult.getItems())
-                {
-                    if (item.toString() == fileName) {
-                        suffix = String.valueOf(++found);
-
-                        System.out.println("item exists: "+item.toString());
-                        Log.d("item exists", item.toString());
+                System.out.println("Uploaded successfully!");
+                start_face_processing();
+                Handler handler = new Handler();
+                Runnable r=new Runnable() {
+                    public void run() {
+                        spinner.setVisibility(View.GONE);
+                        Toast.makeText(FaceCapture.this, "Success!", Toast.LENGTH_SHORT).show();
                     }
-                }
-
-                if (found > 0)
-                {
-                    suffix = String.valueOf(found);
-                }
+                };
+                handler.postDelayed(r, 12000);
             }
         })
         .addOnFailureListener(new OnFailureListener() {
@@ -171,6 +171,7 @@ public class FaceCapture extends AppCompatActivity {
     }
 
     private void sendPic(Bitmap bitmap) {
+        spinner.setVisibility(View.VISIBLE);
         // gets the specific smiley png
         // implement an image chooser here
 

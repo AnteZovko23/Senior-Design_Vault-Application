@@ -63,7 +63,9 @@ public class PickImageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pick_image);
 
+        nameInput = findViewById(R.id.nameInput);
         BottomNavigationView bottomNav = findViewById(R.id.bottomNavPick);
+        spinner = findViewById(R.id.progressBar);
 
         bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -92,12 +94,13 @@ public class PickImageActivity extends AppCompatActivity {
         stop_feed();
 
         userStorage = FirebaseStorage.getInstance("gs://the-vault-7cf31.appspot.com");
-        currUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        name = currUser.getDisplayName();
+        name = nameInput.getText().toString();
+
         suffix = "";
         storagePath = name+"/";
         fileName = uriPath ="";
+        spinner.setVisibility(View.GONE);
 
         gallery = (Button) findViewById(R.id.gallery);
         gallery.setOnClickListener(new View.OnClickListener() {

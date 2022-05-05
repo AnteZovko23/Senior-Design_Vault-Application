@@ -158,17 +158,17 @@ public class Bluetooth extends AppCompatActivity {
 
                     case MESSAGE_READ:
                         String arduinoMsg = msg.obj.toString(); // Read message from Arduino
-                       /* switch (arduinoMsg.toLowerCase()){
+                        switch (arduinoMsg.toLowerCase()){
                             case "led is turned on":
-                                imageView.setBackgroundColor(getResources().getColor(R.color.colorOn));
+//                                imageView.setBackgroundColor(getResources().getColor(R.color.colorOn));
                                 textViewInfo.setText("Arduino Message : " + arduinoMsg);
                                 break;
                             case "led is turned off":
-                                imageView.setBackgroundColor(getResources().getColor(R.color.colorOff));
+//                                imageView.setBackgroundColor(getResources().getColor(R.color.colorOff));
                                 textViewInfo.setText("Arduino Message : " + arduinoMsg);
                                 break;
                         }
-                        break;*/
+                        break;
                 }
             }
         };
@@ -190,13 +190,13 @@ public class Bluetooth extends AppCompatActivity {
                 String cmdText = null;
                 String btnState = buttonToggle.getText().toString().toLowerCase();
                 switch (btnState){
-                    case "turn on":
-                        buttonToggle.setText("Turn Off");
+                    case "unlock":
+                        buttonToggle.setText("Lock");
                         // Command to turn on LED on Arduino. Must match with the command in Arduino code
                         cmdText = "1";
                         break;
-                    case "turn off":
-                        buttonToggle.setText("Turn On");
+                    case "lock":
+                        buttonToggle.setText("Unlock");
                         // Command to turn off LED on Arduino. Must match with the command in Arduino code
                         cmdText = "0";
                         break;
