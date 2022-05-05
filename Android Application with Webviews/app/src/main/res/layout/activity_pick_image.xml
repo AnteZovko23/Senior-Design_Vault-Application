@@ -8,44 +8,6 @@
     android:background="@color/AntiqueWhite"
     tools:context=".PickImageActivity">
 
-    <FrameLayout
-        android:id="@+id/frameLayout"
-        android:layout_width="match_parent"
-        android:layout_height="0sp"
-        app:layout_constraintBottom_toTopOf="@id/bottomNavPick"
-        app:layout_constraintTop_toTopOf="parent"
-
-        tools:layout_editor_absoluteX="0dp">
-    </FrameLayout>
-
-    <EditText
-        android:id="@+id/nameInput"
-        android:layout_width="282dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="122dp"
-        android:background="@color/AntiqueWhite"
-        android:gravity="center_horizontal"
-        android:hint="Enter Name. . ."
-        android:textColor="@color/NewColor1"
-        android:textColorHint="@color/NewColor1"
-        app:layout_constraintBottom_toTopOf="@+id/progressBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavPick"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        app:itemTextColor="@color/black"
-        app:labelVisibilityMode="labeled"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/frameLayout"
-        app:menu="@menu/appmenu"
-
-        />
-
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleLarge"
@@ -73,21 +35,37 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.768" />
+        app:layout_constraintVertical_bias="0.756" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="254dp"
-        android:layout_height="224dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="133dp"
+    <EditText
+        android:id="@+id/nameInput"
+        android:layout_width="282dp"
+        android:layout_height="49dp"
+        android:background="@color/AntiqueWhite"
+        android:gravity="center_horizontal"
+        android:hint="Enter Name. . ."
+        android:textColor="@color/NewColor1"
+        android:textColorHint="@color/NewColor1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.254"
-        app:srcCompat="@drawable/logosomething3" />
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="420dp"
+        android:layout_height="641dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="133dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/logosomething2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

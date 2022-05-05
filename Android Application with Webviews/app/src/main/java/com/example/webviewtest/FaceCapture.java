@@ -96,7 +96,6 @@ public class FaceCapture extends AppCompatActivity {
             public void onClick(View v)
             {
                 name = nameInput.getText().toString();
-                //name = nameInput.getText().toString();
                 SystemClock.sleep(1000);
                 if(!(name.equals(""))) {
                     // Create the camera_intent ACTION_IMAGE_CAPTURE
