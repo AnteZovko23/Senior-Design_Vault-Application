@@ -66,8 +66,9 @@ public class PickImageActivity extends AppCompatActivity {
         nameInput = findViewById(R.id.nameInput);
         BottomNavigationView bottomNav = findViewById(R.id.bottomNavPick);
         spinner = findViewById(R.id.progressBar);
-		spinner.setVisibiity(View.GONE);
+		spinner.setVisibility(View.GONE);
 
+		/*
         bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -91,6 +92,7 @@ public class PickImageActivity extends AppCompatActivity {
                 return false;
             }
         });
+        /**/
 
         stop_feed();
 

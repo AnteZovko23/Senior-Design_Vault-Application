@@ -137,10 +137,11 @@ public class FaceCapture extends AppCompatActivity {
         }
     }
 
+
     private void setFileName()
     {
         fileName = name+suffix+".jpg";
-
+    /*
         // first use picture's name (if none, prompt user for name)
         storageRef.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
             @Override
@@ -166,9 +167,10 @@ public class FaceCapture extends AppCompatActivity {
         });
 
         fileName = name+suffix+".jpg";
+        /**/
 
     }
-
+    /**/
     private void sendPic(Bitmap bitmap) {
         spinner.setVisibility(View.VISIBLE);
         // gets the specific smiley png
