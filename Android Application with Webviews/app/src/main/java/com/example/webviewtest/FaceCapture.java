@@ -207,6 +207,7 @@ public class FaceCapture extends AppCompatActivity {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 System.out.println("Upload successful");
+                spinner.setVisibility(View.VISIBLE);
                 start_face_processing();
             }
 

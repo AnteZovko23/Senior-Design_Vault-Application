@@ -68,7 +68,7 @@ public class PickImageActivity extends AppCompatActivity {
         spinner = findViewById(R.id.progressBar);
 		spinner.setVisibility(View.GONE);
 
-		/*
+
         bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
